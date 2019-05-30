@@ -12,3 +12,6 @@ Week 2:
 Week 3:
 	-Created ER Diagram for project
 	-Selected DBMS as Mysql and IDE as Qt
+
+Week 4:
+	
