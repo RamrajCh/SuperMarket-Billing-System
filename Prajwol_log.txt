@@ -1,6 +1,6 @@
 p.mdr79@gmail.com
 Log_Info:
-  Week 1:Researching the other billing systems
-  Week 2:Learning how to use git and github
-  Week 3:Choosing DBMS and graphic software(MySQL and OpenGL)
+  Week 1:
+  Week 2:
+  Week 3:
   Week 4:
