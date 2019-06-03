@@ -38,7 +38,20 @@ int login()
 	if ((strcmp(username,admin_id)==0)
 	{
 		cout<<"\nGive your password:\t";
-		int len=strlen	
-		cin>>password;
+		int len=strlen(passwd);
+		for (int i=0;i<len;i++)
+		{
+		password[i]=getch();
+		cout<<"*";
+		}
+		password[i]=NULL;
+		if ((strcmp(username,admin_id)==0)&&(strcmp(passwd,password)==0)
+			return 1;
+		else 
+			return 0;
+	}
+	else
+		return 0;
+}
 	
 #endif
