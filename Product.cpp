@@ -1,68 +1,83 @@
 #include<iostream>
+using namespace std; 
 
-class ProductId{
+class Product{
  
 	private:
-		int Id;
-		char Name;
+		int id;
+		char name[25];
 	public : 
-		Product Id() {Id=0;} 
+		Product() {id=0;} 
+		void id_set(void) {cin>>id;}		//setter of id
+		void name_set(void) {cin>>name;}	//Setter of Character
+		//int get_id(void) {return id;} 
+		//char get_name(void) {return name;}
+		friend void Add_Products(); 
+		//friend void Modify_Products();
+		//friend void Delete_Products();
 		
 	};
-Add_Products(); 
+
+void Add_Products(); 
+//void Modify_Products();
+//void Delete_Products();
+
 
 int main() 
 {	int option; 
 	cout<<"Enter 1 to add Products, 2 to Modify Products, 3 to delete products"<<endl;
 	cin>>option;
-
-		if (option ==1){
+	switch(option){
+		case 1:
 				cout<<" Adding products: "<<endl; 
 				Add_Products();			 	
-				}
-		if (option ==2){
+				break;
+		case 2:
 				cout<<" Modify products: "<<endl; 
-				Modify_Products();			 	
-				}
-		if (option ==1){
+				//Modify_Products();
+break;			 	
+				
+		case 3:
 				cout<<" Deleting products: "<<endl; 
-				Delete_Products();			 	
-				}
-		else		{
-			cout<<" Invalid products: "<<endl; 	
-	             		}
+				//Delete_Products();
+break;			 	
+				
+		default:
+			cout<<" Invalid number "<<endl; 	
+	             		
+}
 		
-
-
-	cout<<"Enter product Key: 
+ 
 return 0; 
 }
 
-Add_Products()
+void Add_Products()
 {		
-	int number;
-	char name;
-	cout<< /t <<"YOU ARE GOING TO ADD PRODUCTS"<<endl;	
-	cout<<"Enter product ID"<<endl; 
-	cin>>number>>endl;
+	
+	Product P;
+	cout<< '\t' <<"YOU ARE GOING TO ADD PRODUCTS"<<endl;	
+	cout<<"Enter product id"<<endl; 
+	P.id_set();
 	cout<<"Enter product Name: "<<endl;
-	cin>>name>>endl; 
-//how to tranfer tis into the class? 
+	P.name_set(); 
+	
+	 
 }
 	
-Modify_Products()
+/*void Modify_Products()
 {
 	cout<< /t <<"YOU ARE GOING TO MODIFY PRODUCTS"<<endl;	
-	cout<<"Enter product ID"<<endl; 
+	cout<<"Enter product id"<<endl; 
 	//accesing class varaibales and modifying them; 
 }
 
-Delete_Products()
+void Delete_Products()
 {
 	cout<< /t <<"YOU ARE GOING TO DELETE PRODUCTS"<<endl;	
-	cout<<"Enter product ID"<<endl; 
+	cout<<"Enter product id"<<endl; 
 	cin>>number>>endl;
 	//finding the class and destroying it,....Destructors??
 	
 }
-}
+} 
+*/
