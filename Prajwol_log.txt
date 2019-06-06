@@ -3,6 +3,11 @@ pm02433518@student.ku.edu.np
 
 Log_Info:
   Week 1:
+	-Reasearching related works
+	-Creating Github Account
   Week 2:
+	-Learing the usage of Git
   Week 3:
+	-Selection of DBMS and desingning software (MySQL and Qt)
+	-ER diagram
   Week 4:
