@@ -1,13 +1,19 @@
 #include<iostream>
 
-class ProductId{
+class Product{
 
 	private:
-		int Id;
-		char Name;
-		int price;
+		int id;
+		char name[25];
 	public :
-		ProductId() {Id=0;}
+		Product() {id=0;}
+		void id_set(void) {cin>>id;}		//setter of id
+		void name_set(void) {cin>>name;}	//Setter of Character
+		//int get_id(void) {return id;}
+		//char get_name(void) {return name;}
+		friend void Add_Products();
+		friend void Modify_Products();
+		//friend void Delete_Products();
 
 	};
 
@@ -16,11 +22,11 @@ Modify_Products()
 	cout<< /t <<"YOU ARE GOING TO MODIFY PRODUCTS"<<endl;
 	cout<<"Enter product Name"<<endl;
 	//accesing class varaibales and modifying them;
-	char prod;
+	char *prod;
 	int nid,nprice;
 	cout <<"Enter product name :/t";
-	cin <<prod;
+	cin << *prod;
 	cout<<"enter new id and price";
-    prod.id_set();
-	prod.price_set();
+    *prod.id_set();
+	*prod.price_set();
 }
