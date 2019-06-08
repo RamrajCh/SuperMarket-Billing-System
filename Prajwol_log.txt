@@ -11,3 +11,7 @@ Log_Info:
 	-Selection of DBMS and desingning software (MySQL and Qt)
 	-ER diagram
   Week 4:
+  	-Testing for modifying products and destroying the used products
+  Week 5:
+  	-Working on Cashier_login
+	
