@@ -5,6 +5,7 @@ class Product{
 	private:
 		int id;
 		char name[25];
+		float price;
 	public :
 		Product() {id=0;}
 		void id_set(void) {cin>>id;}		//setter of id
@@ -22,11 +23,11 @@ Modify_Products()
 	cout<< /t <<"YOU ARE GOING TO MODIFY PRODUCTS"<<endl;
 	cout<<"Enter product Name"<<endl;
 	//accesing class varaibales and modifying them;
-	char *prod;
+	Product *prod;
 	int nid,nprice;
 	cout <<"Enter product name :/t";
 	cin << *prod;
 	cout<<"enter new id and price";
-    *prod.id_set();
-	*prod.price_set();
+    	cin<<*prod.id;					//pointer can access the private members of a class
+	cin<<*prod.price;
 }
