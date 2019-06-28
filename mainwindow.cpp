@@ -83,7 +83,9 @@ void MainWindow::on_registerButton_2_clicked()
             if(db.open())
               {
                 //Store Data to Database
-                QMessageBox::information(this,"Registration","Registration Sucessful");
+                //QMessageBox::information(this,"Registration","Registration Sucessful");
+                QSqlQuery qry;
+                qry.prepare("INSERT INTO Admin values(:Fname,:Lname,:Uname,:Mobile,:Email,:Password)")
               }
             else
               {
