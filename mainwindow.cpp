@@ -99,7 +99,7 @@ void MainWindow::on_registerButton_2_clicked()
                 }
                 else
                 {
-                    if(db.addUser(fname,lname,username,mobileno,email,passwd))
+                    if(db.addAdmin(fname,lname,username,mobileno,email,passwd))
                     {
                         QMessageBox::information(this,"Registration","Registered Sucessful");
                         //clear all

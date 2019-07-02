@@ -29,9 +29,9 @@ bool Dbase::isOpen() const
     return db.isOpen();
 }
 
-bool Dbase::createTable()
+void Dbase::createTable()
 {
-    bool success = false;
+   // bool success = false;
 
     QSqlQuery query;
     query.prepare("CREATE TABLE Admin ( FirstName TEXT NOT NULL, LastName TEXT NOT NULL, UserName TEXT NOT NULL UNIQUE, MobileNo TEXT NOT NULL, Email TEXT NOT NULL UNIQUE, Password TEXT NOT NULL )");
@@ -39,13 +39,13 @@ bool Dbase::createTable()
     if (!query.exec())
     {
         qDebug() << "Couldn't create the table 'Admin': one might already exist.";
-        success = false;
+        //success = false;
     }
 
-    return success;
+    //return success;
 }
 
-bool Dbase::addUser(const QString &fname, const QString &lname, const QString &username, const QString &mobileno, const QString &email, const QString &passwd){
+bool Dbase::addAdmin(const QString &fname, const QString &lname, const QString &username, const QString &mobileno, const QString &email, const QString &passwd){
     bool success = false;
     QSqlQuery qry;
     qry.prepare("INSERT INTO Admin(FirstName,LastName,UserName,MobileNo,Email,Password)"" VALUES(:FirstName,:LastName,:UserName,:MobileNo,:Email,:Password)");

@@ -3,8 +3,6 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QtSql>
-#include <QSqlDatabase>
 #include <adminwindow.h>
 #include <dbase.h>
 namespace Ui {

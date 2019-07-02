@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     adminwindow.cpp \
-    dbase.cpp
+    dbase.cpp \
+    dbase_admin.cpp
 
 HEADERS += \
         mainwindow.h \
     adminwindow.h \
-    dbase.h
+    dbase.h \
+    dbase_admin.h
 
 FORMS += \
         mainwindow.ui \

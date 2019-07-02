@@ -29,7 +29,7 @@ public:
        * @brief Creates a new 'user' table if it doesn't already exist
        * @return true - 'user' table created successfully, false - table not created
        */
-      bool createTable();
+      void createTable();
 
       /**
        * @brief Add user data to db
@@ -41,7 +41,7 @@ public:
        * @param phn
        * @return true - person added successfully, false - person not added
        */
-      bool addUser(const QString &fname, const QString &lname, const QString &username, const QString &mobileno, const QString &email, const QString &passwd);
+      bool addAdmin(const QString &fname, const QString &lname, const QString &username, const QString &mobileno, const QString &email, const QString &passwd);
 
       /**
        * @brief Remove users data from db
