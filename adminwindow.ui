@@ -7,63 +7,122 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>500</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="companyButton">
+   <widget class="QStackedWidget" name="adminStack">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>20</y>
-      <width>91</width>
-      <height>41</height>
+      <x>0</x>
+      <y>0</y>
+      <width>650</width>
+      <height>600</height>
      </rect>
     </property>
-    <property name="text">
-     <string>COMPANY</string>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
+    <widget class="QWidget" name="Product"/>
+    <widget class="QWidget" name="Company"/>
+    <widget class="QWidget" name="Cashier"/>
+    <widget class="QWidget" name="Privacy">
+     <widget class="QStackedWidget" name="privacyStack">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>531</width>
+        <height>511</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="Details">
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>211</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>           YOUR DETAILS</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Edit"/>
+     </widget>
+     <widget class="QPushButton" name="editButton">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>100</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="logoutButton">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>550</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Log Out</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="cashierButton">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>20</y>
-      <width>91</width>
-      <height>41</height>
+      <x>20</x>
+      <y>10</y>
+      <width>591</width>
+      <height>81</height>
      </rect>
     </property>
-    <property name="text">
-     <string>CASHIER</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="productButton">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>20</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PRODUCT</string>
-    </property>
-   </widget>
-   <widget class="QStackedWidget" name="AdminStack">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>631</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <widget class="QWidget" name="page_3"/>
-    <widget class="QWidget" name="page_4"/>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="companyButton">
+       <property name="text">
+        <string>COMPANY</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cashierButton">
+       <property name="text">
+        <string>CASHIER</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="productButton">
+       <property name="text">
+        <string>PRODUCT</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="privacyButton">
+       <property name="text">
+        <string>PRIVACY</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

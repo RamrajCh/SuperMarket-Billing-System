@@ -34,7 +34,7 @@ bool Dbase::createTable()
     bool success = false;
 
     QSqlQuery query;
-    query.prepare("CREATE TABLE Admin ( `FirstName` TEXT, `LastName` TEXT, `UserName` TEXT UNIQUE, `MobileNo` TEXT, `Email` TEXT UNIQUE, `Password` TEXT );");
+    query.prepare("CREATE TABLE Admin ( FirstName TEXT NOT NULL, LastName TEXT NOT NULL, UserName TEXT NOT NULL UNIQUE, MobileNo TEXT NOT NULL, Email TEXT NOT NULL UNIQUE, Password TEXT NOT NULL )");
 
     if (!query.exec())
     {
@@ -48,12 +48,12 @@ bool Dbase::createTable()
 bool Dbase::addUser(const QString &fname, const QString &lname, const QString &username, const QString &mobileno, const QString &email, const QString &passwd){
     bool success = false;
     QSqlQuery qry;
-    qry.prepare("INSERT INTO Admin(FirstName,LastName,UserName,MobileNo,Email,Password)"" VALUES(:FirstName,:LastName,:UserName,:MobileNo,:E-mail,:Password)");
+    qry.prepare("INSERT INTO Admin(FirstName,LastName,UserName,MobileNo,Email,Password)"" VALUES(:FirstName,:LastName,:UserName,:MobileNo,:Email,:Password)");
     qry.bindValue(":FirstName",fname);
     qry.bindValue(":LastName",lname);
     qry.bindValue(":UserName",username);
     qry.bindValue(":MobileNo",mobileno);
-    qry.bindValue(":E-mail",email);
+    qry.bindValue(":Email",email);
     qry.bindValue(":Password",passwd);
 
     if(!qry.exec()){
@@ -145,7 +145,7 @@ bool Dbase::userAuth(const QString &uname, const QString &pass)const{
     bool exists = false;
 
     QSqlQuery checkQuery;
-    checkQuery.prepare("SELECT UserName FROM user WHERE UserName = (:uname) AND Password = (:pass)");
+    checkQuery.prepare("SELECT UserName FROM Admin WHERE UserName =:uname AND Password = :pass");
     checkQuery.bindValue(":uname", uname);
     checkQuery.bindValue(":pass", pass);
     if (checkQuery.exec()){

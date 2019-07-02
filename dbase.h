@@ -41,7 +41,7 @@ public:
        * @param phn
        * @return true - person added successfully, false - person not added
        */
-      bool addUser(const QString& email,const QString& password,const QString& fname,const QString& lname,const QString& addr,const QString& phn);
+      bool addUser(const QString &fname, const QString &lname, const QString &username, const QString &mobileno, const QString &email, const QString &passwd);
 
       /**
        * @brief Remove users data from db
@@ -72,7 +72,7 @@ public:
        * @brief Authenticate the users via user email and password
        * @return db_primary_key - , 0 - log in failed
        */
-      bool userAuth(const QString& name, const QString& pass) const;
+      bool userAuth(const QString& uname, const QString& pass) const;
 
       /**
        * @brief Get all the user data from the dbase

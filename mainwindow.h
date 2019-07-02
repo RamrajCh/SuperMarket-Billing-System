@@ -6,6 +6,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <adminwindow.h>
+#include <dbase.h>
 namespace Ui {
   class MainWindow;
 }
@@ -36,7 +37,6 @@ private slots:
    void on_cancelButton_2_clicked();
 
 private:
-    QSqlDatabase db;
     Ui::MainWindow *ui;
     AdminWindow *adminwindow;
 };
