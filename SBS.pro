@@ -25,13 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    adminwindow.cpp \
+    dbase.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    adminwindow.h \
+    dbase.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    adminwindow.ui
 
 RESOURCES += \
     sbs.qrc

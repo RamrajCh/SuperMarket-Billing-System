@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QtSql>
 #include <QSqlDatabase>
+#include <adminwindow.h>
 namespace Ui {
   class MainWindow;
 }
@@ -28,9 +29,16 @@ private slots:
 
    void on_registerButton_2_clicked();
 
+   void on_cancelButton_1_clicked();
+
+   void on_loginButton_2_clicked();
+
+   void on_cancelButton_2_clicked();
+
 private:
     QSqlDatabase db;
-  Ui::MainWindow *ui;
+    Ui::MainWindow *ui;
+    AdminWindow *adminwindow;
 };
 
 #endif // MAINWINDOW_H

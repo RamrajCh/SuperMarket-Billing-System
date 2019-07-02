@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -39,7 +39,7 @@ bool isEmpty(QString obj)
 
 void MainWindow :: showError(MainWindow* window,QString error)
 {
-  QMessageBox::information(window,"Error!!",error);
+  QMessageBox::warning(window,"Error!!",error);
 }
 
 void MainWindow::on_registerButton_2_clicked()
@@ -77,21 +77,95 @@ void MainWindow::on_registerButton_2_clicked()
             //connect to database
             QSqlDatabase db;
             db=QSqlDatabase::addDatabase("QSQLITE");
-            db.setDatabaseName("SBS.db");
+            db.setDatabaseName("/home/ramraj/SBS/SBS.db");
 
 
             if(db.open())
               {
                 //Store Data to Database
-                //QMessageBox::information(this,"Registration","Registration Sucessful");
+                QMessageBox::information(this,"Connection","Connection Sucessful");
                 QSqlQuery qry;
-                qry.prepare("INSERT INTO Admin values(:Fname,:Lname,:Uname,:Mobile,:Email,:Password)")
+
+                qry.prepare("INSERT INTO Admin(FirstName,LastName,UserName,MobileNo,Email,Password)"" values(:Fname,:Lname,:Uname,:Mobile,:Email,:Password)");
+                qry.bindValue(0,fname);
+                qry.bindValue(1,lname);
+                qry.bindValue(2,username);
+                qry.bindValue(3,mobileno);
+                qry.bindValue(4,email);
+                qry.bindValue(5,passwd);
+
+                if(qry.exec())
+                    {
+                      QMessageBox::information(this,"Registration","Registered Sucessful");
+                      //show login stack window
+                      ui->mainStack->setCurrentIndex(2);
+                    }
+                else QMessageBox::information(this,"Registration","Registered Unsucessful");
               }
             else
               {
                 //Show unsucessful Message
-                QMessageBox::information(this,"Registration","Registration Unsucessful");
+                QMessageBox::information(this,"Connection","Connection Unsucessful");
+
               }
         }
+}
 
+void MainWindow::on_cancelButton_1_clicked()
+{
+    //show home stack window
+      ui->mainStack->setCurrentIndex(0);
+}
+
+
+
+void MainWindow::on_loginButton_2_clicked()
+{
+    //connect to database
+    QSqlDatabase db;
+    db=QSqlDatabase::addDatabase("QSQLITE","MyConnection");
+    db.setDatabaseName("/home/ramraj/SBS/SBS.db");
+
+    QString uname=ui->login_username->text();
+    QString passwd=ui->login_password->text();
+
+    if(db.open())
+    {
+        //executing query
+        QMessageBox::information(this,"Login","Database Connected");
+        QSqlQuery qry(QSqlDatabase::database("MyConnection"));
+
+        qry.prepare(QString("SELECT * FROM Admin WHERE UserName=:Uname AND Password=:Password"));
+        qry.bindValue(":Uname",uname);
+        qry.bindValue(":Password",passwd);
+
+        if(qry.exec())
+        {
+            //show AdminWindow
+            QMessageBox::information(this,"Login","Login Sucessful");
+            adminwindow=new AdminWindow(this);
+           // mainwindow->hide();
+            this->hide();
+            adminwindow->show();
+        }
+        else
+        {
+            //Show error
+            QMessageBox::information(this,"Login","Incorrect Username or Password");
+        }
+
+    }
+
+    else
+    {
+        //show error
+        QMessageBox::information(this,"Login","Login Unsucessful");
+    }
+
+}
+
+void MainWindow::on_cancelButton_2_clicked()
+{
+    //show home stack window
+      ui->mainStack->setCurrentIndex(0);
 }
