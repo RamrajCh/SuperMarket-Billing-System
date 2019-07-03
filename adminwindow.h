@@ -16,6 +16,7 @@ class AdminWindow : public QMainWindow
 
 public:
   void showError(AdminWindow* window,QString error);
+  void showCompanyDetails();
 
   explicit AdminWindow(QWidget *parent = 0);
   ~AdminWindow();
@@ -32,6 +33,10 @@ private slots:
     void on_companyUpdateButton_clicked();
 
     void on_okButton_1_clicked();
+
+    void on_cancelButton_1_clicked();
+
+    void on_editButton_1_clicked();
 
 private:
   Ui::AdminWindow *ui;

@@ -25,6 +25,43 @@ void AdminWindow :: showError(AdminWindow* window,QString error)
   QMessageBox::warning(window,"Error!!",error);
 }
 
+void AdminWindow:: showCompanyDetails()
+{
+    Dbase_admin db("SBS.db");
+    if(!db.isOpen())
+    {
+        qDebug()<<"Not opening database";
+    }
+    else
+    {
+        //retriving data from database
+        QString name,vat,phone,address,email,website;
+        QList<QString> com_det=db.getComDetails();
+        if(!com_det.isEmpty())
+        {
+           //retriving data from list
+            website=com_det.takeAt(0);
+            email=com_det.takeAt(0);
+            address=com_det.takeAt(0);
+            phone=com_det.takeAt(0);
+            vat=com_det.takeAt(0);
+            name=com_det.takeAt(0);
+
+            //Showing results
+            ui->nameLabel->setText(name);
+            ui->vatLabel->setText(vat);
+            ui->phoneLabel->setText(phone);
+            ui->addressLabel->setText(address);
+            ui->emailLabel->setText(email);
+            ui->websiteLabel->setText(website);
+        }
+        else
+        {
+            qDebug()<<"Error in getting list";
+        }
+    }
+}
+
 
 void AdminWindow::on_companyButton_clicked()
 {
@@ -41,6 +78,7 @@ void AdminWindow::on_companyButton_clicked()
         else
         {
             ui->companyStack->setCurrentIndex(2);
+            showCompanyDetails();
         }
     }
     else
@@ -119,7 +157,7 @@ void AdminWindow::on_okButton_1_clicked()
                 }
 
             }
-            elses
+            else
             {
                 if(db.removeCompanyDetails())
                 {
@@ -135,4 +173,16 @@ void AdminWindow::on_okButton_1_clicked()
             }
         }
     }
+    ui->companyStack->setCurrentIndex(2);
+    showCompanyDetails();
+}
+
+void AdminWindow::on_cancelButton_1_clicked()
+{
+    ui->companyStack->setCurrentIndex(2);
+}
+
+void AdminWindow::on_editButton_1_clicked()
+{
+    ui->companyStack->setCurrentIndex(1);
 }

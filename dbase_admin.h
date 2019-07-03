@@ -21,7 +21,9 @@ public:
 
     bool addCompanyDetails(const QString &name, const QString &vat, const QString &phone, const QString &address, const QString &email, const QString &website);//Save data to Company
 
-    bool getCompanyDetails();//read data from Company
+    bool getCompanyDetails();//read data from Company and return true if it has some value
+
+    QList<QString> getComDetails();
 
     bool removeCompanyDetails();//removes all data from Company
 };

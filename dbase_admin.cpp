@@ -54,14 +54,14 @@
   {
       bool sucess=false;
       QSqlQuery qry;
-      qry.prepare("INSERT INTO Company(Name TEXT,VAT TEXT,Phone TEXT,Address TEXT,Email TEXT,Website TEXT) VALUES (:name,:vat,:phone,:address,:email,:website)");
+      qry.prepare("INSERT INTO Company(Name,VAT,Phone,Address,Email,Website) VALUES (:name,:vat,:phone,:address,:email,:website)");
 
-      qry.bindValue(0,name);
-      qry.bindValue(1,vat);
-      qry.bindValue(2,phone);
-      qry.bindValue(3,address);
-      qry.bindValue(4,email);
-      qry.bindValue(5,website);
+      qry.bindValue(":name",name);
+      qry.bindValue(":vat",vat);
+      qry.bindValue(":phone",phone);
+      qry.bindValue(":address",address);
+      qry.bindValue(":email",email);
+      qry.bindValue(":website",website);
 
       if(!qry.exec())
       {
@@ -91,6 +91,43 @@
       }
       return sucess;
   }
+
+  QList<QString> Dbase_admin::getComDetails()
+  {
+      QList<QString> companydetails;
+      QSqlQuery qry;
+      qry.prepare(QString("SELECT * FROM Company"));
+      if(!qry.exec())
+      {
+          qDebug()<<"Error in retriving data"<<qry.lastError();
+      }
+      else
+      {
+         if(qry.next())
+         {
+             QString name=qry.value(0).toString();
+             QString vat=qry.value(1).toString();
+             QString phone=qry.value(2).toString();
+             QString address=qry.value(3).toString();
+             QString email=qry.value(4).toString();
+             QString website=qry.value(5).toString();
+
+             companydetails.push_front(name);
+             companydetails.push_front(vat);
+             companydetails.push_front(phone);
+             companydetails.push_front(address);
+             companydetails.push_front(email);
+             companydetails.push_front(website);
+         }
+         else
+         {
+             qDebug()<<"not executing qyery";
+         }
+
+      }
+        return companydetails;
+  }
+
 
   bool Dbase_admin::removeCompanyDetails()
   {
