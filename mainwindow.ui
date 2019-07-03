@@ -33,17 +33,17 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>180</y>
-        <width>341</width>
-        <height>20</height>
+        <x>110</x>
+        <y>190</y>
+        <width>491</width>
+        <height>111</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>WELCOME TO SUPERMARKET BILLING SYSTEM!!</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;WELCOME TO &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;SUPERMARKET BILLING SYSTEM!!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>

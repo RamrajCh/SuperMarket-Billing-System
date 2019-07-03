@@ -84,7 +84,7 @@ void MainWindow::on_registerButton_2_clicked()
             if(db.isOpen())
               {
                 //Store Data to Database
-                QMessageBox::information(this,"Connection","Connection Sucessful");
+                qDebug()<<"connected to database";
                 db.createTable();
                 if (db.unameExists(username))
                 {
@@ -141,7 +141,11 @@ void MainWindow::on_loginButton_2_clicked()
    {
        //Login
        QMessageBox::information(this,"Login","Login Sucessful");
+       //create Admin_login table
+       db.createAdmin_LoginTable();
+       db.addAdmin_Login(uname);
        //clear login page password
+       ui->login_username->setText("");
        ui->login_password->setText("");
        //show admin window
        adminwindow=new AdminWindow(this);
@@ -151,12 +155,15 @@ void MainWindow::on_loginButton_2_clicked()
    }
    else
    {
-     QMessageBox::information(this,"Login","Login Unsucessful");
+     QMessageBox::information(this,"Login","Incorrect UserName or Password");
+     ui->login_password->setText("");
    }
 }
 
 void MainWindow::on_cancelButton_2_clicked()
 {
     //show home stack window
+      ui->login_username->setText("");
+      ui->login_password->setText("");
       ui->mainStack->setCurrentIndex(0);
 }

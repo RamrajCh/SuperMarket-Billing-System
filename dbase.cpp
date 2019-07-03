@@ -3,6 +3,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QDebug>
+#include<QMessageBox>
 
 Dbase::Dbase(const QString &path)
 {
@@ -57,7 +58,7 @@ bool Dbase::addAdmin(const QString &fname, const QString &lname, const QString &
     qry.bindValue(":Password",passwd);
 
     if(!qry.exec()){
-        qDebug() << "add user failed: " << qry.lastError();
+        qDebug() << "add admin failed: " << qry.lastError();
     }else{
         success = true;
     }
@@ -158,41 +159,42 @@ bool Dbase::userAuth(const QString &uname, const QString &pass)const{
     return exists;
 }
 
-//QList<QString> dbase::getUserInfo(const QString& uname) const{
-//    QList<QString> userList;
+QList<QString> Dbase::getAdminInfo(const QString& uname)
+{
+    QList<QString> adminList;
 
-//    qDebug() << "users in db:";
-//    QSqlQuery query;
-//    query.prepare("SELECT * FROM user WHERE UserName = (:uname)");
-//    query.bindValue(":uname", uname);
+    qDebug() << "admin in db:";
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Admin WHERE UserName =:uname");
+    query.bindValue(":uname",uname);
 
-//    if(!query.exec()){
-//        qDebug()<<"Query err"<<query.lastError();
-//    }else{
-//        //Query was sucessful :)
-//        int email_id = query.record().indexOf("email");
-//        int fname_id = query.record().indexOf("fname");
-//        int lname_id = query.record().indexOf("lname");
-//        int addr_id = query.record().indexOf("addr");
-//        int phn_id = query.record().indexOf("phn");
+    if(!query.exec()){
+        qDebug()<<"Query err"<<query.lastError();
+    }else{
 
-//        if(query.next()){
-//            QString email = query.value(email_id).toString();
-//            QString fname = query.value(fname_id).toString();
-//            QString lname = query.value(lname_id).toString();
-//            QString addr = query.value(addr_id).toString();
-//            QString phn = query.value(phn_id).toString();
+        if(query.next()){
+            qDebug()<<"Sent data";
+            QString fname = query.value(0).toString();
+            QString lname = query.value(1).toString();
+            QString username = query.value(2).toString();
+            QString mobileno = query.value(3).toString();
+            QString email = query.value(4).toString();
+            QString passwd=query.value(5).toString();
 
-//            userList.push_front(phn);
-//            userList.push_front(addr);
-//            userList.push_front(lname);
-//            userList.push_front(fname);
-//            userList.push_front(email);
-//        }
-//    }
-
-//    return  userList;
-//}
+            adminList.push_front(fname);
+            adminList.push_front(lname);
+            adminList.push_front(username);
+            adminList.push_front(mobileno);
+            adminList.push_front(email);
+            adminList.push_front(passwd);
+        }
+        else
+        {
+            qDebug()<<"Couldn't sent data";
+        }
+    }
+    return  adminList;
+}
 
 //QList<QString> dbase::getAllUsers(){
 //    QList<QString> data;
@@ -206,3 +208,76 @@ bool Dbase::userAuth(const QString &uname, const QString &pass)const{
 //    }
 //    return data;
 //}
+
+
+////functions for handling admin login
+
+void Dbase::createAdmin_LoginTable()
+{
+    QSqlQuery query;
+    query.prepare("CREATE TABLE Admin_Login ( FirstName TEXT, LastName TEXT, UserName TEXT UNIQUE, MobileNo TEXT , Email TEXT UNIQUE, Password TEXT)");
+
+    if (!query.exec())
+    {
+        qDebug() << "Couldn't create the table 'Admin_Login': one might already exist.";
+    }
+    else
+    {
+        qDebug()<<"created Admin_LoginTable";
+    }
+}
+
+void Dbase::addAdmin_Login(QString &uname)
+{
+    QSqlQuery qry;
+    //retrive data from Admin table
+    QString fname,lname,username,mobileno,email,passwd;
+    QList <QString> adminlist=getAdminInfo(uname);
+    if(adminlist.isEmpty())
+    {
+        qDebug()<<"error in retriving admin details";
+    }
+    else
+    {
+        qDebug()<<"retrived data from admin";
+        //retriving data from Admin
+        passwd=adminlist.takeAt(0);
+        email=adminlist.takeAt(0);
+        mobileno=adminlist.takeAt(0);
+        username=adminlist.takeAt(0);
+        lname=adminlist.takeAt(0);
+        fname=adminlist.takeAt(0);
+
+        //Add value to Admin_Login table
+
+        qry.prepare("INSERT INTO Admin_Login(FirstName,LastName,UserName,MobileNo,Email,Password) VALUES(:fname,:lname,:uname,:mobileno,:email,:passwd)");
+        qry.bindValue(":fname",fname);
+        qry.bindValue(":lname",lname);
+        qry.bindValue(":uname",username);
+        qry.bindValue(":mobileno",mobileno);
+        qry.bindValue(":email",email);
+        qry.bindValue(":passwd",passwd);
+    }
+    if(!qry.exec())
+    {
+        qDebug() << "add admin failed: " << qry.lastError();
+    }else
+    {
+        //QMessageBox::information(this,"Admin_Login Table","Created");
+        qDebug()<<"add admin sucess";
+    }
+}
+
+void Dbase::deleteAdmin_Login()
+{
+    QSqlQuery qry;
+    qry.prepare("DROP TABLE Admin_Login");
+    if(qry.exec())
+    {
+        qDebug()<<"Table deleted";
+    }
+    else
+    {
+        qDebug()<<"Couldn't delete table";
+    }
+}

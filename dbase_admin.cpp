@@ -32,6 +32,8 @@
         return db.isOpen();
     }
 
+
+////to handle company details
   void Dbase_admin::createCompanyTable()
   {
 
@@ -103,6 +105,7 @@
       }
       else
       {
+
          if(qry.next())
          {
              QString name=qry.value(0).toString();
@@ -141,6 +144,123 @@
       else
       {
           sucess=false;
+          qDebug()<<"failed to delete company";
       }
       return sucess;
   }
+
+  ////to handle Cashier details
+
+  void Dbase_admin::createCashierTable()
+  {
+
+      QSqlQuery qry;
+      qry.prepare("CREATE TABLE Cashier(Name TEXT,UserName TEXT,Phone TEXT,Email TEXT,Password TEXT)");
+
+      if (!qry.exec())
+      {
+          qDebug() <<"Couldn't create Table,one might already exist";
+
+      }
+      else
+      {
+          qDebug()<<"Create table";
+      }
+
+  }
+
+  bool Dbase_admin::addCashierDetails(const QString &name, const QString &uname, const QString &phone, const QString &email, const QString &password)
+  {
+      bool sucess=false;
+      QSqlQuery qry;
+      qry.prepare("INSERT INTO Cashier(Name,UserName,Phone,Email,Password) VALUES (:name,:uname,:phone,:email,:password)");
+
+      qry.bindValue(":name",name);
+      qry.bindValue(":uname",uname);
+      qry.bindValue(":phone",phone);
+      qry.bindValue(":email",email);
+      qry.bindValue(":password",password);
+
+      if(!qry.exec())
+      {
+          qDebug()<<"Add Details Failed"<<qry.lastError();
+          sucess=false;
+      }
+      else
+      {
+          qDebug()<<"Details added Sucessfully";
+          sucess=true;
+      }
+      return sucess;
+  }
+
+  bool Dbase_admin::modifyCashierDetails(const QString &uname)
+  {
+      bool sucess=false;
+      QSqlQuery qry;
+      qry.prepare("SELECT * FROM Company WHERE UserName=:uname");
+      if(!qry.exec())
+      {
+          sucess=false;
+      }
+      else
+      {
+          sucess=true;
+      }
+      return sucess;
+  }
+
+
+  ////functiom to handle privacy
+
+  void Dbase_admin::deleteAdmin_Login()
+  {
+      QSqlQuery qry;
+      qry.prepare("DROP TABLE Admin_Login");
+      if(qry.exec())
+      {
+          qDebug()<<"Admin_Login Table deleted";
+      }
+      else
+      {
+          qDebug()<<"Couldn't delete table";
+      }
+   }
+
+  QList<QString> Dbase_admin::getAdmin_LoginDetails()
+  {
+      QList<QString> admindetails;
+      QSqlQuery qry;
+      qry.prepare(QString("SELECT * FROM Admin_Login"));
+      if(!qry.exec())
+      {
+          qDebug()<<"Error in retriving data"<<qry.lastError();
+      }
+      else
+      {
+
+         if(qry.next())
+         {
+             QString fname=qry.value(0).toString();
+             QString lname=qry.value(1).toString();
+             QString username=qry.value(2).toString();
+             QString mobileno=qry.value(3).toString();
+             QString email=qry.value(4).toString();
+             QString passwd=qry.value(5).toString();
+
+             admindetails.push_front(fname);
+             admindetails.push_front(lname);
+             admindetails.push_front(username);
+             admindetails.push_front(mobileno);
+             admindetails.push_front(email);
+             admindetails.push_front(passwd);
+         }
+         else
+         {
+             qDebug()<<"not executing qyery";
+         }
+
+      }
+        return admindetails;
+  }
+

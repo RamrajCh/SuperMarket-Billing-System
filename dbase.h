@@ -78,13 +78,21 @@ public:
        * @brief Get all the user data from the dbase
        * @return Returns list of strings
        */
-      QList<QString> getUserInfo(const QString& email)const;
+      QList<QString> getAdminInfo(const QString& uname);
 
       /**
        * @brief Get all the email/id of the registerd users from Dbase
        * @return Returns list of strings
        */
       QList<QString> getAllUsers();
+
+      ////functions for handling login
+
+      void createAdmin_LoginTable();//create table for  admin that has log in
+
+      void addAdmin_Login(QString &uname);//store data of admin that has log in
+
+      void deleteAdmin_Login();//delete Admin_Login table
 
   private:
       QSqlDatabase db;
