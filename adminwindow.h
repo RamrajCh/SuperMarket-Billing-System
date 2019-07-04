@@ -46,6 +46,12 @@ private slots:
 
     void on_logoutButton_clicked();
 
+    void on_editButton_2_clicked();
+
+    void on_changePasswordButton_clicked();
+
+    void on_cancelButton_2_clicked();
+
 private:
   Ui::AdminWindow *ui;
 

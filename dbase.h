@@ -57,6 +57,7 @@ public:
        */
       bool emailExists(const QString& email);
       bool unameExists(const QString &uname);
+      bool passwordValid(const QString& passwd);
 
 
       void printAllUsers() const;
@@ -85,6 +86,10 @@ public:
        * @return Returns list of strings
        */
       QList<QString> getAllUsers();
+      /**
+        *change AdminPassword
+        */
+      void changeAdminPassword(const QString& username,const QString& npasswd);
 
       ////functions for handling login
 

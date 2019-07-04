@@ -123,6 +123,27 @@ bool Dbase::emailExists(const QString &email){
     return false;
 }
 
+bool Dbase::passwordValid(const QString &passwd)
+{
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT * FROM Admin WHERE Password=:passwd");
+    checkQuery.bindValue(":passwd",passwd);
+    if(checkQuery.exec())
+    {
+        if(checkQuery.next())
+        {
+            qDebug()<<"password valid";
+            return true;
+        }
+
+    }
+    else
+    {
+        qDebug()<<"password invalid";
+        return false;
+    }
+}
+
 bool Dbase::removeAllUsers()
 {
     bool success = false;
@@ -209,6 +230,22 @@ QList<QString> Dbase::getAdminInfo(const QString& uname)
 //    return data;
 //}
 
+
+void Dbase::changeAdminPassword(const QString& uname,const QString& npasswd)
+{
+    QSqlQuery qry;
+    qry.prepare("UPDATE Admin SET Password=:npasswd WHERE UserName=:uname");
+    qry.bindValue(":npasswd",npasswd);
+    qry.bindValue(":uname",uname);
+    if(qry.next())
+    {
+        qDebug()<<"Password changed";
+    }
+    else
+    {
+        qDebug()<<"password couldn't be changed"<<qry.lastError();
+    }
+}
 
 ////functions for handling admin login
 

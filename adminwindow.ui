@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
@@ -298,7 +298,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -326,20 +326,24 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="modifyCashierButton">
+          <widget class="QPushButton" name="removeCashierButton">
            <property name="text">
-            <string>Modify Cashier</string>
+            <string>Remove a Cashier</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="removeCashierButton">
+          <widget class="QPushButton" name="removeAllCashierButton">
            <property name="text">
-            <string>Remove Cashier</string>
+            <string>Remove All Cashier</string>
            </property>
           </widget>
          </item>
         </layout>
+        <zorder>viewCashierButton</zorder>
+        <zorder>addCashierButton</zorder>
+        <zorder>removeCashierButton</zorder>
+        <zorder>removeAllCashierButton</zorder>
        </widget>
       </widget>
       <widget class="QWidget" name="page_5">
@@ -417,6 +421,58 @@
         </layout>
        </widget>
       </widget>
+      <widget class="QWidget" name="page_6">
+       <widget class="QTableView" name="cashierTable">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>631</width>
+          <height>351</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="specificButton">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>141</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>View Specific</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>40</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>40</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_7"/>
      </widget>
     </widget>
     <widget class="QWidget" name="Product"/>
@@ -486,7 +542,7 @@
          <string>Log Out</string>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>140</x>
@@ -519,7 +575,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>260</x>
@@ -553,7 +609,58 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="Edit"/>
+      <widget class="QWidget" name="Edit">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>70</y>
+          <width>441</width>
+          <height>351</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Change Password</string>
+        </property>
+        <widget class="QWidget" name="">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>80</y>
+           <width>331</width>
+           <height>231</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLineEdit" name="userName"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="oldPassword"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="newPassword"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="confirmNewPassword"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="changePasswordButton">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>440</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Change</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>

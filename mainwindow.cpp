@@ -77,7 +77,7 @@ void MainWindow::on_registerButton_2_clicked()
 
             //connect to database
 
-            Dbase db("SBS.db");
+            Dbase db("/home/ramraj/Desktop/SBS.db");
 
 
 
@@ -135,7 +135,7 @@ void MainWindow::on_loginButton_2_clicked()
     QString uname=ui->login_username->text();
     QString passwd=ui->login_password->text();
 
-   Dbase db("SBS.db");
+   Dbase db("/home/ramraj/Desktop/SBS.db");
    bool result=db.userAuth(uname,passwd);
    if(result)
    {
@@ -145,7 +145,6 @@ void MainWindow::on_loginButton_2_clicked()
        db.createAdmin_LoginTable();
        db.addAdmin_Login(uname);
        //clear login page password
-       ui->login_username->setText("");
        ui->login_password->setText("");
        //show admin window
        adminwindow=new AdminWindow(this);
@@ -166,4 +165,9 @@ void MainWindow::on_cancelButton_2_clicked()
       ui->login_username->setText("");
       ui->login_password->setText("");
       ui->mainStack->setCurrentIndex(0);
+}
+
+void MainWindow::on_exitButton_clicked()
+{
+    QApplication::exit();
 }

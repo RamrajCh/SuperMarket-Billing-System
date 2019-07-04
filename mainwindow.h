@@ -34,6 +34,8 @@ private slots:
 
    void on_cancelButton_2_clicked();
 
+   void on_exitButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     AdminWindow *adminwindow;

@@ -264,3 +264,76 @@
         return admindetails;
   }
 
+bool Dbase_admin::uNameExists(const QString &uname)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Admin_Login WHERE UserName=:uname");
+    qry.bindValue(":uname",uname);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+            qDebug()<<"Username exists";
+            return true;
+        }
+
+    }
+    else
+    {
+        qDebug()<<"Username doesn't exist";
+        return false;
+    }
+}
+
+bool Dbase_admin::passwordValid(const QString &passwd)
+{
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT * FROM Admin_Login WHERE Password=:passwd");
+    checkQuery.bindValue(":passwd",passwd);
+    if(checkQuery.exec())
+    {
+        if(checkQuery.next())
+        {
+            qDebug()<<"password valid";
+            return true;
+        }
+
+    }
+    else
+    {
+        qDebug()<<"password invalid";
+        return false;
+    }
+}
+
+void Dbase_admin::changeAdminPassword(const QString& uname,const QString& npasswd)
+{
+    QSqlQuery qry;
+    qry.prepare("UPDATE Admin SET Password=:npasswd WHERE UserName=:uname");
+    qry.bindValue(":npasswd",npasswd);
+    qry.bindValue(":uname",uname);
+    if(qry.exec())
+    {
+        qDebug()<<"Password changed(Admin)";
+    }
+    else
+    {
+        qDebug()<<"password couldn't be changed(Admin)"<<qry.lastError();
+    }
+}
+
+void Dbase_admin::changeAdmin_LoginPassword(const QString& uname,const QString& npasswd)
+{
+    QSqlQuery qry;
+    qry.prepare("UPDATE Admin_Login SET Password=:npasswd WHERE UserName=:uname");
+    qry.bindValue(":npasswd",npasswd);
+    qry.bindValue(":uname",uname);
+    if(qry.exec())
+    {
+        qDebug()<<"Password changed(Admin_Login)";
+    }
+    else
+    {
+        qDebug()<<"password couldn't be changed(Admin_Login)"<<qry.lastError();
+    }
+}

@@ -33,7 +33,7 @@ void AdminWindow::on_companyButton_clicked()
 {
     //show Company Stack
     ui->adminStack->setCurrentIndex(0);
-    Dbase_admin db("SBS.db");
+    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
     if(db.isOpen())
     {
         //see if database have any table Company_Details and has any value
@@ -87,7 +87,7 @@ void AdminWindow::on_companyUpdateButton_clicked()
 
 void AdminWindow:: showCompanyDetails()
 {
-    Dbase_admin db("SBS.db");
+    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
     if(!db.isOpen())
     {
         qDebug()<<"Not opening database";
@@ -144,7 +144,7 @@ void AdminWindow::on_okButton_1_clicked()
     else
     {
         //connect to database
-        Dbase_admin db("SBS.db");
+        Dbase_admin db("/home/ramraj/Desktop/SBS.db");
         if(!db.isOpen())
         {
             qDebug()<<"Database Connection Unsucessful";
@@ -220,7 +220,7 @@ void AdminWindow::on_okButton_2_clicked()
     else
     {
         //connect to database
-        Dbase_admin db("SBS.db");
+        Dbase_admin db("/home/ramraj/Desktop/SBS.db");
         if(!db.isOpen())
         {
             qDebug()<<"Database Connection Unsucessful";
@@ -230,17 +230,23 @@ void AdminWindow::on_okButton_2_clicked()
                 db.createCashierTable();
                 if(db.addCashierDetails(name,uname,phone,email,passwd))
                 {
-                    QMessageBox::information(this,"Cashier Details","Added Sucessfully");
-
                     //vacant the line edits
                     ui->cashierName->setText("");
                     ui->cashierUsername->setText("");
                     ui->cashierPhone->setText("");
                     ui->cashierEmail->setText("");
                     ui->cashierPassword->setText("");
-
-                    //got to cashier main stack
-                    ui->cashierStack->setCurrentIndex(0);
+                    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Added Sucessfully","Want to add more?",QMessageBox::Yes|QMessageBox::No);
+                    if(stdButton==QMessageBox::Yes)
+                    {
+                        //got to cashier main stack
+                        ui->cashierStack->setCurrentIndex(1);
+                    }
+                    else
+                    {
+                        //got to cashier main stack
+                        ui->cashierStack->setCurrentIndex(0);
+                     }
                 }
                 else
                 {
@@ -259,13 +265,19 @@ void AdminWindow::on_addCashierButton_clicked()
     ui->cashierStack->setCurrentIndex(1);
 }
 
+void AdminWindow::on_cancelButton_2_clicked()
+{
+   //go to main cashier stack
+   ui->cashierStack->setCurrentIndex(0);
+}
+
 
 ////Defining Privacy Functions
 
 void AdminWindow::on_logoutButton_clicked()
 {
     //delete Admin_Login Table
-    Dbase_admin db("SBS.db");
+    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
     db.deleteAdmin_Login();
 
 //    mainwindow=new QMainWindow(this);
@@ -277,7 +289,7 @@ void AdminWindow::on_logoutButton_clicked()
 
 void AdminWindow:: showAdmin_LoginDetails()
 {
-    Dbase_admin db("SBS.db");
+    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
     if(!db.isOpen())
     {
         qDebug()<<"Not opening database";
@@ -311,3 +323,70 @@ void AdminWindow:: showAdmin_LoginDetails()
 
     }
 }
+
+void AdminWindow::on_editButton_2_clicked()
+{
+    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Change Password","You could only Change Password,would you?",QMessageBox::Yes|QMessageBox::No);
+    if(stdButton==QMessageBox::Yes)
+    {
+        //go to edit admin stack
+        ui->privacyStack->setCurrentIndex(1);
+
+        //show placeholder text
+        ui->userName->setPlaceholderText("Give your User Name");
+        ui->oldPassword->setPlaceholderText("Give your old Password");
+        ui->newPassword->setPlaceholderText("Give New Password");
+        ui->confirmNewPassword->setPlaceholderText("Confirm your Password");
+    }
+    else{}
+}
+
+void AdminWindow::on_changePasswordButton_clicked()
+{
+   //change text in line edit to string
+    QString username=ui->userName->text();
+    QString oPassword=ui->oldPassword->text();
+    QString nPassword=ui->newPassword->text();
+    QString cnPasswod=ui->confirmNewPassword->text();
+
+    qDebug()<<username;
+    qDebug()<<oPassword;
+    qDebug()<<nPassword;
+
+    //check password validation
+    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    if(!db.uNameExists(username))
+    {
+        QMessageBox::critical(this,"Username Validation","Your Username doesnot match");
+    }
+    else
+    {
+        if(!db.passwordValid(oPassword))
+        {
+            QMessageBox::critical(this,"Password Validation","Your Password doesnot match");
+        }
+        else
+        {
+            if(!(nPassword==cnPasswod))
+            {
+                QMessageBox::warning(this,"Confirm Password","Your Confirm Password Doesnot match with New Password");
+            }
+            else
+            {
+                //change the password
+                db.changeAdminPassword(username,nPassword);
+                db.changeAdmin_LoginPassword(username,nPassword);
+                QMessageBox::information(this,"Change Password","Sucessful!");
+                //clear the screen
+                ui->userName->setText("");
+                ui->oldPassword->setText("");
+                ui->newPassword->setText("");
+                ui->confirmNewPassword->setText("");
+                //go to privacy stack
+                ui->privacyStack->setCurrentIndex(0);
+               showAdmin_LoginDetails();
+            }
+        }
+    }
+}
+

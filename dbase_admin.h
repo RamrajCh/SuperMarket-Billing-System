@@ -39,6 +39,10 @@ public:
     ////fnction to handle privacy
     void deleteAdmin_Login();
     QList<QString> getAdmin_LoginDetails();
+    bool uNameExists(const QString &uname);
+    bool passwordValid(const QString& passwd);
+    void changeAdminPassword(const QString& username,const QString& npasswd);
+    void changeAdmin_LoginPassword(const QString& username,const QString& npasswd);
 
 };
 
