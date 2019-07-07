@@ -81,6 +81,9 @@ public:
        */
       QList<QString> getAdminInfo(const QString& uname);
 
+
+      bool getAdminInfo();
+
       /**
        * @brief Get all the email/id of the registerd users from Dbase
        * @return Returns list of strings

@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QLabel" name="label">
@@ -49,8 +49,8 @@
      <widget class="QPushButton" name="exitButton">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>330</y>
+        <x>530</x>
+        <y>200</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -59,136 +59,273 @@
        <string>Exit</string>
       </property>
      </widget>
+     <widget class="QStackedWidget" name="homeStack">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>330</y>
+        <width>511</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_4">
+       <widget class="QLabel" name="informLabel">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>271</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;b&gt;No Admin Found!!&lt;br&gt;Please register to continue....&lt;/b&gt;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="registerButton_3">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>20</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Click Here to Register</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_5"/>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_2">
-     <widget class="QPushButton" name="registerButton_2">
+     <widget class="QStackedWidget" name="registerStack">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>400</y>
-        <width>89</width>
-        <height>25</height>
+        <x>0</x>
+        <y>70</y>
+        <width>651</width>
+        <height>511</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Register</string>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-     </widget>
-     <widget class="QPushButton" name="cancelButton_1">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>400</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cancel</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="firstName">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>140</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string>Give Your First Name</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lastName">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>140</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Give Your Last Name</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="mobileNum">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>220</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string>Give Your Mobile No.</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="eMail">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>220</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Give Your E-mail ID</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="getPass">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Give Password</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="conPass">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>270</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Re-Type your Password</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="userName">
-      <property name="geometry">
-       <rect>
-        <x>182</x>
-        <y>180</y>
-        <width>161</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Give Your User Name</string>
-      </property>
+      <widget class="QWidget" name="page_8">
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>50</y>
+          <width>491</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;b&gt;YOU NEED ADMIN AUTHENTICATION TO ADD ANOTHER ADMIN...&lt;/b&gt;</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>150</y>
+          <width>411</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>ADMIN AUTHENTICATION</string>
+        </property>
+        <widget class="QLineEdit" name="authAdminUserName">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>60</y>
+           <width>351</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="placeholderText">
+          <string>Give Admin UserName</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="authAdminPass">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>120</y>
+           <width>351</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="placeholderText">
+          <string>Give Password</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="authButton">
+         <property name="geometry">
+          <rect>
+           <x>280</x>
+           <y>170</y>
+           <width>89</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Authenicate</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="cancelButton_3">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>170</y>
+           <width>89</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_9">
+       <widget class="QLineEdit" name="userName">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>120</y>
+          <width>281</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Give Your User Name</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="registerButton_2">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>360</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Register</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="cancelButton_1">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>360</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>60</y>
+          <width>521</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="firstName">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>Give Your First Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lastName">
+           <property name="placeholderText">
+            <string>Give Your Last Name</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>180</y>
+          <width>531</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLineEdit" name="mobileNum">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>Give Your Mobile No.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="eMail">
+           <property name="placeholderText">
+            <string>Give Your E-mail ID</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>240</y>
+          <width>531</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLineEdit" name="getPass">
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="placeholderText">
+            <string>Give Password</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="conPass">
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="placeholderText">
+            <string>Re-Type your Password</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="page_3">
@@ -307,7 +444,7 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>REGISTER</string>
+     <string>ADD ADMIN</string>
     </property>
    </widget>
   </widget>

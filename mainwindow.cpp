@@ -6,7 +6,22 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-   ui->mainStack->setCurrentIndex(0);
+  Dbase db("/home/ramraj/Desktop/SBS.db");
+  if (db.isOpen())
+  {
+      if(!db.getAdminInfo())
+      {
+          //give information to register admin
+          ui->mainStack->setCurrentIndex(0);
+          ui->homeStack->setCurrentIndex(0);
+      }
+      else
+      {
+         ui->mainStack->setCurrentIndex(0);
+         ui->homeStack->setCurrentIndex(1);
+      }
+  }
+
 }
 
 MainWindow::~MainWindow()
@@ -17,19 +32,80 @@ MainWindow::~MainWindow()
 void MainWindow::on_homeButton_clicked()
 {
   //show home stack window
-    ui->mainStack->setCurrentIndex(0);
+    Dbase db("/home/ramraj/Desktop/SBS.db");
+    if (db.isOpen())
+    {
+        if(!db.getAdminInfo())
+        {
+            //give information to register admin
+            ui->mainStack->setCurrentIndex(0);
+            ui->homeStack->setCurrentIndex(0);
+        }
+        else
+        {
+           ui->mainStack->setCurrentIndex(0);
+           ui->homeStack->setCurrentIndex(1);
+        }
+    }
 }
 
 void MainWindow::on_registerButton_1_clicked()
 {
     //show Register stack window
+    Dbase db("/home/ramraj/Desktop/SBS.db");
+    if (db.isOpen())
+    {
+        if(!db.getAdminInfo())
+        {
+            //go to register admin
+            ui->mainStack->setCurrentIndex(1);
+            ui->registerStack->setCurrentIndex(1);
+        }
+        else
+        {
+           ui->mainStack->setCurrentIndex(1);
+           ui->registerStack->setCurrentIndex(0);
+        }
+    }
+
+}
+
+void MainWindow::on_registerButton_3_clicked()
+{
+    //show Register stack window
     ui->mainStack->setCurrentIndex(1);
+    ui->registerStack->setCurrentIndex(1);
 }
 
 void MainWindow::on_loginButton_1_clicked()
 {
-    //show login stack window
-    ui->mainStack->setCurrentIndex(2);
+   ui->mainStack->setCurrentIndex(2);
+   Dbase db("/home/ramraj/Desktop/SBS.db");
+    if (db.isOpen())
+    {
+        if(!db.getAdminInfo())
+        {
+           QMessageBox::StandardButton stdButton=QMessageBox::information(this,"No Admin","Click OK to register...",QMessageBox::Ok|QMessageBox::Cancel);
+           if(stdButton==QMessageBox::Ok)
+           {
+               //go to register admin
+               ui->mainStack->setCurrentIndex(1);
+               ui->registerStack->setCurrentIndex(1);
+           }
+           else
+           {
+               //go to home
+               ui->mainStack->setCurrentIndex(0);
+               ui->homeStack->setCurrentIndex(0);
+           }
+        }
+        else
+        {
+            //go to login stack
+            ui->mainStack->setCurrentIndex(2);
+        }
+    }
+
 }
 
 bool isEmpty(QString obj)
@@ -132,10 +208,11 @@ void MainWindow::on_cancelButton_1_clicked()
 
 void MainWindow::on_loginButton_2_clicked()
 {
+    Dbase db("/home/ramraj/Desktop/SBS.db");
     QString uname=ui->login_username->text();
     QString passwd=ui->login_password->text();
 
-   Dbase db("/home/ramraj/Desktop/SBS.db");
+
    bool result=db.userAuth(uname,passwd);
    if(result)
    {
@@ -170,4 +247,38 @@ void MainWindow::on_cancelButton_2_clicked()
 void MainWindow::on_exitButton_clicked()
 {
     QApplication::exit();
+}
+
+
+
+void MainWindow::on_authButton_clicked()
+{
+
+    QString uname=ui->authAdminUserName->text();
+    QString passwd=ui->authAdminPass->text();
+
+   Dbase db("/home/ramraj/Desktop/SBS.db");
+   bool result=db.userAuth(uname,passwd);
+   if(result)
+   {
+       //Login
+       QMessageBox::information(this,"Authenication","Authenication Sucessful");
+       //clear password
+       ui->authAdminUserName->setText("");
+       ui->authAdminPass->setText("");
+       //go to register
+      ui->registerStack->setCurrentIndex(1);
+   }
+   else
+   {
+     QMessageBox::information(this,"Authenication","Incorrect UserName or Password");
+     ui->login_password->setText("");
+   }
+}
+
+void MainWindow::on_cancelButton_3_clicked()
+{
+    //go to home stack
+    ui->mainStack->setCurrentIndex(0);
+    ui->homeStack->setCurrentIndex(1);
 }

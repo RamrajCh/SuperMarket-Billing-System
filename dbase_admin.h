@@ -3,6 +3,7 @@
 
 #include <QSqlDatabase>
 #include<QList>
+#include <QMessageBox>
 
 class Dbase_admin
 {
@@ -35,14 +36,38 @@ public:
 
     bool modifyCashierDetails(const QString &uname); //modify cashier details
 
+    void removeCashier(const QString &uname,const QString &email);//removes a cashier
+
+    bool removeCashierTable();//deletes Cashier Table
+
+    bool validCashier(const QString &uname,const QString &email);
+
+    bool cashier_unameExists(const QString &uname);
+
+    bool cashier_emailExists(const QString &uname);
 
     ////fnction to handle privacy
     void deleteAdmin_Login();
+
     QList<QString> getAdmin_LoginDetails();
+
     bool uNameExists(const QString &uname);
+
     bool passwordValid(const QString& passwd);
+
     void changeAdminPassword(const QString& username,const QString& npasswd);
+
     void changeAdmin_LoginPassword(const QString& username,const QString& npasswd);
+
+    ////function to handle product
+
+    void createProductTable();
+
+    bool addProduct(const QString &id, const QString &name, const QString &category, const QString &price);
+
+    bool product_IdExists(const QString &id);
+
+    bool product_NameExists(const QString &name);
 
 };
 

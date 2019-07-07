@@ -217,6 +217,20 @@ QList<QString> Dbase::getAdminInfo(const QString& uname)
     return  adminList;
 }
 
+bool Dbase::getAdminInfo()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Admin");
+    if(qry.exec())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 //QList<QString> dbase::getAllUsers(){
 //    QList<QString> data;
 

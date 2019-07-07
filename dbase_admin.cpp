@@ -149,6 +149,8 @@
       return sucess;
   }
 
+
+
   ////to handle Cashier details
 
   void Dbase_admin::createCashierTable()
@@ -209,6 +211,90 @@
       }
       return sucess;
   }
+
+  void Dbase_admin::removeCashier(const QString &uname,const QString &email)
+  {
+      QSqlQuery qry;
+      qry.prepare("DELETE FROM Cashier WHERE UserName=:uname OR Email=:email");
+      qry.bindValue(":uname",uname);
+      qry.bindValue(":email",email);
+       qry.exec();
+  }
+
+bool Dbase_admin::removeCashierTable()
+{
+    QSqlQuery qry;
+    qry.prepare("DROP TABLE Cashier");
+    if(qry.exec())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Dbase_admin::validCashier(const QString &uname, const QString &email)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Cashier WHERE UserName=:uname OR Email=:email");
+    qry.bindValue(":uname",uname);
+    qry.bindValue(":email",email);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+          qDebug()<<"Cashier found";
+          return true;
+        }
+
+    }
+    else
+    {
+        qDebug()<<"No Cashier Found";
+        return false;
+    }
+}
+
+bool Dbase_admin::cashier_unameExists(const QString &uname)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Cashier WHERE UserName=:uname");
+    qry.bindValue(":uname",uname);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+          return true;
+        }
+
+    }
+    else
+    {
+        return false;
+    }
+
+ }
+
+bool Dbase_admin::cashier_emailExists(const QString &email)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Cashier WHERE Email=:email");
+    qry.bindValue(":email",email);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+          return true;
+        }
+
+    }
+    else
+    {
+        return false;
+    }
+}
 
 
   ////functiom to handle privacy
@@ -335,5 +421,91 @@ void Dbase_admin::changeAdmin_LoginPassword(const QString& uname,const QString& 
     else
     {
         qDebug()<<"password couldn't be changed(Admin_Login)"<<qry.lastError();
+    }
+}
+
+
+////function to handle product
+
+void Dbase_admin::createProductTable()
+{
+    QSqlQuery qry;
+    qry.prepare("CREATE TABLE Product(ID TEXT,Name TEXT,Category TEXT,Price REAL)");
+
+    if (!qry.exec())
+    {
+        qDebug() <<"Couldn't create Table,one might already exist";
+
+    }
+    else
+    {
+        qDebug()<<"Create table";
+    }
+}
+
+bool Dbase_admin::addProduct(const QString &id, const QString &name, const QString &category, const QString &price)
+{
+    bool sucess=false;
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO Product(ID,Name,Category,Price) VALUES (:id,:name,:category,:price)");
+
+    qry.bindValue(":id",id);
+    qry.bindValue(":name",name);
+    qry.bindValue(":category",category);
+    qry.bindValue(":price",price);
+
+    if(!qry.exec())
+    {
+        qDebug()<<"Add Details Failed"<<qry.lastError();
+        sucess=false;
+    }
+    else
+    {
+        qDebug()<<"Details added Sucessfully";
+        sucess=true;
+    }
+    return sucess;
+}
+
+
+bool Dbase_admin::product_IdExists(const QString &id)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Product ID=:id");
+    qry.bindValue(":id",id);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+            qDebug()<<"ID exists";
+            return true;
+        }
+
+    }
+    else
+    {
+        qDebug()<<"ID doesn't exist";
+        return false;
+    }
+}
+
+bool Dbase_admin::product_NameExists(const QString &name)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Product WHERE Name=:name");
+    qry.bindValue(":name",name);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+            qDebug()<<"name exists";
+            return true;
+        }
+
+    }
+    else
+    {
+        qDebug()<<"name doesn't exist";
+        return false;
     }
 }

@@ -553,6 +553,23 @@ void AdminWindow::on_addCategoryButton_2_clicked()
 
     //store to combo
     ui->categoryCombo->addItem(pcategory);
+    
+    //clear line edit
+    ui->productCategory->setText("");
+    
+    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Added Sucessfully","Want to add more?",QMessageBox::Yes|QMessageBox::No);
+    if(stdButton==QMessageBox::Yes)
+    {
+       //got to add product main stack
+       ui->addStack->setCurrentIndex(0);
+    }
+    else
+    {
+       //got to privacy stack
+       ui->adminStack->setCurrentIndex(3);
+       ui->privacyStack->setCurrentIndex(0);
+    }
+    
 
 }
 

@@ -52,6 +52,22 @@ private slots:
 
     void on_cancelButton_2_clicked();
 
+    void on_removeButton_clicked();
+
+    void on_removeCashierButton_clicked();
+
+    void on_addButton_clicked();
+
+    void on_addProductButton_2_clicked();
+
+    void on_cancelButton_3_clicked();
+
+    void on_addCategoryButton_clicked();
+
+    void on_addCategoryButton_2_clicked();
+
+    void on_addProductButton_clicked();
+
 private:
   Ui::AdminWindow *ui;
 

@@ -13,27 +13,33 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(204, 0, 0);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="adminStack">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>89</y>
       <width>650</width>
-      <height>600</height>
+      <height>511</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(115, 210, 22);</string>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>90</y>
+        <y>20</y>
         <width>651</width>
-        <height>511</height>
+        <height>581</height>
        </rect>
       </property>
       <property name="currentIndex">
@@ -292,13 +298,16 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>90</y>
+        <y>10</y>
         <width>650</width>
-        <height>511</height>
+        <height>591</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(115, 210, 22);</string>
+      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -422,16 +431,6 @@
        </widget>
       </widget>
       <widget class="QWidget" name="page_6">
-       <widget class="QTableView" name="cashierTable">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>80</y>
-          <width>631</width>
-          <height>351</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QPushButton" name="specificButton">
         <property name="geometry">
          <rect>
@@ -445,7 +444,7 @@
          <string>View Specific</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="cashierUsername_2">
         <property name="geometry">
          <rect>
           <x>190</x>
@@ -457,8 +456,11 @@
         <property name="text">
          <string/>
         </property>
+        <property name="placeholderText">
+         <string>UserName</string>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="QLineEdit" name="cashierName_2">
         <property name="geometry">
          <rect>
           <x>400</x>
@@ -470,24 +472,338 @@
         <property name="text">
          <string/>
         </property>
+        <property name="placeholderText">
+         <string>Name</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="backButton">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>460</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+       <widget class="QTableView" name="cashierTable">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>80</y>
+          <width>651</width>
+          <height>361</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_8">
+       <widget class="QLineEdit" name="cashierUsername_3">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>120</y>
+          <width>201</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>UserName</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>46</y>
+          <width>521</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;b&gt;YOU CAN REMOVE ONE CASHIER AT A TIME...&lt;br&gt;CLASSIFY ONE OF THE BELOW!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cashierEmail_3">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>160</y>
+          <width>201</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Email</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="removeButton">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>270</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remove</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="cancelButton">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>270</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="page_7"/>
      </widget>
     </widget>
-    <widget class="QWidget" name="Product"/>
+    <widget class="QWidget" name="Product">
+     <widget class="QStackedWidget" name="productStack">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>551</width>
+        <height>501</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_9">
+       <widget class="QPushButton" name="addProductButton">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>PRODUCT</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="addCategoryButton">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>0</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CATEGORY</string>
+        </property>
+       </widget>
+       <widget class="QStackedWidget" name="addStack">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>531</width>
+          <height>461</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="page_11">
+         <widget class="QLineEdit" name="productID">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>40</y>
+            <width>311</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="placeholderText">
+           <string>Give Product ID</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="productName">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>90</y>
+            <width>311</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="placeholderText">
+           <string>Give Product Name</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="productPrice">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>140</y>
+            <width>311</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="placeholderText">
+           <string>Give Product Marked Price</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="categoryCombo">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>190</y>
+            <width>171</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <item>
+           <property name="text">
+            <string>Uncategorized</string>
+           </property>
+          </item>
+         </widget>
+         <widget class="QPushButton" name="addProductButton_2">
+          <property name="geometry">
+           <rect>
+            <x>330</x>
+            <y>320</y>
+            <width>89</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="cancelButton_3">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>320</y>
+            <width>89</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_12">
+         <widget class="QLabel" name="label_14">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>30</y>
+            <width>401</width>
+            <height>191</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Here, you could categorized your product,&lt;br&gt;so that it would be easy for cashier to select products.&lt;br&gt;You could categorized products with various unique tags!&lt;br&gt;These may be as follows:&lt;br&gt;&lt;b&gt;&lt;ul &gt;&lt;li&gt;Foods&lt;/li&gt;&lt;li&gt;Electronics&lt;/li&gt;&lt;li&gt;Household&lt;/li&gt;&lt;li&gt;Beverage etc.&lt;/li&gt;&lt;/ol&gt;&lt;/b&gt;</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="productCategory">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>270</y>
+            <width>241</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="placeholderText">
+           <string>Category</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="addCategoryButton_2">
+          <property name="geometry">
+           <rect>
+            <x>340</x>
+            <y>270</y>
+            <width>89</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_10"/>
+     </widget>
+     <widget class="QPushButton" name="addButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ADD</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="viewProductButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>VIEW</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteProductButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>120</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DELETE</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="Privacy">
      <widget class="QStackedWidget" name="privacyStack">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>90</y>
+        <y>10</y>
         <width>651</width>
-        <height>511</height>
+        <height>591</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Details">
        <widget class="QLabel" name="label">
@@ -613,8 +929,8 @@
        <widget class="QGroupBox" name="groupBox">
         <property name="geometry">
          <rect>
-          <x>110</x>
-          <y>70</y>
+          <x>90</x>
+          <y>50</y>
           <width>441</width>
           <height>351</height>
          </rect>
@@ -622,7 +938,7 @@
         <property name="title">
          <string>Change Password</string>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -667,15 +983,18 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>0</x>
       <y>10</y>
-      <width>591</width>
-      <height>81</height>
+      <width>651</width>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="companyButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(92, 53, 102);</string>
+       </property>
        <property name="text">
         <string>COMPANY</string>
        </property>
@@ -683,6 +1002,10 @@
      </item>
      <item>
       <widget class="QPushButton" name="cashierButton">
+       <property name="styleSheet">
+        <string notr="true">
+background-color: rgb(92, 53, 102);</string>
+       </property>
        <property name="text">
         <string>CASHIER</string>
        </property>
@@ -697,6 +1020,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="privacyButton">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(92, 53, 102);</string>
+       </property>
        <property name="text">
         <string>PRIVACY</string>
        </property>
