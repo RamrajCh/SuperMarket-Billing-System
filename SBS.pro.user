@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.5.2, 2019-07-06T20:01:39. -->
+<!-- Written by QtCreator 4.5.2, 2019-07-08T18:31:11. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -60,7 +60,7 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Unnamed</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Unnamed</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">GNU GCC</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{ef503ff9-1faf-4994-b697-236824074877}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>

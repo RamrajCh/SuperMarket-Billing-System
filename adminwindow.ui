@@ -14,9 +14,12 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(204, 0, 0);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QStackedWidget" name="adminStack">
     <property name="geometry">
      <rect>
@@ -27,10 +30,10 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(115, 210, 22);</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
@@ -43,7 +46,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QPushButton" name="companyUpdateButton">
@@ -304,7 +307,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(115, 210, 22);</string>
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -492,9 +495,9 @@
        <widget class="QTableView" name="cashierTable">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>80</y>
-          <width>651</width>
+          <x>60</x>
+          <y>90</y>
+          <width>521</width>
           <height>361</height>
          </rect>
         </property>
@@ -584,7 +587,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_9">
        <widget class="QPushButton" name="addProductButton">
@@ -623,7 +626,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page_11">
          <widget class="QLineEdit" name="productID">
@@ -751,6 +754,18 @@
        </widget>
       </widget>
       <widget class="QWidget" name="page_10"/>
+      <widget class="QWidget" name="page_13">
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>110</y>
+          <width>281</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
      </widget>
      <widget class="QPushButton" name="addButton">
       <property name="geometry">
@@ -993,7 +1008,7 @@
      <item>
       <widget class="QPushButton" name="companyButton">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(92, 53, 102);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>COMPANY</string>
@@ -1003,8 +1018,7 @@
      <item>
       <widget class="QPushButton" name="cashierButton">
        <property name="styleSheet">
-        <string notr="true">
-background-color: rgb(92, 53, 102);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>CASHIER</string>
@@ -1021,7 +1035,7 @@ background-color: rgb(92, 53, 102);</string>
      <item>
       <widget class="QPushButton" name="privacyButton">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(92, 53, 102);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>PRIVACY</string>

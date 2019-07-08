@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-  Dbase db("/home/ramraj/Desktop/SBS.db");
+  Dbase db("SBS.db");
   if (db.isOpen())
   {
       if(!db.getAdminInfo())
@@ -32,7 +32,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_homeButton_clicked()
 {
   //show home stack window
-    Dbase db("/home/ramraj/Desktop/SBS.db");
+    Dbase db("SBS.db");
     if (db.isOpen())
     {
         if(!db.getAdminInfo())
@@ -52,7 +52,7 @@ void MainWindow::on_homeButton_clicked()
 void MainWindow::on_registerButton_1_clicked()
 {
     //show Register stack window
-    Dbase db("/home/ramraj/Desktop/SBS.db");
+    Dbase db("SBS.db");
     if (db.isOpen())
     {
         if(!db.getAdminInfo())
@@ -80,7 +80,7 @@ void MainWindow::on_registerButton_3_clicked()
 void MainWindow::on_loginButton_1_clicked()
 {
    ui->mainStack->setCurrentIndex(2);
-   Dbase db("/home/ramraj/Desktop/SBS.db");
+   Dbase db("SBS.db");
     if (db.isOpen())
     {
         if(!db.getAdminInfo())
@@ -153,7 +153,7 @@ void MainWindow::on_registerButton_2_clicked()
 
             //connect to database
 
-            Dbase db("/home/ramraj/Desktop/SBS.db");
+            Dbase db("SBS.db");
 
 
 
@@ -208,7 +208,7 @@ void MainWindow::on_cancelButton_1_clicked()
 
 void MainWindow::on_loginButton_2_clicked()
 {
-    Dbase db("/home/ramraj/Desktop/SBS.db");
+    Dbase db("SBS.db");
     QString uname=ui->login_username->text();
     QString passwd=ui->login_password->text();
 
@@ -257,7 +257,7 @@ void MainWindow::on_authButton_clicked()
     QString uname=ui->authAdminUserName->text();
     QString passwd=ui->authAdminPass->text();
 
-   Dbase db("/home/ramraj/Desktop/SBS.db");
+   Dbase db("SBS.db");
    bool result=db.userAuth(uname,passwd);
    if(result)
    {

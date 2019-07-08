@@ -33,7 +33,7 @@ void AdminWindow::on_companyButton_clicked()
 {
     //show Company Stack
     ui->adminStack->setCurrentIndex(0);
-    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    Dbase_admin db("SBS.db");
     if(db.isOpen())
     {
         //see if database have any table Company_Details and has any value
@@ -89,7 +89,7 @@ void AdminWindow::on_companyUpdateButton_clicked()
 
 void AdminWindow:: showCompanyDetails()
 {
-    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    Dbase_admin db("SBS.db");
     if(!db.isOpen())
     {
         qDebug()<<"Not opening database";
@@ -146,7 +146,7 @@ void AdminWindow::on_okButton_1_clicked()
     else
     {
         //connect to database
-        Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+        Dbase_admin db("SBS.db");
         if(!db.isOpen())
         {
             qDebug()<<"Database Connection Unsucessful";
@@ -222,7 +222,7 @@ void AdminWindow::on_okButton_2_clicked()
     else
     {
         //connect to database
-        Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+        Dbase_admin db("SBS.db");
         if(!db.isOpen())
         {
             qDebug()<<"Database Connection Unsucessful";
@@ -291,6 +291,99 @@ void AdminWindow::on_cancelButton_2_clicked()
    ui->cashierStack->setCurrentIndex(0);
 }
 
+//void AdminWindow::on_viewCashierButton_clicked()
+//{
+//    Dbase_admin db("SBS.db");
+//    if(db.isOpen())
+//    {
+//        QSqlQueryModel *modal= new QSqlQueryModel();
+
+//        QSqlQuery *qry=new QSqlQuery(db);
+//        qry->prepare("SELECT * FROM Cashier");
+
+//        modal->setQuery(*qry);
+//        qry->exec();
+
+//        ui->cashierTable->setModel(modal);
+//    }
+//}
+
+void AdminWindow::on_viewCashierButton_clicked()
+{
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM Cashier");
+
+    qry->exec();
+
+    model->setQuery(*qry);
+    ui->adminStack->setCurrentIndex(1);
+    ui->cashierStack->setCurrentIndex(2);
+    ui->cashierTable->setModel(model);
+
+}
+
+void AdminWindow::on_specificButton_clicked()
+{
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+
+    QString uname=ui->cashierUsername_2->text();
+    QString name=ui->cashierName_2->text();
+
+    if((uname=="" && name!="")||(name=="" && uname!=""))
+    {
+         qDebug()<<"only one specification";
+         qry->prepare("SELECT * FROM Cashier WHERE UserName=:uname OR Name=:name");
+         qry->bindValue(":uname",uname);
+         qry->bindValue(":name",name);
+
+         qry->exec();
+
+         model->setQuery(*qry);
+         ui->adminStack->setCurrentIndex(1);
+         ui->cashierStack->setCurrentIndex(2);
+         ui->cashierTable->setModel(model);
+
+    }
+
+    else if(uname!="" && name!="")
+    {
+        qDebug()<<"both specification";
+        qry->prepare("SELECT * FROM Cashier WHERE UserName=:uname AND Name=:name");
+        qry->bindValue(":uname",uname);
+        qry->bindValue(":name",name);
+
+        qry->exec();
+
+        model->setQuery(*qry);
+        ui->adminStack->setCurrentIndex(1);
+        ui->cashierStack->setCurrentIndex(2);
+        ui->cashierTable->setModel(model);
+
+    }
+
+    else if(uname=="" && name=="")
+    {
+        QMessageBox::information(this,"Specific Cashier","Please Specify any one");
+        qry->prepare("SELECT * FROM Cashier");
+
+        qry->exec();
+
+        model->setQuery(*qry);
+        ui->adminStack->setCurrentIndex(1);
+        ui->cashierStack->setCurrentIndex(2);
+        ui->cashierTable->setModel(model);
+
+    }
+    ui->cashierUsername_2->setText("");
+    ui->cashierName_2->setText("");
+}
+
 void AdminWindow::on_removeButton_clicked()
 {
     //remove a cashier
@@ -299,7 +392,7 @@ void AdminWindow::on_removeButton_clicked()
     QString uname=ui->cashierUsername_3->text();
     QString email=ui->cashierEmail_3->text();
 
-    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    Dbase_admin db("SBS.db");
     if(!db.isOpen())
     {
         qDebug()<<"No connection to database";
@@ -329,13 +422,22 @@ void AdminWindow::on_removeCashierButton_clicked()
     ui->cashierStack->setCurrentIndex(3);
 }
 
+void AdminWindow::on_removeAllCashierButton_clicked()
+{
+       adminauth=new Authenicationwindow(this);
+       adminauth->show();
+       //adminauth->on_authButton_clicked();
+
+}
+
+
 
 ////Defining Privacy Functions
 
 void AdminWindow::on_logoutButton_clicked()
 {
     //delete Admin_Login Table
-    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    Dbase_admin db("SBS.db");
     db.deleteAdmin_Login();
 
 //    mainwindow=new QMainWindow(this);
@@ -347,7 +449,7 @@ void AdminWindow::on_logoutButton_clicked()
 
 void AdminWindow:: showAdmin_LoginDetails()
 {
-    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    Dbase_admin db("SBS.db");
     if(!db.isOpen())
     {
         qDebug()<<"Not opening database";
@@ -412,7 +514,7 @@ void AdminWindow::on_changePasswordButton_clicked()
     qDebug()<<nPassword;
 
     //check password validation
-    Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+    Dbase_admin db("SBS.db");
     if(!db.uNameExists(username))
     {
         QMessageBox::critical(this,"Username Validation","Your Username doesnot match");
@@ -483,7 +585,7 @@ void AdminWindow::on_addProductButton_2_clicked()
     else
     {
      //connect to database
-        Dbase_admin db("/home/ramraj/Desktop/SBS.db");
+        Dbase_admin db("SBS.db");
         if(!db.isOpen())
         {
             qDebug()<<"Database Connection Unsucessful";
@@ -554,9 +656,44 @@ void AdminWindow::on_addCategoryButton_2_clicked()
     //store to combo
     ui->categoryCombo->addItem(pcategory);
 
+    //clear line edit
+    ui->productCategory->setText("");
+
+    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Added Sucessfully","Want to add more?",QMessageBox::Yes|QMessageBox::No);
+    if(stdButton==QMessageBox::Yes)
+    {
+       //got to add product main stack
+       ui->addStack->setCurrentIndex(1);
+    }
+    else
+    {
+       //got to privacy stack
+       ui->adminStack->setCurrentIndex(3);
+       ui->privacyStack->setCurrentIndex(0);
+       ui->addStack->setCurrentIndex(0);
+    }
+
+
 }
 
 void AdminWindow::on_addProductButton_clicked()
 {
     ui->addStack->setCurrentIndex(0);
 }
+
+
+void AdminWindow::on_viewProductButton_clicked()
+{
+    ui->adminStack->setCurrentIndex(3);
+    ui->privacyStack->setCurrentIndex(1);
+}
+
+
+
+void AdminWindow::on_deleteProductButton_clicked()
+{
+    ui->adminStack->setCurrentIndex(3);
+    ui->privacyStack->setCurrentIndex(2);
+}
+
+

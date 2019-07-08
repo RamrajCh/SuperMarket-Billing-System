@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include<QMessageBox>
 #include <QDebug>
+#include <authenicationwindow.h>
 #include<dbase_admin.h>
 #include <dbase.h>
 
@@ -68,9 +69,19 @@ private slots:
 
     void on_addProductButton_clicked();
 
+    void on_removeAllCashierButton_clicked();
+
+    void on_viewProductButton_clicked();
+
+    void on_deleteProductButton_clicked();
+
+    void on_viewCashierButton_clicked();
+
+    void on_specificButton_clicked();
+
 private:
   Ui::AdminWindow *ui;
-
+  Authenicationwindow *adminauth;
 };
 
 #endif // ADMINWINDOW_H

@@ -28,17 +28,20 @@ SOURCES += \
         mainwindow.cpp \
     adminwindow.cpp \
     dbase.cpp \
-    dbase_admin.cpp
+    dbase_admin.cpp \
+    authenicationwindow.cpp
 
 HEADERS += \
         mainwindow.h \
     adminwindow.h \
     dbase.h \
-    dbase_admin.h
+    dbase_admin.h \
+    authenicationwindow.h
 
 FORMS += \
         mainwindow.ui \
-    adminwindow.ui
+    adminwindow.ui \
+    authenicationwindow.ui
 
 RESOURCES += \
     sbs.qrc

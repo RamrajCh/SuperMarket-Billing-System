@@ -31,6 +31,23 @@
     {
         return db.isOpen();
     }
+bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
+{
+    bool exists = false;
+
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT UserName FROM Admin WHERE UserName =:uname AND Password = :pass");
+    checkQuery.bindValue(":uname", uname);
+    checkQuery.bindValue(":pass", pass);
+    if (checkQuery.exec()){
+        if (checkQuery.next()){
+            exists = true;
+        }
+    }else{
+        qDebug() << "user exists failed: " << checkQuery.lastError();
+    }
+    return exists;
+}
 
 
 ////to handle company details
@@ -225,14 +242,8 @@ bool Dbase_admin::removeCashierTable()
 {
     QSqlQuery qry;
     qry.prepare("DROP TABLE Cashier");
-    if(qry.exec())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    qry.exec();
+    return true;
 }
 
 bool Dbase_admin::validCashier(const QString &uname, const QString &email)
@@ -296,6 +307,17 @@ bool Dbase_admin::cashier_emailExists(const QString &email)
     }
 }
 
+ void Dbase_admin::viewCashier()
+{
+     QSqlQueryModel *model= new QSqlQueryModel();
+
+     QSqlQuery *qry=new QSqlQuery(db);
+     qry->prepare("SELECT * FROM Cashier");
+
+     qry->exec();
+
+     model->setQuery(*qry);
+}
 
   ////functiom to handle privacy
 

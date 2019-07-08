@@ -2,6 +2,8 @@
 #define DBASE_ADMIN_H
 
 #include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
 #include<QList>
 #include <QMessageBox>
 
@@ -16,6 +18,7 @@ public:
 
     bool isOpen() const; //check if the database is connected or not
 
+    bool userAuth(const QString& uname, const QString& pass) const;
 
     ////functions for handling company details
     void createCompanyTable(); //create Company table
@@ -45,6 +48,8 @@ public:
     bool cashier_unameExists(const QString &uname);
 
     bool cashier_emailExists(const QString &uname);
+
+    void viewCashier();
 
     ////fnction to handle privacy
     void deleteAdmin_Login();
