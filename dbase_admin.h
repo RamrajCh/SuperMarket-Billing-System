@@ -74,6 +74,9 @@ public:
 
     bool product_NameExists(const QString &name);
 
+    void deleteProducts(const QString &id,const QString &category);
+
+     bool validProduct(const QString &id,const QString &category);
 };
 
 #endif // DBASE_ADMIN_H

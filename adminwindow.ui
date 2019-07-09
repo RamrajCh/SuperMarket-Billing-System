@@ -33,7 +33,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
@@ -310,7 +310,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -587,7 +587,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_9">
        <widget class="QPushButton" name="addProductButton">
@@ -601,19 +601,6 @@
         </property>
         <property name="text">
          <string>PRODUCT</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="addCategoryButton">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>0</y>
-          <width>89</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>CATEGORY</string>
         </property>
        </widget>
        <widget class="QStackedWidget" name="addStack">
@@ -682,6 +669,46 @@
             <string>Uncategorized</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>Foods</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Fashion</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Household</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Electronics</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Beverages</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Drugs</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Stationery</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Kids</string>
+           </property>
+          </item>
          </widget>
          <widget class="QPushButton" name="addProductButton_2">
           <property name="geometry">
@@ -707,6 +734,19 @@
           </property>
           <property name="text">
            <string>Cancel</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="addCategoryButton">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>190</y>
+            <width>89</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>New </string>
           </property>
          </widget>
         </widget>
@@ -753,16 +793,114 @@
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_10"/>
-      <widget class="QWidget" name="page_13">
-       <widget class="QLineEdit" name="lineEdit">
+      <widget class="QWidget" name="page_10">
+       <widget class="QPushButton" name="backButton_2">
         <property name="geometry">
          <rect>
-          <x>110</x>
-          <y>110</y>
+          <x>440</x>
+          <y>460</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="product_id">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>20</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Product ID</string>
+        </property>
+       </widget>
+       <widget class="QTableView" name="productTable">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>80</y>
+          <width>471</width>
+          <height>361</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="specificButton_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>View Specific</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="product_category">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>20</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Category</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_13">
+       <widget class="QLineEdit" name="product_id_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>160</y>
           <width>281</width>
           <height>25</height>
          </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Delete By Product Id</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="product_category_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>210</y>
+          <width>281</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Delete By Product Category</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="delete_product">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>270</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Delete</string>
         </property>
        </widget>
       </widget>

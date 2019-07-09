@@ -406,6 +406,8 @@ void AdminWindow::on_removeButton_clicked()
 
         else
         {
+            QMessageBox::StandardButton stdbut=QMessageBox::warning(this,"Remove Cashier","You want to delete cashier",QMessageBox::Yes|QMessageBox::No);
+            if(stdbut=QMessageBox::Yes){
             db.removeCashier(uname,email);
             QMessageBox::information(this,"Remove Cashier","Sucessful");
 
@@ -413,7 +415,7 @@ void AdminWindow::on_removeButton_clicked()
             ui->cashierUsername_3->setText("");
             ui->cashierEmail_3->setText("");
         }
-
+        }
     }
 }
 
@@ -424,12 +426,11 @@ void AdminWindow::on_removeCashierButton_clicked()
 
 void AdminWindow::on_removeAllCashierButton_clicked()
 {
-       adminauth=new Authenicationwindow(this);
-       adminauth->show();
-       //adminauth->on_authButton_clicked();
+   adminauth=new Authenicationwindow(this);
+   adminauth->show();
+  //adminauth->auth_to_remove_all_cashier();
 
 }
-
 
 
 ////Defining Privacy Functions
@@ -555,6 +556,8 @@ void AdminWindow::on_changePasswordButton_clicked()
 
 void AdminWindow::on_addButton_clicked()
 {
+    ui->adminStack->setCurrentIndex(2);
+    ui->productStack->setCurrentIndex(0);
     ui->addStack->setCurrentIndex(0);
 }
 
@@ -605,7 +608,7 @@ void AdminWindow::on_addProductButton_2_clicked()
                }
                else
                {
-                  if(db.addProduct(productid,productname,productprice,productcategory))
+                  if(db.addProduct(productid,productname,productcategory,productprice))
                   {
                     //vacant the line edits
                      ui->productID->setText("");
@@ -668,8 +671,8 @@ void AdminWindow::on_addCategoryButton_2_clicked()
     else
     {
        //got to privacy stack
-       ui->adminStack->setCurrentIndex(3);
-       ui->privacyStack->setCurrentIndex(0);
+       ui->adminStack->setCurrentIndex(2);
+       ui->productStack->setCurrentIndex(0);
        ui->addStack->setCurrentIndex(0);
     }
 
@@ -684,16 +687,131 @@ void AdminWindow::on_addProductButton_clicked()
 
 void AdminWindow::on_viewProductButton_clicked()
 {
-    ui->adminStack->setCurrentIndex(3);
-    ui->privacyStack->setCurrentIndex(1);
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM Product");
+
+    qry->exec();
+
+    model->setQuery(*qry);
+    ui->adminStack->setCurrentIndex(2);
+    ui->productStack->setCurrentIndex(1);
+    ui->productTable->setModel(model);
 }
 
+void AdminWindow::on_specificButton_2_clicked()
+{
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
 
+    QSqlQuery *qry=new QSqlQuery();
+
+    QString id=ui->product_id->text();
+    QString category=ui->product_category->text();
+
+    if((id=="" && category!="")||(category=="" && id!=""))
+    {
+         qDebug()<<"only one specification";
+         qry->prepare("SELECT * FROM Product WHERE ID=:id OR Category=:category");
+         qry->bindValue(":id",id);
+         qry->bindValue(":category",category);
+
+         qry->exec();
+
+         model->setQuery(*qry);
+         ui->adminStack->setCurrentIndex(2);
+         ui->productStack->setCurrentIndex(1);
+         ui->productTable->setModel(model);
+
+    }
+
+    else if(id!="" && category!="")
+    {
+        qDebug()<<"both specification";
+        qry->prepare("SELECT * FROM Product WHERE ID=:id AND Category=:category");
+        qry->bindValue(":id",id);
+        qry->bindValue(":category",category);
+
+        qry->exec();
+
+        model->setQuery(*qry);
+        ui->adminStack->setCurrentIndex(2);
+        ui->productStack->setCurrentIndex(1);
+        ui->productTable->setModel(model);
+
+    }
+
+    else if(id=="" && category=="")
+    {
+        QMessageBox::information(this,"Specific Cashier","Please Specify any one");
+        qry->prepare("SELECT * FROM Product");
+
+        qry->exec();
+
+        model->setQuery(*qry);
+        ui->adminStack->setCurrentIndex(2);
+        ui->productStack->setCurrentIndex(1);
+        ui->productTable->setModel(model);
+    }
+    ui->product_id->setText("");
+    ui->product_category->setText("");
+}
 
 void AdminWindow::on_deleteProductButton_clicked()
 {
-    ui->adminStack->setCurrentIndex(3);
-    ui->privacyStack->setCurrentIndex(2);
+    ui->adminStack->setCurrentIndex(2);
+    ui->productStack->setCurrentIndex(2);
 }
 
 
+//void AdminWindow::on_delete_by_id_clicked()
+//{
+//    QString id=ui->product_id->text();
+//    QString category="";
+
+//    Dbase_admin db("SBS.db");
+//    if(db.isOpen())
+//    {
+//        if(db.validProduct(id,category))
+//        {
+//            QMessageBox::StandardButton stdbut=QMessageBox::warning(this,"Delete","You want to delete product.",QMessageBox::Yes|QMessageBox::No);
+//            if(stdbut=QMessageBox::Yes)
+//            {
+//               db.deleteProducts(id,category);
+//               QMessageBox::information(this,"Remove Cashier","Sucessful");
+//               ui->product_id->setText("");
+//             }
+//        }
+//        else
+//        {
+//           QMessageBox::warning(this,"Remove Cashier","Do not match any cashier..");
+//        }
+//    }
+//}
+
+void AdminWindow::on_delete_product_clicked()
+{
+    QString id=ui->product_id_2->text();
+    QString category=ui->product_category_2->text();
+
+    Dbase_admin db("SBS.db");
+    if(db.isOpen())
+    {
+       if(db.validProduct(id,category))
+       {
+          QMessageBox::StandardButton stdbut=QMessageBox::warning(this,"Delete","You want to delete product.",QMessageBox::Yes|QMessageBox::No);
+          if(stdbut=QMessageBox::Yes)
+          {
+             db.deleteProducts(id,category);
+             QMessageBox::information(this,"Remove Cashier","Sucessful");
+             ui->product_id->setText("");
+          }
+        }
+        else
+        {
+           QMessageBox::warning(this,"Remove Cashier","Do not match any cashier..");
+        }
+    }
+}

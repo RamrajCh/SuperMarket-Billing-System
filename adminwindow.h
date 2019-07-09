@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <authenicationwindow.h>
 #include<dbase_admin.h>
-#include <dbase.h>
+//#include <dbase.h>
 
 namespace Ui {
   class AdminWindow;
@@ -78,6 +78,10 @@ private slots:
     void on_viewCashierButton_clicked();
 
     void on_specificButton_clicked();
+
+    void on_specificButton_2_clicked();
+
+    void on_delete_product_clicked();
 
 private:
   Ui::AdminWindow *ui;

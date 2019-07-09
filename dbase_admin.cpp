@@ -41,6 +41,7 @@ bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
     checkQuery.bindValue(":pass", pass);
     if (checkQuery.exec()){
         if (checkQuery.next()){
+            qDebug()<<"admin exists";
             exists = true;
         }
     }else{
@@ -452,7 +453,7 @@ void Dbase_admin::changeAdmin_LoginPassword(const QString& uname,const QString& 
 void Dbase_admin::createProductTable()
 {
     QSqlQuery qry;
-    qry.prepare("CREATE TABLE Product(ID TEXT,Name TEXT,Category TEXT,Price REAL)");
+    qry.prepare("CREATE TABLE Product(ID TEXT,Name TEXT,Category TEXT,Price TEXT)");
 
     if (!qry.exec())
     {
@@ -493,7 +494,7 @@ bool Dbase_admin::addProduct(const QString &id, const QString &name, const QStri
 bool Dbase_admin::product_IdExists(const QString &id)
 {
     QSqlQuery qry;
-    qry.prepare("SELECT * FROM Product ID=:id");
+    qry.prepare("SELECT * FROM Product WHERE ID=:id");
     qry.bindValue(":id",id);
     if(qry.exec())
     {
@@ -528,6 +529,33 @@ bool Dbase_admin::product_NameExists(const QString &name)
     else
     {
         qDebug()<<"name doesn't exist";
+        return false;
+    }
+}
+
+void Dbase_admin::deleteProducts(const QString &id, const QString &category)
+{
+    QSqlQuery qry;
+    qry.prepare("DELETE FROM Product WHERE ID=:id OR Category=:category");
+    qry.bindValue(":id",id);
+    qry.bindValue(":category",category);
+    qry.exec();
+}
+
+bool Dbase_admin::validProduct(const QString &id, const QString &category)
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Product WHERE ID=:id OR Category=:category");
+    qry.bindValue(":id",id);
+    qry.bindValue(":category",category);
+    if(qry.exec())
+    {
+        qDebug()<<"sdgdg";
+        return true;
+    }
+    else
+    {
+        qDebug()<<"No Product Found";
         return false;
     }
 }

@@ -15,34 +15,58 @@ Authenicationwindow::~Authenicationwindow()
 
 void Authenicationwindow::on_authButton_clicked()
 {
+  QString uname=ui->authAdminUserName->text();
+  QString passwd=ui->authAdminPass->text();
 
-    QString uname=ui->authAdminUserName->text();
-    QString passwd=ui->authAdminPass->text();
+  Dbase_admin db("SBS.db");
+  bool result=db.userAuth(uname,passwd);
 
-   Dbase_admin db("SBS.db");
-    bool result=db.userAuth(uname,passwd);
-    if(result)
-    {
-        //Login
-        QMessageBox::information(this,"Authenication","Authenication Sucessful");
-             if(db.removeCashierTable())
-             {
-                 qDebug()<<"removing table";
-                 QMessageBox::information(this,"Remove","All Cashier removed");
+  if(result)
+  {
+     //Login
+     QMessageBox::information(this,"Authenication","Authenication Sucessful");
+     if(db.removeCashierTable())
+     {
+         QMessageBox::information(this,"Delete Cashier","Deletion Sucessful");
+         this->close();
+     }
+     else
+     {
+        qDebug()<<"not removed cashier";
+     }
+  }
 
-             }
-             else
-             {
-                 QMessageBox::information(this,"Remove","All Cashier not removed");
-
-             }
-         }
-    else
-    {
+  else
+  {
       QMessageBox::information(this,"Authenication","Incorrect UserName or Password");
-   }
+      ui->authAdminPass->setText("");
+  }
+
 }
 void Authenicationwindow::on_cancelButton_clicked()
 {
-    this->close();
+  authenication=false;
+  this->close();
 }
+
+
+//void Authenicationwindow::auth_to_remove_all_cashier()
+//{
+//    if(authenication)
+//    {
+//        qDebug()<<"returned true";
+//        Dbase_admin db("SBS.db");
+//        if(db.removeCashierTable())
+//        {
+//            qDebug()<<"removed cashiers";
+//        }
+//        else
+//        {
+//            qDebug()<<"not removed cashier";
+//        }
+//    }
+//    else
+//    {
+//        qDebug()<<"returned false";
+//    }
+//}
