@@ -212,9 +212,7 @@ void MainWindow::on_loginButton_2_clicked()
     QString uname=ui->login_username->text();
     QString passwd=ui->login_password->text();
 
-
-   bool result=db.userAuth(uname,passwd);
-   if(result)
+   if(db.userAuth(uname,passwd))
    {
        //Login
        QMessageBox::information(this,"Login","Login Sucessful");
@@ -228,6 +226,21 @@ void MainWindow::on_loginButton_2_clicked()
        // mainwindow->hide();
        this->hide();
        adminwindow->show();
+   }
+   else if(db.cashierAuth(uname,passwd))
+   {
+       //Login
+       QMessageBox::information(this,"Login","Login Sucessful");
+       //create Cashier_Login table
+       db.createCashier_LoginTable();
+       db.addCashier_Login(uname);
+       //clear login page password
+       ui->login_password->setText("");
+       //show cashier window
+       cashierwindow=new CashierWindow(this);
+       // mainwindow->hide();
+       this->hide();
+       cashierwindow->show();
    }
    else
    {

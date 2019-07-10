@@ -437,6 +437,7 @@ void AdminWindow::on_removeAllCashierButton_clicked()
 
 void AdminWindow::on_logoutButton_clicked()
 {
+    qDebug()<<"hwkjdh";
     //delete Admin_Login Table
     Dbase_admin db("SBS.db");
     db.deleteAdmin_Login();
@@ -476,6 +477,7 @@ void AdminWindow:: showAdmin_LoginDetails()
             fname=admin_details.takeAt(0);
 
            //Showing information
+            ui->userNameLabel->setText(username);
             ui->adminUsernameLabel->setText(username);
             ui->adminNameLabel->setText(fname+" "+lname);
             ui->adminPhoneLabel->setText(mobileno);
@@ -643,48 +645,6 @@ void AdminWindow::on_cancelButton_3_clicked()
     ui->privacyStack->setCurrentIndex(0);
 }
 
-void AdminWindow::on_addCategoryButton_clicked()
-{
-    //got to add category
-    ui->addStack->setCurrentIndex(1);
-}
-
-
-
-void AdminWindow::on_addCategoryButton_2_clicked()
-{
-    //change ui to string
-    QString pcategory=ui->productCategory->text();
-
-    //store to combo
-    ui->categoryCombo->addItem(pcategory);
-
-    //clear line edit
-    ui->productCategory->setText("");
-
-    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Added Sucessfully","Want to add more?",QMessageBox::Yes|QMessageBox::No);
-    if(stdButton==QMessageBox::Yes)
-    {
-       //got to add product main stack
-       ui->addStack->setCurrentIndex(1);
-    }
-    else
-    {
-       //got to privacy stack
-       ui->adminStack->setCurrentIndex(2);
-       ui->productStack->setCurrentIndex(0);
-       ui->addStack->setCurrentIndex(0);
-    }
-
-
-}
-
-void AdminWindow::on_addProductButton_clicked()
-{
-    ui->addStack->setCurrentIndex(0);
-}
-
-
 void AdminWindow::on_viewProductButton_clicked()
 {
     Dbase_admin db("SBS.db");
@@ -812,6 +772,136 @@ void AdminWindow::on_delete_product_clicked()
         else
         {
            QMessageBox::warning(this,"Remove Cashier","Do not match any cashier..");
+        }
+    }
+}
+
+
+
+void AdminWindow::on_addAdminButton_clicked()
+{
+    ui->adminStack_2->setCurrentIndex(0);
+}
+
+void AdminWindow::on_salesButton_clicked()
+{
+    ui->adminStack_2->setCurrentIndex(1);
+}
+
+
+void AdminWindow::on_registerButton_2_clicked()
+{
+    //Connect to database and register Admin user
+
+
+        //extract text from ui
+        QString fname=ui->firstName->text();
+        QString lname=ui->lastName->text();
+        QString username=ui->userName_2->text();
+        QString mobileno=ui->mobileNum->text();
+        QString email=ui->eMail->text();
+        QString passwd=ui->getPass->text();
+        QString confirm_passwd=ui->conPass->text();
+
+
+        //check Data Validation
+        if(isVacant(fname)) showError(this,"Specify your First Name");
+        else if(isVacant(lname)) showError(this,"Specify your Last Name");
+        else if(isVacant(username)) showError(this,"Enter your Username");
+        else if(isVacant(mobileno)) showError(this,"Specify your Mobile Number");
+        else if(isVacant(email)) showError(this,"Specify your E-mail");
+        else if(isVacant(passwd)) showError(this,"Enter your Password");
+        else if(isVacant(confirm_passwd)) showError(this,"Confirm your Password");
+
+        //if all data are valid, now confirm the password
+        else if(!(passwd==confirm_passwd))
+          {
+            showError(this,"Password doesnot match");
+          }
+        else
+          {
+
+              //connect to database
+
+              Dbase db("SBS.db");
+
+
+
+              if(db.isOpen())
+                {
+                  //Store Data to Database
+                  qDebug()<<"connected to database";
+                  db.createTable();
+                  if (db.unameExists(username))
+                  {
+                      //username already exists
+                      showError(this,"Username already taken");
+
+                  }
+                  else if(db.emailExists(email))
+                  {
+                      //email already taken
+                      showError(this,"Email Already taken");
+                  }
+                  else
+                  {
+                      if(db.addAdmin(fname,lname,username,mobileno,email,passwd))
+                      {
+                          QMessageBox::information(this,"Registration","Registered Sucessful");
+                          //clear all
+                          ui->firstName->setText("");
+                          ui->lastName->setText("");
+                          ui->userName->setText("");
+                          ui->mobileNum->setText("");
+                          ui->eMail->setText("");
+                          ui->getPass->setText("");
+                          ui->conPass->setText("");
+                      }
+                      else
+                      {
+                          QMessageBox::information(this,"Registration","Registered Unsucessful");
+                      }
+                   }
+                 }
+        }
+}
+
+void AdminWindow::on_removeAccount_clicked()
+{
+    QMessageBox::StandardButton stdbutton=QMessageBox::critical(this,"Remove Account","Do you want to remove your account?",QMessageBox::Yes|QMessageBox::No);
+    if(stdbutton==QMessageBox::Yes)
+    {
+            Dbase_admin db("SBS.db");
+            if(db.isOpen())
+            {
+                qDebug()<<"Opening Database";
+                QString fname,lname,username,mobileno,email,passwd;
+                QList<QString> admin_details=db.getAdmin_LoginDetails();
+                if(admin_details.isEmpty())
+                {
+                    qDebug()<<"error in retriving admin details";
+                }
+                else
+              {
+                qDebug()<<"retriving data from admin";
+                //retriving data from Admin
+                passwd=admin_details.takeAt(0);
+                email=admin_details.takeAt(0);
+                mobileno=admin_details.takeAt(0);
+                username=admin_details.takeAt(0);
+                lname=admin_details.takeAt(0);
+                fname=admin_details.takeAt(0);
+
+                QSqlQuery qry;
+                qry.prepare("DELETE FROM Admin WHERE UserName=:username");
+                qry.bindValue(":username",username);
+
+                if(qry.exec())
+                {
+                  on_logoutButton_clicked();
+                }
+
+            }
         }
     }
 }

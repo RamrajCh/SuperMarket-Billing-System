@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <authenicationwindow.h>
 #include<dbase_admin.h>
-//#include <dbase.h>
+#include <dbase.h>
 
 namespace Ui {
   class AdminWindow;
@@ -21,8 +21,13 @@ public:
   void showCompanyDetails();
   void showAdmin_LoginDetails();
 
+
+
   explicit AdminWindow(QWidget *parent = 0);
   ~AdminWindow();
+
+public slots:
+  void on_logoutButton_clicked();
 
 private slots:
     void on_companyButton_clicked();
@@ -45,7 +50,7 @@ private slots:
 
     void on_addCashierButton_clicked();
 
-    void on_logoutButton_clicked();
+    //void on_logoutButton_clicked();
 
     void on_editButton_2_clicked();
 
@@ -63,12 +68,6 @@ private slots:
 
     void on_cancelButton_3_clicked();
 
-    void on_addCategoryButton_clicked();
-
-    void on_addCategoryButton_2_clicked();
-
-    void on_addProductButton_clicked();
-
     void on_removeAllCashierButton_clicked();
 
     void on_viewProductButton_clicked();
@@ -82,6 +81,14 @@ private slots:
     void on_specificButton_2_clicked();
 
     void on_delete_product_clicked();
+
+    void on_addAdminButton_clicked();
+
+    void on_salesButton_clicked();
+
+    void on_registerButton_2_clicked();
+
+    void on_removeAccount_clicked();
 
 private:
   Ui::AdminWindow *ui;

@@ -550,7 +550,7 @@ bool Dbase_admin::validProduct(const QString &id, const QString &category)
     qry.bindValue(":category",category);
     if(qry.exec())
     {
-        qDebug()<<"sdgdg";
+        qDebug()<<"product found";
         return true;
     }
     else

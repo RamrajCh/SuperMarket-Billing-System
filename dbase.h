@@ -94,13 +94,24 @@ public:
         */
       void changeAdminPassword(const QString& username,const QString& npasswd);
 
-      ////functions for handling login
+      ////functions for handling admin login
 
       void createAdmin_LoginTable();//create table for  admin that has log in
 
       void addAdmin_Login(QString &uname);//store data of admin that has log in
 
       void deleteAdmin_Login();//delete Admin_Login table
+
+      ////functions for handling cashier login
+      bool cashierAuth(const QString& uname, const QString& pass) const;
+
+      void createCashier_LoginTable();
+
+      QList<QString> getCashierInfo(const QString& uname);
+
+      void addCashier_Login(QString &uname);
+
+      void deleteCashier_Login();
 
   private:
       QSqlDatabase db;

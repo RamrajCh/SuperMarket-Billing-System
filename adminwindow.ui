@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>600</height>
+    <width>1366</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,17 +23,17 @@
    <widget class="QStackedWidget" name="adminStack">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>89</y>
-      <width>650</width>
-      <height>511</height>
+      <x>180</x>
+      <y>110</y>
+      <width>641</width>
+      <height>521</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
@@ -46,7 +46,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QPushButton" name="companyUpdateButton">
@@ -310,7 +310,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -580,36 +580,23 @@
      <widget class="QStackedWidget" name="productStack">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>551</width>
-        <height>501</height>
+        <x>0</x>
+        <y>60</y>
+        <width>591</width>
+        <height>451</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_9">
-       <widget class="QPushButton" name="addProductButton">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>89</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>PRODUCT</string>
-        </property>
-       </widget>
        <widget class="QStackedWidget" name="addStack">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>40</y>
+          <y>80</y>
           <width>531</width>
-          <height>461</height>
+          <height>421</height>
          </rect>
         </property>
         <property name="currentIndex">
@@ -671,7 +658,7 @@
           </item>
           <item>
            <property name="text">
-            <string>Foods</string>
+            <string>Grocery</string>
            </property>
           </item>
           <item>
@@ -681,32 +668,27 @@
           </item>
           <item>
            <property name="text">
-            <string>Household</string>
+            <string>Games</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Electronics</string>
+            <string>Home Appliances</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Beverages</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Drugs</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Stationery</string>
+            <string>Liquor</string>
            </property>
           </item>
           <item>
            <property name="text">
             <string>Kids</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Other</string>
            </property>
           </item>
          </widget>
@@ -734,60 +716,6 @@
           </property>
           <property name="text">
            <string>Cancel</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="addCategoryButton">
-          <property name="geometry">
-           <rect>
-            <x>240</x>
-            <y>190</y>
-            <width>89</width>
-            <height>25</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>New </string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="page_12">
-         <widget class="QLabel" name="label_14">
-          <property name="geometry">
-           <rect>
-            <x>30</x>
-            <y>30</y>
-            <width>401</width>
-            <height>191</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Here, you could categorized your product,&lt;br&gt;so that it would be easy for cashier to select products.&lt;br&gt;You could categorized products with various unique tags!&lt;br&gt;These may be as follows:&lt;br&gt;&lt;b&gt;&lt;ul &gt;&lt;li&gt;Foods&lt;/li&gt;&lt;li&gt;Electronics&lt;/li&gt;&lt;li&gt;Household&lt;/li&gt;&lt;li&gt;Beverage etc.&lt;/li&gt;&lt;/ol&gt;&lt;/b&gt;</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="productCategory">
-          <property name="geometry">
-           <rect>
-            <x>70</x>
-            <y>270</y>
-            <width>241</width>
-            <height>25</height>
-           </rect>
-          </property>
-          <property name="placeholderText">
-           <string>Category</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="addCategoryButton_2">
-          <property name="geometry">
-           <rect>
-            <x>340</x>
-            <y>270</y>
-            <width>89</width>
-            <height>25</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Add</string>
           </property>
          </widget>
         </widget>
@@ -905,44 +833,38 @@
        </widget>
       </widget>
      </widget>
-     <widget class="QPushButton" name="addButton">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>43</x>
         <y>20</y>
-        <width>89</width>
-        <height>25</height>
+        <width>321</width>
+        <height>27</height>
        </rect>
       </property>
-      <property name="text">
-       <string>ADD</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="viewProductButton">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>70</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>VIEW</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="deleteProductButton">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>120</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>DELETE</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="addButton">
+         <property name="text">
+          <string>ADD</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="viewProductButton">
+         <property name="text">
+          <string>VIEW</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="deleteProductButton">
+         <property name="text">
+          <string>DELETE</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="Privacy">
@@ -950,9 +872,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>10</y>
-        <width>651</width>
-        <height>591</height>
+        <y>30</y>
+        <width>621</width>
+        <height>491</height>
        </rect>
       </property>
       <property name="currentIndex">
@@ -996,19 +918,6 @@
         </property>
         <property name="text">
          <string>Edit</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="logoutButton">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>470</y>
-          <width>89</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Log Out</string>
         </property>
        </widget>
        <widget class="QWidget" name="layoutWidget">
@@ -1133,54 +1042,353 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
-      <width>651</width>
-      <height>71</height>
+      <y>0</y>
+      <width>181</width>
+      <height>768</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="companyButton">
-       <property name="styleSheet">
-        <string notr="true"/>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>300</y>
+       <width>125</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <widget class="QPushButton" name="privacyButton">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>PRIVACY</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="companyButton">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>COMPANY</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cashierButton">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>CASHIER</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="productButton">
+        <property name="text">
+         <string>PRODUCT</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="logoutButton">
+        <property name="text">
+         <string>Log Out</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>26</y>
+       <width>101</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>pic</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="userNameLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>121</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;username&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>110</y>
+      <width>561</width>
+      <height>521</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="addAdminButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add Admin</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="salesButton">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sales</string>
+     </property>
+    </widget>
+    <widget class="QStackedWidget" name="adminStack_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>551</width>
+       <height>471</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_12">
+      <widget class="QWidget" name="layoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>160</y>
+         <width>511</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="mobileNum">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>Give Mobile No.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="eMail">
+          <property name="placeholderText">
+           <string>Give E-mail ID</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="registerButton_2">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>310</y>
+         <width>89</width>
+         <height>25</height>
+        </rect>
        </property>
        <property name="text">
-        <string>COMPANY</string>
+        <string>Add</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cashierButton">
-       <property name="styleSheet">
-        <string notr="true"/>
+      <widget class="QLineEdit" name="userName_2">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>100</y>
+         <width>281</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>Give User Name</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>220</y>
+         <width>511</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="getPass">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Give Password</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="conPass">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Re-Type Password</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>511</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLineEdit" name="firstName">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>Give First Name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lastName">
+          <property name="placeholderText">
+           <string>Give Last Name</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_14">
+      <widget class="QTableView" name="salesTable">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>60</y>
+         <width>551</width>
+         <height>411</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>20</y>
+         <width>89</width>
+         <height>25</height>
+        </rect>
        </property>
        <property name="text">
-        <string>CASHIER</string>
+        <string>Today</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="productButton">
-       <property name="text">
-        <string>PRODUCT</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="privacyButton">
-       <property name="styleSheet">
-        <string notr="true"/>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>20</y>
+         <width>89</width>
+         <height>25</height>
+        </rect>
        </property>
        <property name="text">
-        <string>PRIVACY</string>
+        <string>Tomorrow</string>
        </property>
       </widget>
-     </item>
-    </layout>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>20</y>
+         <width>89</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>History</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>10</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Time/Date</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="removeAccount">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>640</y>
+      <width>123</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Account</string>
+    </property>
    </widget>
   </widget>
  </widget>

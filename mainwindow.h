@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <adminwindow.h>
+#include <cashierwindow.h>
 #include <dbase.h>
 namespace Ui {
   class MainWindow;
@@ -47,6 +48,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     AdminWindow *adminwindow;
+    CashierWindow *cashierwindow;
 };
 
 #endif // MAINWINDOW_H

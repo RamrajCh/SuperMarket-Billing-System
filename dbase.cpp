@@ -308,7 +308,7 @@ void Dbase::addAdmin_Login(QString &uname)
         qry.bindValue(":mobileno",mobileno);
         qry.bindValue(":email",email);
         qry.bindValue(":passwd",passwd);
-    }
+
     if(!qry.exec())
     {
         qDebug() << "add admin failed: " << qry.lastError();
@@ -317,6 +317,7 @@ void Dbase::addAdmin_Login(QString &uname)
         //QMessageBox::information(this,"Admin_Login Table","Created");
         qDebug()<<"add admin sucess";
     }
+}
 }
 
 void Dbase::deleteAdmin_Login()
@@ -332,3 +333,125 @@ void Dbase::deleteAdmin_Login()
         qDebug()<<"Couldn't delete table";
     }
 }
+////function for handling cashier login
+
+bool Dbase::cashierAuth(const QString &uname, const QString &pass)const{
+    bool exists = false;
+
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT UserName FROM Cashier WHERE UserName =:uname AND Password = :pass");
+    checkQuery.bindValue(":uname", uname);
+    checkQuery.bindValue(":pass", pass);
+    if (checkQuery.exec()){
+        if (checkQuery.next()){
+            exists = true;
+        }
+    }else{
+        qDebug() << "user exists failed: " << checkQuery.lastError();
+    }
+    return exists;
+}
+
+void Dbase::createCashier_LoginTable()
+{
+    QSqlQuery query;
+    query.prepare("CREATE TABLE Cashier_Login ( Name TEXT, UserName TEXT , Phone TEXT , Email TEXT, Password TEXT)");
+
+    if (!query.exec())
+    {
+        qDebug() << "Couldn't create the table 'Admin_Login': one might already exist.";
+    }
+    else
+    {
+        qDebug()<<"created Admin_LoginTable";
+    }
+}
+
+QList<QString> Dbase::getCashierInfo(const QString &uname)
+{
+    QList<QString> cashierList;
+
+    qDebug() << "cashier in db:";
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Cashier WHERE UserName =:uname");
+    query.bindValue(":uname",uname);
+
+    if(!query.exec()){
+        qDebug()<<"Query err"<<query.lastError();
+    }else{
+
+        if(query.next()){
+            qDebug()<<"Sent data";
+            QString name = query.value(0).toString();
+            QString username = query.value(1).toString();
+            QString phone = query.value(2).toString();
+            QString email = query.value(3).toString();
+            QString passwd=query.value(4).toString();
+
+            cashierList.push_front(name);
+            cashierList.push_front(username);
+            cashierList.push_front(phone);
+            cashierList.push_front(email);
+            cashierList.push_front(passwd);
+        }
+        else
+        {
+            qDebug()<<"Couldn't sent data";
+        }
+    }
+    return  cashierList;
+}
+
+void Dbase::addCashier_Login(QString &uname)
+{
+    QSqlQuery qry;
+    //retrive data from Cashier table
+    QString name,username,phone,email,passwd;
+    QList <QString> cashierlist=getCashierInfo(uname);
+    if(cashierlist.isEmpty())
+    {
+        qDebug()<<"error in retriving cashier details";
+    }
+    else
+    {
+        qDebug()<<"retrived data from cashier";
+        //retriving data from Cashier
+        passwd=cashierlist.takeAt(0);
+        email=cashierlist.takeAt(0);
+        phone=cashierlist.takeAt(0);
+        username=cashierlist.takeAt(0);
+        name=cashierlist.takeAt(0);
+
+        //Add value to Cashier_Login table
+
+        qry.prepare("INSERT INTO Cashier_Login(Name,UserName,Phone,Email,Password) VALUES(:name,:uname,:phone,:email,:passwd)");
+        qry.bindValue(":name",name);
+        qry.bindValue(":uname",username);
+        qry.bindValue(":mobileno",phone);
+        qry.bindValue(":email",email);
+        qry.bindValue(":passwd",passwd);
+    }
+    if(!qry.exec())
+    {
+        qDebug() << "add cashier failed: " << qry.lastError();
+    }else
+    {
+        //QMessageBox::information(this,"Cashier_Login Table","Created");
+        qDebug()<<"add cashier sucess";
+    }
+}
+
+void Dbase::deleteCashier_Login()
+{
+    QSqlQuery qry;
+    qry.prepare("DROP TABLE Cashier_Login");
+    if(qry.exec())
+    {
+        qDebug()<<"Table deleted";
+    }
+    else
+    {
+        qDebug()<<"Couldn't delete table";
+    }
+}
+

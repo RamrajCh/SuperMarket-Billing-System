@@ -29,19 +29,27 @@ SOURCES += \
     adminwindow.cpp \
     dbase.cpp \
     dbase_admin.cpp \
-    authenicationwindow.cpp
+    authenicationwindow.cpp \
+    cashierwindow.cpp \
+    bill.cpp \
+    dbase_cashier.cpp
 
 HEADERS += \
         mainwindow.h \
     adminwindow.h \
     dbase.h \
     dbase_admin.h \
-    authenicationwindow.h
+    authenicationwindow.h \
+    cashierwindow.h \
+    bill.h \
+    dbase_cashier.h
 
 FORMS += \
         mainwindow.ui \
     adminwindow.ui \
-    authenicationwindow.ui
+    authenicationwindow.ui \
+    cashierwindow.ui \
+    bill.ui
 
 RESOURCES += \
     sbs.qrc
