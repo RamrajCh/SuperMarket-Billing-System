@@ -69,7 +69,7 @@ QList<QString> Dbase_Cashier::getCashier_loginDetails()
 {
     QList<QString> cashierdetails;
     QSqlQuery qry;
-    qry.prepare(QString("SELECT * FROM Admin_Login"));
+    qry.prepare(QString("SELECT * FROM Cashier_Login"));
     if(!qry.exec())
     {
         qDebug()<<"Error in retriving data"<<qry.lastError();
@@ -79,11 +79,11 @@ QList<QString> Dbase_Cashier::getCashier_loginDetails()
 
        if(qry.next())
        {
-           QString name=qry.value(1).toString();
-           QString username=qry.value(2).toString();
-           QString mobileno=qry.value(3).toString();
-           QString email=qry.value(4).toString();
-           QString passwd=qry.value(5).toString();
+           QString name=qry.value(0).toString();
+           QString username=qry.value(1).toString();
+           QString mobileno=qry.value(2).toString();
+           QString email=qry.value(3).toString();
+           QString passwd=qry.value(4).toString();
 
            cashierdetails.push_front(name);
            cashierdetails.push_front(username);

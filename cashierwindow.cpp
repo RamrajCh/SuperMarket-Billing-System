@@ -8,7 +8,7 @@ CashierWindow::CashierWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->cashierStack->setCurrentIndex(0);
     ui->homeStack->setCurrentIndex(0);
-    //showCashier_LoginDetails();
+    showCashier_LoginDetails();
 }
 
 CashierWindow::~CashierWindow()
@@ -20,7 +20,7 @@ void CashierWindow::on_homeButton_clicked()
 {
     ui->cashierStack->setCurrentIndex(0);
     ui->homeStack->setCurrentIndex(0);
-    //showCashier_LoginDetails();
+    showCashier_LoginDetails();
 }
 
 
@@ -188,40 +188,40 @@ void CashierWindow::on_editCashierButton_clicked()
     ui->homeStack->setCurrentIndex(1);
 }
 
-//void CashierWindow::showCashier_LoginDetails()
-//{
-//    Dbase_Cashier db("SBS.db");
-//    if(!db.isOpen())
-//    {
-//        qDebug()<<"Not opening database";
-//    }
-//    else
-//    {
-//        qDebug()<<"Opening Database";
-//        QString name,username,mobileno,email,passwd;
-//        QList<QString> cashier_details=db.getCashier_loginDetails();
-//        if(cashier_details.isEmpty())
-//        {
-//            qDebug()<<"error in retriving admin details";
-//        }
-//        else
-//        {
-//            qDebug()<<"retriving data from admin";
-//            //retriving data from Admin
-//            passwd=cashier_details.takeAt(0);
-//            email=cashier_details.takeAt(0);
-//            mobileno=cashier_details.takeAt(0);
-//            username=cashier_details.takeAt(0);
-//            name=cashier_details.takeAt(0);
+void CashierWindow::showCashier_LoginDetails()
+{
+    Dbase_Cashier db("SBS.db");
+    if(!db.isOpen())
+    {
+        qDebug()<<"Not opening database";
+    }
+    else
+    {
+        qDebug()<<"Opening Database";
+        QString name,username,mobileno,email,passwd;
+        QList<QString> cashier_details=db.getCashier_loginDetails();
+        if(cashier_details.isEmpty())
+        {
+            qDebug()<<"error in retriving cashier details";
+        }
+        else
+        {
+            qDebug()<<"retriving data from cashier";
+            //retriving data from Cashier
+            passwd=cashier_details.takeAt(0);
+            email=cashier_details.takeAt(0);
+            mobileno=cashier_details.takeAt(0);
+            username=cashier_details.takeAt(0);
+            name=cashier_details.takeAt(0);
 
-//           //Showing information
-//            ui->cashierUsernameLabel_2->setText(username);
-//            ui->cashierUsernameLabel->setText(username);
-//            ui->cashierNameLabel->setText(name);
-//            ui->cashierMobileLabel->setText(mobileno);
-//            ui->cashierEmailLabel->setText(email);
-//        }
+           //Showing information
+            ui->cashierUsernameLabel_2->setText(username);
+            ui->cashierUsernameLabel->setText(username);
+            ui->cashierNameLabel->setText(name);
+            ui->cashierMobileLabel->setText(mobileno);
+            ui->cashierEmailLabel->setText(email);
+        }
 
-//    }
-//}
+    }
+}
 
