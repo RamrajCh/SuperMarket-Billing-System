@@ -27,6 +27,22 @@ public:
 
     QList<QString> getCashier_loginDetails();
 
+    QList<QString> getComDetails();
+
+    bool validProduct(QString &id);
+
+    bool validCashier(QString &username,QString &oldpassword);
+
+    void updateCashier(QString &Username,QString &newpassword);
+
+    ////functions for invoice
+    void createBillTable();
+
+    QList<QString> getProductDetails(const QString &id);
+
+    bool addProduct(const QString &id,const QString &name,const int &quantity,const double &rate,const double &amount);
+
+    bool product_IdExists(const QString &id);
 
 };
 

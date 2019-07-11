@@ -18,13 +18,17 @@ public:
     explicit CashierWindow(QWidget *parent = 0);
     ~CashierWindow();
     void showCashier_LoginDetails();
+     void showCompanyDetails();
+
+public slots:
+     void on_logoutButton_clicked();
 
 private slots:
     void on_productButton_clicked();
 
     void on_saleButton_clicked();
 
-    void on_logoutButton_clicked();
+
 
     void on_allButton_clicked();
 
@@ -45,6 +49,12 @@ private slots:
     void on_otherButton_clicked();
 
     void on_editCashierButton_clicked();
+
+    void on_saveChangeButton_clicked();
+
+    void on_checkProduct_clicked();
+
+    void on_addProduct_clicked();
 
 private:
     Ui::CashierWindow *ui;

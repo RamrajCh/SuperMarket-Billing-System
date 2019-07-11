@@ -427,7 +427,7 @@ void Dbase::addCashier_Login(QString &uname)
         qry.prepare("INSERT INTO Cashier_Login(Name,UserName,Phone,Email,Password) VALUES(:name,:uname,:phone,:email,:passwd)");
         qry.bindValue(":name",name);
         qry.bindValue(":uname",username);
-        qry.bindValue(":mobileno",phone);
+        qry.bindValue(":phone",phone);
         qry.bindValue(":email",email);
         qry.bindValue(":passwd",passwd);
     }

@@ -586,7 +586,7 @@ color:white;</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>250</y>
+       <y>260</y>
        <width>101</width>
        <height>231</height>
       </rect>
@@ -628,8 +628,13 @@ color:white;</string>
        <x>10</x>
        <y>500</y>
        <width>121</width>
-       <height>25</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:red;
+border-radius:20px;
+color:yellow;</string>
      </property>
      <property name="text">
       <string>Remove Account</string>

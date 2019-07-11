@@ -33,7 +33,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
@@ -302,7 +302,7 @@
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>650</width>
+        <width>631</width>
         <height>591</height>
        </rect>
       </property>
@@ -310,7 +310,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -587,7 +587,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_9">
        <widget class="QStackedWidget" name="addStack">

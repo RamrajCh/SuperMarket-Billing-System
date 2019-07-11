@@ -45,7 +45,7 @@ private slots:
 
    void on_cancelButton_3_clicked();
 
-private:
+   private:
     Ui::MainWindow *ui;
     AdminWindow *adminwindow;
     CashierWindow *cashierwindow;

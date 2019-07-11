@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>SBS.db</file>
+        <file>wp3152211-supermarket-wallpapers.jpg</file>
+        <file>plain-colors-1366x768-colorful-red-yellow-blue-hd-8893.jpg</file>
     </qresource>
 </RCC>

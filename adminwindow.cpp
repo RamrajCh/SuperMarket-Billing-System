@@ -575,17 +575,10 @@ void AdminWindow::on_addProductButton_2_clicked()
     if(isVacant(productid)) showError(this,"Specify Product ID");
     else if(isVacant(productname)) showError(this,"Specify Product Name");
     else if(isVacant(productprice)) showError(this,"Specify Product Price");
-    else if(productcategory=="Uncategorized" || productcategory=="uncategorized" || productcategory=="UNCATEGORIZED")
+    else if(productcategory=="Uncategorized")
     {
-        QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Category","You don't categorized the product.Want to add category?",QMessageBox::Yes|QMessageBox::No);
-        if(stdButton==QMessageBox::Yes)
-        {
-            //got to add category
-            ui->addStack->setCurrentIndex(1);
-        }
-        else
-        {}
-     }
+        QMessageBox::information(this,"Category","You don't categorized the product.");
+    }
     //check if there is table
     else
     {
@@ -767,11 +760,12 @@ void AdminWindow::on_delete_product_clicked()
              db.deleteProducts(id,category);
              QMessageBox::information(this,"Remove Cashier","Sucessful");
              ui->product_id->setText("");
+             ui->product_category_2->setText("");
           }
         }
         else
         {
-           QMessageBox::warning(this,"Remove Cashier","Do not match any cashier..");
+           QMessageBox::information(this,"Remove Cashier","Do not match any cashier..");
         }
     }
 }

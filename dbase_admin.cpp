@@ -453,7 +453,7 @@ void Dbase_admin::changeAdmin_LoginPassword(const QString& uname,const QString& 
 void Dbase_admin::createProductTable()
 {
     QSqlQuery qry;
-    qry.prepare("CREATE TABLE Product(ID TEXT,Name TEXT,Category TEXT,Price TEXT)");
+    qry.prepare("CREATE TABLE Product(ID TEXT,Name TEXT,Category TEXT,Price REAl)");
 
     if (!qry.exec())
     {
@@ -550,8 +550,11 @@ bool Dbase_admin::validProduct(const QString &id, const QString &category)
     qry.bindValue(":category",category);
     if(qry.exec())
     {
-        qDebug()<<"product found";
-        return true;
+        if(qry.next())
+        {
+            qDebug()<<"product found";
+            return true;
+        }
     }
     else
     {
