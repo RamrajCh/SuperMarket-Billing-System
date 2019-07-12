@@ -278,3 +278,10 @@ bool Dbase_Cashier::product_IdExists(const QString &id)
         return false;
     }
 }
+
+void Dbase_Cashier::deleteBillTable()
+{
+    QSqlQuery qry;
+    qry.prepare("DROP TABLE Bill");
+    qry.exec();
+}

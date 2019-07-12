@@ -9,6 +9,7 @@ CashierWindow::CashierWindow(QWidget *parent) :
     ui->cashierStack->setCurrentIndex(0);
     ui->homeStack->setCurrentIndex(0);
     ui->billStack->setCurrentIndex(2);
+    ui->billTableStack->setCurrentIndex(0);
     showCashier_LoginDetails();
     showCompanyDetails();
 }
@@ -79,6 +80,7 @@ void CashierWindow:: showCompanyDetails()
             name=com_det.takeAt(0);
 
             //Showing results
+            ui->companyName->setText(name);
             ui->nameLabel_2->setText(name);
             ui->vatLabel_2->setText(vat);
             ui->phoneLabel_2->setText(phone);
@@ -331,7 +333,139 @@ void CashierWindow::on_addProduct_clicked()
     temp = pro[0].toDouble();
     name=pro[2];
     amount=quantity*temp;
-    qDebug()<<amount;
     db.createBillTable();
-    db.addProduct(id,name,quantity,temp,amount);
+    if(db.addProduct(id,name,quantity,temp,amount))
+    {
+        ui->productID->setText("");
+        ui->billStack->setCurrentIndex(2);
+
+    //show bill table
+        QSqlQueryModel *model= new QSqlQueryModel();
+
+        QSqlQuery *qry=new QSqlQuery();
+        qry->prepare("SELECT * FROM Bill");
+
+        qry->exec();
+
+        model->setQuery(*qry);
+       ui->billTableStack->setCurrentIndex(1);
+       ui->billTable->setModel(model);
+    }
+}
+
+
+
+void CashierWindow::on_printBillButton_clicked()
+{
+    QMessageBox::information(this,"Print","Set Printer");
+    ui->productID->setText("");
+    Dbase_Cashier db("SBS.db");
+    db.deleteBillTable();
+    ui->billStack->setCurrentIndex(2);
+    ui->billTableStack->setCurrentIndex(0);
+}
+
+
+
+void CashierWindow::on_removeProduct_clicked()
+{
+    QString id=ui->productID->text();
+    Dbase_Cashier db("SBS.db");
+
+    QSqlQuery qry;
+    qry.prepare("DELETE FROM Bill WHERE ID=:id");
+    qry.bindValue(":id",id);
+    if(qry.exec())
+    {
+        ui->productID->setText("");
+        ui->billStack->setCurrentIndex(2);
+
+    //show bill table
+        QSqlQueryModel *model= new QSqlQueryModel();
+
+        QSqlQuery *query=new QSqlQuery();
+        query->prepare("SELECT * FROM Bill");
+
+        query->exec();
+
+        model->setQuery(*query);
+       ui->billTableStack->setCurrentIndex(1);
+       ui->billTable->setModel(model);
+    }
+}
+
+
+void CashierWindow::on_additionMode_clicked()
+{
+   QString id=ui->productID->text();
+   Dbase_Cashier db("SBS.db");
+
+   QSqlQuery qry;
+   qry.prepare("SELECT * FROM Bill WHERE ID=:id");
+   qry.bindValue(":id",id);
+
+   if(qry.exec())
+   {
+       if(qry.next()){
+       int quantity=qry.value(3).toInt();
+       double rate=qry.value(2).toDouble();
+       quantity=quantity+1;
+       double amount=rate*quantity;
+       QSqlQuery query;
+       query.prepare("UPDATE Bill SET Quantity=:quantity,Amount=:amount WHERE ID=:id");
+       query.bindValue(":quantity",quantity);
+       query.bindValue(":amount",amount);
+       query.bindValue(":id",id);
+       if(query.exec()){
+      QSqlQueryModel *model= new QSqlQueryModel();
+
+       QSqlQuery *qery=new QSqlQuery();
+       qery->prepare("SELECT * FROM Bill");
+
+       qery->exec();
+
+       model->setQuery(*qery);
+      ui->billTableStack->setCurrentIndex(1);
+      ui->billTable->setModel(model);
+   }
+   }
+}
+}
+
+
+void CashierWindow::on_deductionMode_clicked()
+{
+    QString id=ui->productID->text();
+    Dbase_Cashier db("SBS.db");
+
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM Bill WHERE ID=:id");
+    qry.bindValue(":id",id);
+
+    if(qry.exec())
+    {
+        if(qry.next()){
+        int quantity=qry.value(3).toInt();
+        double rate=qry.value(2).toDouble();
+        quantity=quantity-1;
+        double amount=rate*quantity;
+        QSqlQuery query;
+        query.prepare("UPDATE Bill SET Quantity=:quantity,Amount=:amount WHERE ID=:id");
+        query.bindValue(":quantity",quantity);
+        query.bindValue(":amount",amount);
+        query.bindValue(":id",id);
+        if(query.exec()){
+       QSqlQueryModel *model= new QSqlQueryModel();
+
+        QSqlQuery *qery=new QSqlQuery();
+        qery->prepare("SELECT * FROM Bill");
+
+        qery->exec();
+
+        model->setQuery(*qery);
+       ui->billTableStack->setCurrentIndex(1);
+       ui->billTable->setModel(model);
+    }
+    }
+ }
 }

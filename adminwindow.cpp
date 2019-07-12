@@ -22,6 +22,7 @@ bool isVacant(QString obj)
   else return false;
 }
 
+
 void AdminWindow :: showError(AdminWindow* window,QString error)
 {
   QMessageBox::warning(window,"Error!!",error);

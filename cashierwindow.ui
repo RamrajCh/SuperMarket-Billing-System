@@ -563,10 +563,10 @@ color:white;</string>
     <widget class="QLabel" name="cashierUsernameLabel">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>40</x>
        <y>160</y>
-       <width>121</width>
-       <height>20</height>
+       <width>101</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -586,7 +586,7 @@ color:white;</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>250</y>
+       <y>260</y>
        <width>101</width>
        <height>231</height>
       </rect>
@@ -628,22 +628,30 @@ color:white;</string>
        <x>10</x>
        <y>500</y>
        <width>121</width>
-       <height>25</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:red;
+border-radius:20px;
+color:yellow;</string>
      </property>
      <property name="text">
       <string>Remove Account</string>
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="companyName">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>50</y>
-      <width>351</width>
-      <height>41</height>
+      <x>370</x>
+      <y>30</y>
+      <width>641</width>
+      <height>91</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 30pt &quot;Purisa&quot;;</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; font-weight:600;&quot;&gt;COMPANY NAME&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -660,19 +668,6 @@ color:white;</string>
     </property>
     <property name="text">
      <string>logo</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>1040</x>
-      <y>40</y>
-      <width>111</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:600;&quot;&gt;INVOICE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="productID">
@@ -782,6 +777,71 @@ Mode</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_6"/>
+   </widget>
+   <widget class="QStackedWidget" name="billTableStack">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>230</y>
+      <width>571</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="page_7"/>
+    <widget class="QWidget" name="page_10">
+     <widget class="QTableView" name="billTable">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>551</width>
+        <height>271</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="printBillButton">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>400</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Print</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>300</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sub Total</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subTotal">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>300</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>

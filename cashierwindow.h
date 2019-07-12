@@ -56,6 +56,14 @@ private slots:
 
     void on_addProduct_clicked();
 
+    void on_printBillButton_clicked();
+
+    void on_removeProduct_clicked();
+
+    void on_additionMode_clicked();
+
+    void on_deductionMode_clicked();
+
 private:
     Ui::CashierWindow *ui;
 };

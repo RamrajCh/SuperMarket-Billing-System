@@ -587,7 +587,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_9">
        <widget class="QStackedWidget" name="addStack">
@@ -1051,6 +1051,11 @@
       <height>768</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background:black;
+color:white;
+border:0px</string>
+    </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
     </property>
@@ -1139,6 +1144,24 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;username&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="removeAccount">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>690</y>
+       <width>123</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:Red;
+color:Yellow;
+border-radius:10px;</string>
+     </property>
+     <property name="text">
+      <string>Remove Account</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
@@ -1191,7 +1214,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_12">
       <widget class="QWidget" name="layoutWidget_2">
@@ -1345,7 +1368,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Tomorrow</string>
+        <string>Yesterday</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_3">
@@ -1362,6 +1385,7 @@
        </property>
       </widget>
      </widget>
+     <widget class="QWidget" name="page_15"/>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
@@ -1376,19 +1400,6 @@
       <string>Time/Date</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="removeAccount">
-    <property name="geometry">
-     <rect>
-      <x>1240</x>
-      <y>640</y>
-      <width>123</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove Account</string>
-    </property>
    </widget>
   </widget>
  </widget>

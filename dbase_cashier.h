@@ -44,6 +44,7 @@ public:
 
     bool product_IdExists(const QString &id);
 
+    void deleteBillTable();
 };
 
 #endif // DBASE_CASHIER_H
