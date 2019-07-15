@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include<QMessageBox>
-#include <QDebug>
+#include <QDate>
 #include <authenicationwindow.h>
 #include<dbase_admin.h>
 #include <dbase.h>

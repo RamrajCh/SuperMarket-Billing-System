@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>SBS.db</file>
+        <file>eGT7aw.jpg</file>
+        <file>wp3152211-supermarket-wallpapers.jpg</file>
+        <file>cashier.png</file>
+        <file>male.jpeg</file>
+        <file>imagdgfhes.png</file>
+        <file>5b16c66b-3ac6-4fbd-89d6-987730900ba3_200x200.png</file>
     </qresource>
 </RCC>

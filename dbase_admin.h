@@ -35,7 +35,7 @@ public:
     ////functions to handle cashier
     void createCashierTable(); //create Cashier table
 
-    bool addCashierDetails(const QString &name, const QString &uname, const QString &phone, const QString &email, const QString &password); //add data to table
+    bool addCashierDetails(const QString &name, const QString &uname,const QString &gender ,const QString &phone, const QString &email, const QString &password); //add data to table
 
     bool modifyCashierDetails(const QString &uname); //modify cashier details
 

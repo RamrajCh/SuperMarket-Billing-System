@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QDate>
 #include <adminwindow.h>
 #include <cashierwindow.h>
 #include <dbase.h>

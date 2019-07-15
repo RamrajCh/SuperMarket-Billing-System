@@ -355,7 +355,7 @@ bool Dbase::cashierAuth(const QString &uname, const QString &pass)const{
 void Dbase::createCashier_LoginTable()
 {
     QSqlQuery query;
-    query.prepare("CREATE TABLE Cashier_Login ( Name TEXT, UserName TEXT , Phone TEXT , Email TEXT, Password TEXT)");
+    query.prepare("CREATE TABLE Cashier_Login ( Name TEXT, UserName TEXT,Gender TEXT, Phone TEXT , Email TEXT, Password TEXT)");
 
     if (!query.exec())
     {
@@ -384,12 +384,14 @@ QList<QString> Dbase::getCashierInfo(const QString &uname)
             qDebug()<<"Sent data";
             QString name = query.value(0).toString();
             QString username = query.value(1).toString();
-            QString phone = query.value(2).toString();
-            QString email = query.value(3).toString();
-            QString passwd=query.value(4).toString();
+            QString gender=query.value(2).toString();
+            QString phone = query.value(3).toString();
+            QString email = query.value(4).toString();
+            QString passwd=query.value(5).toString();
 
             cashierList.push_front(name);
             cashierList.push_front(username);
+            cashierList.push_front(gender);
             cashierList.push_front(phone);
             cashierList.push_front(email);
             cashierList.push_front(passwd);
@@ -406,7 +408,7 @@ void Dbase::addCashier_Login(QString &uname)
 {
     QSqlQuery qry;
     //retrive data from Cashier table
-    QString name,username,phone,email,passwd;
+    QString name,username,gender,phone,email,passwd;
     QList <QString> cashierlist=getCashierInfo(uname);
     if(cashierlist.isEmpty())
     {
@@ -419,14 +421,16 @@ void Dbase::addCashier_Login(QString &uname)
         passwd=cashierlist.takeAt(0);
         email=cashierlist.takeAt(0);
         phone=cashierlist.takeAt(0);
+        gender=cashierlist.takeAt(0);
         username=cashierlist.takeAt(0);
         name=cashierlist.takeAt(0);
 
         //Add value to Cashier_Login table
 
-        qry.prepare("INSERT INTO Cashier_Login(Name,UserName,Phone,Email,Password) VALUES(:name,:uname,:phone,:email,:passwd)");
+        qry.prepare("INSERT INTO Cashier_Login(Name,UserName,Gender,Phone,Email,Password) VALUES(:name,:uname,:gender,:phone,:email,:passwd)");
         qry.bindValue(":name",name);
         qry.bindValue(":uname",username);
+        qry.bindValue(":gender",gender);
         qry.bindValue(":phone",phone);
         qry.bindValue(":email",email);
         qry.bindValue(":passwd",passwd);

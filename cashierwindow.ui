@@ -67,7 +67,7 @@
             <x>10</x>
             <y>50</y>
             <width>271</width>
-            <height>391</height>
+            <height>361</height>
            </rect>
           </property>
           <property name="currentIndex">
@@ -92,7 +92,7 @@
              <rect>
               <x>8</x>
               <y>40</y>
-              <width>91</width>
+              <width>92</width>
               <height>211</height>
              </rect>
             </property>
@@ -173,7 +173,7 @@
              <rect>
               <x>10</x>
               <y>70</y>
-              <width>181</width>
+              <width>261</width>
               <height>25</height>
              </rect>
             </property>
@@ -186,7 +186,7 @@
              <rect>
               <x>10</x>
               <y>120</y>
-              <width>181</width>
+              <width>251</width>
               <height>25</height>
              </rect>
             </property>
@@ -238,7 +238,7 @@
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>181</width>
+              <width>271</width>
               <height>25</height>
              </rect>
             </property>
@@ -547,19 +547,6 @@ color:white;</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="pic">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>26</y>
-       <width>101</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Pic</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="cashierUsernameLabel">
      <property name="geometry">
       <rect>
@@ -640,6 +627,19 @@ color:yellow;</string>
       <string>Remove Account</string>
      </property>
     </widget>
+    <widget class="QLabel" name="cashierPic">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>20</y>
+       <width>131</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>pic</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="companyName">
     <property name="geometry">
@@ -706,7 +706,7 @@ color:yellow;</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_4">
      <widget class="QSpinBox" name="quantityBox">
@@ -841,7 +841,33 @@ Mode</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="subTotal_2">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>300</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
+   </widget>
+   <widget class="QLabel" name="currentDate">
+    <property name="geometry">
+     <rect>
+      <x>1216</x>
+      <y>10</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Date</string>
+    </property>
    </widget>
   </widget>
  </widget>

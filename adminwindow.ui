@@ -33,7 +33,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Company">
      <widget class="QStackedWidget" name="companyStack">
@@ -310,7 +310,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="layoutWidget">
@@ -385,52 +385,95 @@
          <string>Cancel</string>
         </property>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QLineEdit" name="cashierName">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>40</y>
-          <width>421</width>
-          <height>401</height>
+          <x>100</x>
+          <y>70</y>
+          <width>413</width>
+          <height>25</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <widget class="QLineEdit" name="cashierName">
-           <property name="placeholderText">
-            <string>Enter Cashier Name</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="cashierUsername">
-           <property name="placeholderText">
-            <string>Enter Cashier UserName</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="cashierPhone">
-           <property name="placeholderText">
-            <string>Enter Cashier Phone No.</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="cashierEmail">
-           <property name="placeholderText">
-            <string>Enter Cashier Email ID </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="cashierPassword">
-           <property name="placeholderText">
-            <string>Enter Password for Cashier</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <property name="placeholderText">
+         <string>Enter Cashier Name</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cashierUsername">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>130</y>
+          <width>413</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Enter Cashier UserName</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cashierPhone">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>250</y>
+          <width>413</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Enter Cashier Phone No.</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cashierEmail">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>310</y>
+          <width>413</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Enter Cashier Email ID </string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cashierPassword">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>370</y>
+          <width>413</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Enter Password for Cashier</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="genderBox">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>190</y>
+          <width>411</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Choose Gender</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Male</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Female</string>
+         </property>
+        </item>
        </widget>
       </widget>
       <widget class="QWidget" name="page_6">
@@ -1118,19 +1161,6 @@ border:0px</string>
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="label_14">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>26</y>
-       <width>101</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>pic</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="userNameLabel">
      <property name="geometry">
       <rect>
@@ -1400,6 +1430,19 @@ border-radius:10px;</string>
       <string>Time/Date</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="currentDate">
+    <property name="geometry">
+     <rect>
+      <x>1196</x>
+      <y>10</y>
+      <width>151</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
    </widget>
   </widget>
  </widget>

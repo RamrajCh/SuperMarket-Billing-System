@@ -45,6 +45,8 @@ public:
     bool product_IdExists(const QString &id);
 
     void deleteBillTable();
+
+    QList<QString> getAmount();
 };
 
 #endif // DBASE_CASHIER_H

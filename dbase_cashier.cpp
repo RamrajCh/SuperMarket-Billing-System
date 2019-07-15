@@ -81,12 +81,14 @@ QList<QString> Dbase_Cashier::getCashier_loginDetails()
        {
            QString name=qry.value(0).toString();
            QString username=qry.value(1).toString();
-           QString mobileno=qry.value(2).toString();
-           QString email=qry.value(3).toString();
-           QString passwd=qry.value(4).toString();
+           QString gender=qry.value(2).toString();
+           QString mobileno=qry.value(3).toString();
+           QString email=qry.value(4).toString();
+           QString passwd=qry.value(5).toString();
 
            cashierdetails.push_front(name);
            cashierdetails.push_front(username);
+           cashierdetails.push_front(gender);
            cashierdetails.push_front(mobileno);
            cashierdetails.push_front(email);
            cashierdetails.push_front(passwd);
@@ -284,4 +286,26 @@ void Dbase_Cashier::deleteBillTable()
     QSqlQuery qry;
     qry.prepare("DROP TABLE Bill");
     qry.exec();
+}
+
+QList<QString> Dbase_Cashier::getAmount()
+{
+    QList<QString> amountdetails;
+    QSqlQuery qry;
+    qry.prepare(QString("SELECT Amount FROM Bill"));
+    if(!qry.exec())
+    {
+        qDebug()<<"Error in retriving data"<<qry.lastError();
+    }
+    else
+    {
+       while(qry.next())
+       {
+           QString a=qry.value(0).toString();
+           amountdetails.push_front(a);
+
+       }
+    }
+      qDebug()<<amountdetails.count();
+      return amountdetails;
 }

@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include<QMessageBox>
+#include <QPixmap>
+#include <QFile>
+#include<QDate>
 #include <QDebug>
 #include<dbase_cashier.h>
 
@@ -19,6 +22,7 @@ public:
     ~CashierWindow();
     void showCashier_LoginDetails();
      void showCompanyDetails();
+     void showAmount();
 
 public slots:
      void on_logoutButton_clicked();

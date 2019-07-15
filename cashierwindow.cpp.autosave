@@ -385,9 +385,9 @@ void CashierWindow::on_printBillButton_clicked()
 
        out <<"                                                          "<<companyName<<endl;
        out <<"                                                          "<<companyAddress<<endl;
-       out <<"                                                       "<<companyPhone<<","<<companyEmail<<endl;
-       out<<"...................................................................................................................................."<<endl;
-
+       out <<"                                                          "<<companyPhone<<","<<companyEmail<<endl;
+       out <<"...................................................................................................................................."<<endl;
+       
         ui->productID->setText("");
 
            ui->billStack->setCurrentIndex(2);

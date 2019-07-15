@@ -6,6 +6,9 @@ AdminWindow::AdminWindow(QWidget *parent) :
   ui(new Ui::AdminWindow)
 {
   ui->setupUi(this);
+  QDate date;
+  QString currentDate=date.currentDate().toString();
+  ui->currentDate->setText(currentDate);
   ui->adminStack->setCurrentIndex(3);
   ui->privacyStack->setCurrentIndex(0);
   showAdmin_LoginDetails();
@@ -207,6 +210,7 @@ void AdminWindow::on_okButton_2_clicked()
     //extract values from ui
     QString name=ui->cashierName->text();
     QString uname=ui->cashierUsername->text();
+    QString gender=ui->genderBox->currentText();
     QString phone=ui->cashierPhone->text();
     QString email=ui->cashierEmail->text();
     QString passwd=ui->cashierPassword->text();
@@ -214,6 +218,7 @@ void AdminWindow::on_okButton_2_clicked()
     //check data validation
     if(isVacant(name)) showError(this,"Specify Cashier Name");
     else if(isVacant(uname)) showError(this,"Specify Cashier UserName");
+    else if(gender=="Choose Gender") showError(this,"Specify Gender of Cashier");
     else if(isVacant(phone)) showError(this,"Specify Cashier Phone");
     else if(isVacant(email)) showError(this,"Specify Cashier Email");
     else if(isVacant(passwd)) showError(this,"Specify Cashier Password");
@@ -243,7 +248,7 @@ void AdminWindow::on_okButton_2_clicked()
                      }
                      else
                      {
-                         if(db.addCashierDetails(name,uname,phone,email,passwd))
+                         if(db.addCashierDetails(name,uname,gender,phone,email,passwd))
                          {
                              //vacant the line edits
                              ui->cashierName->setText("");

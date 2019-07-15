@@ -175,7 +175,7 @@ bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
   {
 
       QSqlQuery qry;
-      qry.prepare("CREATE TABLE Cashier(Name TEXT,UserName TEXT,Phone TEXT,Email TEXT,Password TEXT)");
+      qry.prepare("CREATE TABLE Cashier(Name TEXT,UserName TEXT,Gender TEXT,Phone TEXT,Email TEXT,Password TEXT)");
 
       if (!qry.exec())
       {
@@ -189,14 +189,15 @@ bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
 
   }
 
-  bool Dbase_admin::addCashierDetails(const QString &name, const QString &uname, const QString &phone, const QString &email, const QString &password)
+  bool Dbase_admin::addCashierDetails(const QString &name, const QString &uname,const QString &gender,const QString &phone, const QString &email, const QString &password)
   {
       bool sucess=false;
       QSqlQuery qry;
-      qry.prepare("INSERT INTO Cashier(Name,UserName,Phone,Email,Password) VALUES (:name,:uname,:phone,:email,:password)");
+      qry.prepare("INSERT INTO Cashier(Name,UserName,Gender,Phone,Email,Password) VALUES (:name,:uname,:gender,:phone,:email,:password)");
 
       qry.bindValue(":name",name);
       qry.bindValue(":uname",uname);
+      qry.bindValue(":gender",gender);
       qry.bindValue(":phone",phone);
       qry.bindValue(":email",email);
       qry.bindValue(":password",password);
