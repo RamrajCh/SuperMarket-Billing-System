@@ -20,7 +20,7 @@
    <widget class="QStackedWidget" name="cashierStack">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>230</x>
       <y>160</y>
       <width>611</width>
       <height>481</height>
@@ -34,9 +34,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>70</y>
-        <width>601</width>
-        <height>451</height>
+        <y>80</y>
+        <width>561</width>
+        <height>441</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -173,7 +173,7 @@
              <rect>
               <x>10</x>
               <y>70</y>
-              <width>261</width>
+              <width>231</width>
               <height>25</height>
              </rect>
             </property>
@@ -238,7 +238,7 @@
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>271</width>
+              <width>231</width>
               <height>25</height>
              </rect>
             </property>
@@ -533,7 +533,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>181</width>
+      <width>211</width>
       <height>768</height>
      </rect>
     </property>
@@ -644,7 +644,7 @@ color:yellow;</string>
    <widget class="QLabel" name="companyName">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>450</x>
       <y>30</y>
       <width>641</width>
       <height>91</height>
@@ -660,7 +660,7 @@ color:yellow;</string>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>216</x>
+      <x>280</x>
       <y>20</y>
       <width>151</width>
       <height>121</height>
@@ -673,7 +673,7 @@ color:yellow;</string>
    <widget class="QLineEdit" name="productID">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>990</x>
       <y>130</y>
       <width>221</width>
       <height>25</height>
@@ -686,7 +686,7 @@ color:yellow;</string>
    <widget class="QPushButton" name="checkProduct">
     <property name="geometry">
      <rect>
-      <x>1130</x>
+      <x>1230</x>
       <y>130</y>
       <width>89</width>
       <height>25</height>
@@ -699,9 +699,9 @@ color:yellow;</string>
    <widget class="QStackedWidget" name="billStack">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>970</x>
       <y>170</y>
-      <width>481</width>
+      <width>381</width>
       <height>61</height>
      </rect>
     </property>
@@ -712,7 +712,7 @@ color:yellow;</string>
      <widget class="QSpinBox" name="quantityBox">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>50</x>
         <y>10</y>
         <width>161</width>
         <height>26</height>
@@ -722,7 +722,7 @@ color:yellow;</string>
      <widget class="QPushButton" name="addProduct">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>240</x>
         <y>10</y>
         <width>89</width>
         <height>25</height>
@@ -737,7 +737,7 @@ color:yellow;</string>
      <widget class="QPushButton" name="removeProduct">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>20</x>
         <y>10</y>
         <width>89</width>
         <height>41</height>
@@ -750,7 +750,7 @@ color:yellow;</string>
      <widget class="QPushButton" name="additionMode">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>140</x>
         <y>10</y>
         <width>89</width>
         <height>41</height>
@@ -764,7 +764,7 @@ Mode</string>
      <widget class="QPushButton" name="deductionMode">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>260</x>
         <y>10</y>
         <width>89</width>
         <height>41</height>
@@ -792,16 +792,6 @@ Mode</string>
     </property>
     <widget class="QWidget" name="page_7"/>
     <widget class="QWidget" name="page_10">
-     <widget class="QTableView" name="billTable">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>551</width>
-        <height>271</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="printBillButton">
       <property name="geometry">
        <rect>
@@ -841,17 +831,14 @@ Mode</string>
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="subTotal_2">
+     <widget class="QTableWidget" name="billTable">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>300</y>
-        <width>67</width>
-        <height>17</height>
+        <x>30</x>
+        <y>20</y>
+        <width>531</width>
+        <height>261</height>
        </rect>
-      </property>
-      <property name="text">
-       <string/>
       </property>
      </widget>
     </widget>

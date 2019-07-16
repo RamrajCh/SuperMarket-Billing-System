@@ -56,9 +56,11 @@ void CashierWindow::showCashier_LoginDetails()
             ui->cashierNameLabel->setText(name);
             ui->cashierMobileLabel->setText(mobileno);
             ui->cashierEmailLabel->setText(email);
-            QPixmap male("/male.jpeg");
+            //QPicture *male=new QPicture(":/male.jpeg");
+            QPixmap male(":/male.jpeg");
+            QPixmap female(":/female.png");
             if(gender=="Male") ui->cashierPic->setPixmap(male);
-            if(gender=="Female") ui->cashierPic->setText("Female");
+            if(gender=="Female") ui->cashierPic->setPixmap(female);
         }
 
     }
@@ -345,34 +347,36 @@ void CashierWindow::on_addProduct_clicked()
     {
         ui->productID->setText("");
         ui->billStack->setCurrentIndex(2);
-
-    //show bill table
-        QSqlQueryModel *model= new QSqlQueryModel();
-
-        QSqlQuery *qry=new QSqlQuery();
-        qry->prepare("SELECT * FROM Bill");
-
-        qry->exec();
-
-        model->setQuery(*qry);
-       ui->billTableStack->setCurrentIndex(1);
-       ui->billTable->setModel(model);
+       showbillTable(id,name,temp,quantity,amount);
        showAmount();
     }
 }
 
-
+void CashierWindow::showbillTable(const QString &id,const QString &particulars, const double &rate, const int &quantity, const double &amount)
+{
+    QString R=QString::number(rate);
+    QString Q=QString::number(quantity);
+    QString A=QString::number(amount);
+     ui->billTableStack->setCurrentIndex(1);
+    //show headers
+    ui->billTable->setColumnCount(5);
+    QStringList titles;
+    titles <<"ID"<<"Particulars" <<"Rate" <<"Quantity" <<"Amount";
+    ui->billTable->setHorizontalHeaderLabels(titles);
+    ui->billTable->setColumnWidth(0,50);
+    ui->billTable->setColumnWidth(1,200);
+    ui->billTable->insertRow(ui->billTable->rowCount());
+    int row=ui->billTable->rowCount() -1;
+    ui->billTable->setItem(row,ID,new QTableWidgetItem(id));
+    ui->billTable->setItem(row,Particulars,new QTableWidgetItem(particulars));
+    ui->billTable->setItem(row,Rate,new QTableWidgetItem(R));
+    ui->billTable->setItem(row,Quantity,new QTableWidgetItem(Q));
+    ui->billTable->setItem(row,Amount,new QTableWidgetItem(A));
+}
 
 void CashierWindow::on_printBillButton_clicked()
 {
-//    QMessageBox::information(this,"Print","Set Printer");
-//    ui->productID->setText("");
-//    Dbase_Cashier db("SBS.db");
-//    db.deleteBillTable();
-//    ui->billStack->setCurrentIndex(2);
-//    ui->billTableStack->setCurrentIndex(0);
-    Dbase_Cashier db("SBS.db");
-    db.deleteBillTable();
+    QString subtotal=ui->subTotal->text();
     QFile file("/home/ramraj/Desktop/bill.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
          qDebug()<<"file not open";
@@ -382,14 +386,43 @@ void CashierWindow::on_printBillButton_clicked()
        QString companyAddress=ui->addressLabel_2->text();
        QString companyPhone=ui->phoneLabel_2->text();
        QString companyEmail=ui->emailLabel_2->text();
+       QString companyVAT=ui->vatLabel_2->text();
 
-       out <<"                                                          "<<companyName<<endl;
-       out <<"                                                          "<<companyAddress<<endl;
-       out <<"                                                       "<<companyPhone<<","<<companyEmail<<endl;
-       out<<"...................................................................................................................................."<<endl;
+       out <<"                                       "<<companyName<<endl;
+       out <<"                                       "<<companyAddress<<endl;
+       out <<"                                       "<<companyPhone<<","<<companyEmail<<endl;
+       out <<"                                       "<<"VAT No.:"<<companyVAT<<endl;
+       out <<"                                       "<<"ABBREVIATED TAX INVOICE"<<endl;
+       out <<endl<<endl;
+       out <<"Bill # :"<<endl;
+       out <<"Date   :"<<ui->currentDate->text()<<endl;
+       out<<"Payment Mode: Cash"<<endl;
+       out <<"-----------------------------------------------------------------------------------------------------------"<<endl;
+       out <<"ID\t" <<"Particulars\t\t"<<"Rate\t"<<"Quantity\t"<<"Amount"<<endl;
+       out <<"-----------------------------------------------------------------------------------------------------------"<<endl;
+       QString textData;
+       int rows = ui->billTable->rowCount();
+       int columns = ui->billTable->columnCount();
+       for (int i = 0; i < rows; i++) {
+           for (int j = 0; j < columns; j++) {
+                if(j==1 || j==3){
+                    textData += ui->billTable->item(i,j)->text();
+                    textData += "\t   ";
+                    }
+                else{
+                    textData += ui->billTable->item(i,j)->text();
+                    textData += "\t";
+                }
+           }
+           textData += "\n";
 
+       }
+       out<<textData<<endl;
+       out<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+       out<<"                                                               "<<"Total: "<<subtotal<<endl;
         ui->productID->setText("");
-
+        Dbase_Cashier db("SBS.db");
+        db.deleteBillTable();
            ui->billStack->setCurrentIndex(2);
            ui->billTableStack->setCurrentIndex(0);
 }
@@ -406,21 +439,22 @@ void CashierWindow::on_removeProduct_clicked()
     qry.bindValue(":id",id);
     if(qry.exec())
     {
+        showAmount();
         ui->productID->setText("");
         ui->billStack->setCurrentIndex(2);
 
-    //show bill table
-        QSqlQueryModel *model= new QSqlQueryModel();
+        ui->billTableStack->setCurrentIndex(1);
+        int rows=ui->billTable->rowCount();
+        int i;
+        for(i=0;i<rows;i++)
+        {
+            if(ui->billTable->item(i,0)->text()==id)
+            {
+                break;
+            }
+        }
+        ui->billTable->removeRow(i);
 
-        QSqlQuery *query=new QSqlQuery();
-        query->prepare("SELECT * FROM Bill");
-
-        query->exec();
-
-        model->setQuery(*query);
-       ui->billTableStack->setCurrentIndex(1);
-       ui->billTable->setModel(model);
-       showAmount();
     }
 }
 
@@ -441,22 +475,25 @@ void CashierWindow::on_additionMode_clicked()
        double rate=qry.value(2).toDouble();
        quantity=quantity+1;
        double amount=rate*quantity;
+       QString Q=QString::number(quantity);
+       QString A=QString::number(amount);
        QSqlQuery query;
        query.prepare("UPDATE Bill SET Quantity=:quantity,Amount=:amount WHERE ID=:id");
        query.bindValue(":quantity",quantity);
        query.bindValue(":amount",amount);
        query.bindValue(":id",id);
        if(query.exec()){
-      QSqlQueryModel *model= new QSqlQueryModel();
-
-       QSqlQuery *qery=new QSqlQuery();
-       qery->prepare("SELECT * FROM Bill");
-
-       qery->exec();
-
-       model->setQuery(*qery);
-      ui->billTableStack->setCurrentIndex(1);
-      ui->billTable->setModel(model);
+           int rows=ui->billTable->rowCount();
+           int i;
+           for(i=0;i<rows;i++)
+           {
+               if(ui->billTable->item(i,0)->text()==id)
+               {
+                   break;
+               }
+           }
+           ui->billTable->setItem(i,3,new QTableWidgetItem(Q));
+           ui->billTable->setItem(i,4,new QTableWidgetItem(A));
       showAmount();
    }
    }
@@ -480,22 +517,25 @@ void CashierWindow::on_deductionMode_clicked()
         double rate=qry.value(2).toDouble();
         quantity=quantity-1;
         double amount=rate*quantity;
+        QString Q=QString::number(quantity);
+        QString A=QString::number(amount);
         QSqlQuery query;
         query.prepare("UPDATE Bill SET Quantity=:quantity,Amount=:amount WHERE ID=:id");
         query.bindValue(":quantity",quantity);
         query.bindValue(":amount",amount);
         query.bindValue(":id",id);
         if(query.exec()){
-       QSqlQueryModel *model= new QSqlQueryModel();
-
-        QSqlQuery *qery=new QSqlQuery();
-        qery->prepare("SELECT * FROM Bill");
-
-        qery->exec();
-
-        model->setQuery(*qery);
-       ui->billTableStack->setCurrentIndex(1);
-       ui->billTable->setModel(model);
+            int rows=ui->billTable->rowCount();
+            int i;
+            for(i=0;i<rows;i++)
+            {
+                if(ui->billTable->item(i,0)->text()==id)
+                {
+                    break;
+                }
+            }
+            ui->billTable->setItem(i,3,new QTableWidgetItem(Q));
+            ui->billTable->setItem(i,4,new QTableWidgetItem(A));
        showAmount();
     }
     }
@@ -504,12 +544,14 @@ void CashierWindow::on_deductionMode_clicked()
 
 void CashierWindow::showAmount()
 {
+    QString subtotal;
     Dbase_Cashier db("SBS.db");
     QList<QString> amountdetails=db.getAmount();
     double total;
     if(amountdetails.isEmpty())
     {
         qDebug()<<"empty";
+        subtotal='0';
     }
     else
     {
@@ -518,7 +560,7 @@ void CashierWindow::showAmount()
             total+=amountdetails[i].toDouble();
         }
         qDebug()<<total;
-        QString subtotal=QString::number(total);
+        subtotal=QString::number(total);
+     }
         ui->subTotal->setText(subtotal);
-    }
 }

@@ -22,6 +22,7 @@ public:
     ~CashierWindow();
     void showCashier_LoginDetails();
      void showCompanyDetails();
+     void showbillTable(const QString &id,const QString &particulars,const double &rate,const int &quantity,const double &amount);
      void showAmount();
 
 public slots:
@@ -70,6 +71,9 @@ private slots:
 
 private:
     Ui::CashierWindow *ui;
+    enum Column{
+        ID,Particulars,Rate,Quantity,Amount
+    };
 };
 
 #endif // CASHIERWINDOW_H
