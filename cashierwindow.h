@@ -33,8 +33,6 @@ private slots:
 
     void on_saleButton_clicked();
 
-
-
     void on_allButton_clicked();
 
     void on_homeButton_clicked();
@@ -69,11 +67,22 @@ private slots:
 
     void on_deductionMode_clicked();
 
+    void on_todayHistory_clicked();
+
+    void on_gotodateHistory_clicked();
+
+    void on_cashierHistory_clicked();
+
+    void on_okButton_clicked();
+
+    void on_goButton_clicked();
+
 private:
     Ui::CashierWindow *ui;
     enum Column{
         ID,Particulars,Rate,Quantity,Amount
     };
+    int billno=0;
 };
 
 #endif // CASHIERWINDOW_H

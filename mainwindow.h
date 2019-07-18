@@ -22,31 +22,13 @@ public:
 
 
 private slots:
-   void on_homeButton_clicked();
-
-   void on_registerButton_1_clicked();
-
-   void on_loginButton_1_clicked();
-
    void on_registerButton_2_clicked();
-
-   void on_cancelButton_1_clicked();
 
    void on_loginButton_2_clicked();
 
-   void on_cancelButton_2_clicked();
-
    void on_exitButton_clicked();
 
-
-
-   void on_registerButton_3_clicked();
-
-   void on_authButton_clicked();
-
-   void on_cancelButton_3_clicked();
-
-   private:
+private:
     Ui::MainWindow *ui;
     AdminWindow *adminwindow;
     CashierWindow *cashierwindow;

@@ -12,6 +12,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
   ui->adminStack->setCurrentIndex(3);
   ui->privacyStack->setCurrentIndex(0);
   showAdmin_LoginDetails();
+  showCompanyDetails();
 }
 
 AdminWindow::~AdminWindow()
@@ -61,9 +62,18 @@ void AdminWindow::on_companyButton_clicked()
 
 void AdminWindow::on_cashierButton_clicked()
 {
-    //show Cashier Stack
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM Cashier");
+
+    qry->exec();
+
+    model->setQuery(*qry);
     ui->adminStack->setCurrentIndex(1);
-    ui->cashierStack->setCurrentIndex(0);
+    ui->cashierStack->setCurrentIndex(2);
+    ui->cashierTable->setModel(model);
 }
 
 void AdminWindow::on_productButton_clicked()
@@ -114,6 +124,7 @@ void AdminWindow:: showCompanyDetails()
             name=com_det.takeAt(0);
 
             //Showing results
+            ui->company->setText(name);
             ui->nameLabel->setText(name);
             ui->vatLabel->setText(vat);
             ui->phoneLabel->setText(phone);
@@ -193,11 +204,6 @@ void AdminWindow::on_okButton_1_clicked()
     }
 }
 
-void AdminWindow::on_cancelButton_1_clicked()
-{
-    ui->companyStack->setCurrentIndex(2);
-}
-
 void AdminWindow::on_editButton_1_clicked()
 {
     ui->companyStack->setCurrentIndex(1);
@@ -265,7 +271,7 @@ void AdminWindow::on_okButton_2_clicked()
                              else
                              {
                                  //got to cashier main stack
-                                 ui->cashierStack->setCurrentIndex(0);
+                                 on_viewCashierButton_clicked();
                               }
                          }
                          else
@@ -289,12 +295,6 @@ void AdminWindow::on_addCashierButton_clicked()
 {
     //go to add cashier stack
     ui->cashierStack->setCurrentIndex(1);
-}
-
-void AdminWindow::on_cancelButton_2_clicked()
-{
-   //go to main cashier stack
-   ui->cashierStack->setCurrentIndex(0);
 }
 
 //void AdminWindow::on_viewCashierButton_clicked()
@@ -416,7 +416,8 @@ void AdminWindow::on_removeButton_clicked()
             if(stdbut=QMessageBox::Yes){
             db.removeCashier(uname,email);
             QMessageBox::information(this,"Remove Cashier","Sucessful");
-
+            ui->cashierStack->setCurrentIndex(2);
+            on_viewCashierButton_clicked();
             //clear username and email
             ui->cashierUsername_3->setText("");
             ui->cashierEmail_3->setText("");
@@ -424,6 +425,13 @@ void AdminWindow::on_removeButton_clicked()
         }
     }
 }
+
+
+void AdminWindow::on_cancelButton_clicked()
+{
+    ui->cashierStack->setCurrentIndex(2);
+}
+
 
 void AdminWindow::on_removeCashierButton_clicked()
 {
@@ -633,15 +641,6 @@ void AdminWindow::on_addProductButton_2_clicked()
             }
         }
     }
-}
-
-
-
-void AdminWindow::on_cancelButton_3_clicked()
-{
-    //got to privacy stack
-    ui->adminStack->setCurrentIndex(3);
-    ui->privacyStack->setCurrentIndex(0);
 }
 
 void AdminWindow::on_viewProductButton_clicked()
@@ -898,7 +897,7 @@ void AdminWindow::on_removeAccount_clicked()
 
                 if(qry.exec())
                 {
-                  on_logoutButton_clicked();
+                   QApplication::quit();
                 }
 
             }

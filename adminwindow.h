@@ -28,6 +28,7 @@ public:
 
 public slots:
   void on_logoutButton_clicked();
+    void on_viewCashierButton_clicked();
 
 private slots:
     void on_companyButton_clicked();
@@ -42,8 +43,6 @@ private slots:
 
     void on_okButton_1_clicked();
 
-    void on_cancelButton_1_clicked();
-
     void on_editButton_1_clicked();
 
     void on_okButton_2_clicked();
@@ -56,8 +55,6 @@ private slots:
 
     void on_changePasswordButton_clicked();
 
-    void on_cancelButton_2_clicked();
-
     void on_removeButton_clicked();
 
     void on_removeCashierButton_clicked();
@@ -66,15 +63,11 @@ private slots:
 
     void on_addProductButton_2_clicked();
 
-    void on_cancelButton_3_clicked();
-
     void on_removeAllCashierButton_clicked();
 
     void on_viewProductButton_clicked();
 
     void on_deleteProductButton_clicked();
-
-    void on_viewCashierButton_clicked();
 
     void on_specificButton_clicked();
 
@@ -89,6 +82,7 @@ private slots:
     void on_registerButton_2_clicked();
 
     void on_removeAccount_clicked();
+    void on_cancelButton_clicked();
 
 private:
   Ui::AdminWindow *ui;

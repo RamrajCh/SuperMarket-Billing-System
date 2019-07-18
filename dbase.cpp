@@ -219,11 +219,35 @@ QList<QString> Dbase::getAdminInfo(const QString& uname)
 
 bool Dbase::getAdminInfo()
 {
+    QList<QString> adminList;
     QSqlQuery qry;
     qry.prepare("SELECT * FROM Admin");
     if(qry.exec())
     {
-        return true;
+        if(qry.next())
+        {
+            QString fname = qry.value(0).toString();
+            QString lname = qry.value(1).toString();
+            QString username = qry.value(2).toString();
+            QString mobileno = qry.value(3).toString();
+            QString email = qry.value(4).toString();
+            QString passwd=qry.value(5).toString();
+
+            adminList.push_front(fname);
+            adminList.push_front(lname);
+            adminList.push_front(username);
+            adminList.push_front(mobileno);
+            adminList.push_front(email);
+            adminList.push_front(passwd);
+        }
+        if(adminList.count()==0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     else
     {

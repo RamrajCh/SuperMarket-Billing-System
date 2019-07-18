@@ -134,8 +134,18 @@ void CashierWindow::on_productButton_clicked()
 
 void CashierWindow::on_saleButton_clicked()
 {
-    ui->cashierStack->setCurrentIndex(2);
+    Dbase_Cashier db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
 
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM History");
+
+    qry->exec();
+
+    model->setQuery(*qry);
+    ui->cashierStack->setCurrentIndex(2);
+    ui->historyStack->setCurrentIndex(0);
+    ui->transactionTable->setModel(model);
 }
 
 
@@ -332,7 +342,7 @@ void CashierWindow::on_addProduct_clicked()
     QString id,name;
     int quantity;
     double amount;
-
+    QString particulars;
     id=ui->productID->text();
     quantity=ui->quantityBox->value();
 
@@ -341,13 +351,23 @@ void CashierWindow::on_addProduct_clicked()
     double temp;
     temp = pro[0].toDouble();
     name=pro[2];
+    if(name.count()>=12){
+     particulars=name.left(12);
+    }
+    if(name.count()<12){
+        for(int i=name.count();i<12;i++)
+        {
+            name+=" ";
+        }
+        particulars=name;
+    }
     amount=quantity*temp;
     db.createBillTable();
-    if(db.addProduct(id,name,quantity,temp,amount))
+    if(db.addProduct(id,particulars,quantity,temp,amount))
     {
         ui->productID->setText("");
         ui->billStack->setCurrentIndex(2);
-       showbillTable(id,name,temp,quantity,amount);
+       showbillTable(id,particulars,temp,quantity,amount);
        showAmount();
     }
 }
@@ -373,61 +393,6 @@ void CashierWindow::showbillTable(const QString &id,const QString &particulars, 
     ui->billTable->setItem(row,Quantity,new QTableWidgetItem(Q));
     ui->billTable->setItem(row,Amount,new QTableWidgetItem(A));
 }
-
-void CashierWindow::on_printBillButton_clicked()
-{
-    QString subtotal=ui->subTotal->text();
-    QFile file("/home/ramraj/Desktop/bill.txt");
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-         qDebug()<<"file not open";
-
-       QTextStream out(&file);
-       QString companyName=ui->companyName->text();
-       QString companyAddress=ui->addressLabel_2->text();
-       QString companyPhone=ui->phoneLabel_2->text();
-       QString companyEmail=ui->emailLabel_2->text();
-       QString companyVAT=ui->vatLabel_2->text();
-
-       out <<"                                       "<<companyName<<endl;
-       out <<"                                       "<<companyAddress<<endl;
-       out <<"                                       "<<companyPhone<<","<<companyEmail<<endl;
-       out <<"                                       "<<"VAT No.:"<<companyVAT<<endl;
-       out <<"                                       "<<"ABBREVIATED TAX INVOICE"<<endl;
-       out <<endl<<endl;
-       out <<"Bill # :"<<endl;
-       out <<"Date   :"<<ui->currentDate->text()<<endl;
-       out<<"Payment Mode: Cash"<<endl;
-       out <<"-----------------------------------------------------------------------------------------------------------"<<endl;
-       out <<"ID\t" <<"Particulars\t\t"<<"Rate\t"<<"Quantity\t"<<"Amount"<<endl;
-       out <<"-----------------------------------------------------------------------------------------------------------"<<endl;
-       QString textData;
-       int rows = ui->billTable->rowCount();
-       int columns = ui->billTable->columnCount();
-       for (int i = 0; i < rows; i++) {
-           for (int j = 0; j < columns; j++) {
-                if(j==1 || j==3){
-                    textData += ui->billTable->item(i,j)->text();
-                    textData += "\t   ";
-                    }
-                else{
-                    textData += ui->billTable->item(i,j)->text();
-                    textData += "\t";
-                }
-           }
-           textData += "\n";
-
-       }
-       out<<textData<<endl;
-       out<<"---------------------------------------------------------------------------------------------------------------"<<endl;
-       out<<"                                                               "<<"Total: "<<subtotal<<endl;
-        ui->productID->setText("");
-        Dbase_Cashier db("SBS.db");
-        db.deleteBillTable();
-           ui->billStack->setCurrentIndex(2);
-           ui->billTableStack->setCurrentIndex(0);
-}
-
-
 
 void CashierWindow::on_removeProduct_clicked()
 {
@@ -563,4 +528,134 @@ void CashierWindow::showAmount()
         subtotal=QString::number(total);
      }
         ui->subTotal->setText(subtotal);
+}
+
+void CashierWindow::on_printBillButton_clicked()
+{
+    billno+=1;
+    QDate Date;
+    QString currentDate=Date.currentDate().toString("dd/MM/yyyy");
+    QString subtotal=ui->subTotal->text();
+    QFile file("/home/ramraj/Desktop/bill.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+         qDebug()<<"file not open";
+
+       QTextStream out(&file);
+       QString companyName=ui->companyName->text();
+       QString companyAddress=ui->addressLabel_2->text();
+       QString companyPhone=ui->phoneLabel_2->text();
+       QString companyEmail=ui->emailLabel_2->text();
+       QString companyVAT=ui->vatLabel_2->text();
+       QString cashier=ui->cashierUsernameLabel->text();
+       out <<"                   "<<companyName<<endl;
+       out <<"                   "<<companyAddress<<endl;
+       out <<"                   "<<companyPhone<<","<<companyEmail<<endl;
+       out <<"                   "<<"VAT No.:"<<companyVAT<<endl;
+       out <<"                   "<<"ABBREVIATED TAX INVOICE"<<endl;
+       out <<endl<<endl;
+       out <<"Bill # :"<<billno<<endl;
+       out <<"Date   :"<<ui->currentDate->text()<<endl;
+       out<<"Payment Mode: Cash"<<endl;
+       out <<"-------------------------------------------------------------"<<endl;
+       out <<"ID\t" <<"Particulars\t"<<"Rate\t"<<"Quan.\t"<<"Amount"<<endl;
+       out <<"-------------------------------------------------------------"<<endl;
+       QString textData;
+       int rows = ui->billTable->rowCount();
+       int columns = ui->billTable->columnCount();
+       for (int i = 0; i < rows; i++) {
+           for (int j = 0; j < columns; j++){
+                    textData += ui->billTable->item(i,j)->text();
+                    textData += "\t";
+           }
+           textData += "\n";
+
+       }
+       out<<textData<<endl;
+       out<<"                            -----------------------------------"<<endl;
+       out<<"                                "<<"Total: "<<subtotal<<endl;
+       out<<"                            -----------------------------------"<<endl<<endl<<endl;
+       out<<"Bill Printed By:"<<ui->cashierUsernameLabel->text()<<endl;
+        ui->productID->setText("");
+        Dbase_Cashier db("SBS.db");
+        db.deleteBillTable();
+        db.createHistoryTable();
+        if(db.addHistory(billno,currentDate,ui->subTotal->text().toDouble(),cashier))
+        {
+            for(int j=0;j<rows;j++)
+            {
+                ui->billTable->removeRow(j);
+            }
+
+               ui->billStack->setCurrentIndex(2);
+               ui->billTableStack->setCurrentIndex(0);
+        }
+}
+void CashierWindow::on_todayHistory_clicked()
+{
+    ui->historyStack->setCurrentIndex(0);
+    QDate Date;
+    QString currentDate=Date.currentDate().toString("dd/MM/yyyy");
+    Dbase_Cashier db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT Bill,Amount,Cashier FROM History WHERE Date=:date");
+    qry->bindValue(":date",currentDate);
+    qry->exec();
+
+    model->setQuery(*qry);
+   ui->transactionTable->setModel(model);
+}
+
+
+void CashierWindow::on_gotodateHistory_clicked()
+{
+    ui->historyStack->setCurrentIndex(1);
+}
+
+
+void CashierWindow::on_cashierHistory_clicked()
+{
+    ui->historyStack->setCurrentIndex(2);
+}
+
+
+void CashierWindow::on_okButton_clicked()
+{
+    QString day=ui->dCombo->currentText();
+    QString month=ui->mCombo->currentText();
+    QString year=ui->yCombo->currentText();
+    if(day=="Day"||month=="Month"||year=="Year")
+    {
+        QMessageBox::information(this,"GoTo Date","Please Specify Correct Date");
+    }
+    else
+    {
+        QString date=day+'/'+month+'/'+year;
+        Dbase_Cashier db("SBS.db");
+        QSqlQueryModel *model= new QSqlQueryModel();
+
+        QSqlQuery *qry=new QSqlQuery();
+        qry->prepare("SELECT Bill,Amount,Cashier FROM History WHERE Date=:date");
+        qry->bindValue(":date",date);
+        qry->exec();
+
+        model->setQuery(*qry);
+       ui->transactionTable->setModel(model);
+    }
+}
+
+void CashierWindow::on_goButton_clicked()
+{
+    QString uname=ui->userName_History->text();
+    Dbase_Cashier db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM History WHERE Cashier=:cashier");
+    qry->bindValue(":cashier",uname);
+    qry->exec();
+
+    model->setQuery(*qry);
+   ui->transactionTable->setModel(model);
 }

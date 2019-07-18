@@ -309,3 +309,42 @@ QList<QString> Dbase_Cashier::getAmount()
       qDebug()<<amountdetails.count();
       return amountdetails;
 }
+
+
+void Dbase_Cashier::createHistoryTable()
+{
+    QSqlQuery qry;
+    qry.prepare("CREATE TABLE `History` ( `Bill` INTEGER NOT NULL UNIQUE, `Date` TEXT, `Amount` REAL, `Cashier` TEXT, PRIMARY KEY(`Bill`) )");
+    if (!qry.exec())
+    {
+        qDebug() <<"Couldn't create Table,one might already exist";
+
+    }
+    else
+    {
+        qDebug()<<"Create table";
+    }
+}
+
+bool Dbase_Cashier::addHistory(const int &billno, const QString &date, const double &billamount, const QString &cashier)
+{
+    bool sucess=false;
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO History(Bill,Date,Amount,Cashier) VALUES (:billno,:date,:billamount,:cashier)");
+    qry.bindValue(":billno",billno);
+    qry.bindValue(":date",date);
+    qry.bindValue(":billamount",billamount);
+    qry.bindValue(":cashier",cashier);
+    if(!qry.exec())
+    {
+        qDebug()<<"Add Details Failed"<<qry.lastError();
+        sucess=false;
+    }
+    else
+    {
+        qDebug()<<"Details added Sucessfully";
+        sucess=true;
+    }
+    return sucess;
+
+}

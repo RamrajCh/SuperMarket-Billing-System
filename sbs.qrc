@@ -1,11 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>SBS.db</file>
-        <file>eGT7aw.jpg</file>
-        <file>wp3152211-supermarket-wallpapers.jpg</file>
-        <file>cashier.png</file>
         <file>male.jpeg</file>
         <file>female.png</file>
-        <file>5b16c66b-3ac6-4fbd-89d6-987730900ba3_200x200.png</file>
+        <file>rsz_logo.png</file>
+        <file>exit.jpg</file>
+        <file>coverlogo.png</file>
+        <file>aaa.png</file>
+        <file>dashboard.jpg</file>
+        <file>1360x768-baby-blue-solid-color-background.jpg</file>
     </qresource>
 </RCC>
