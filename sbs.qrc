@@ -9,5 +9,10 @@
         <file>aaa.png</file>
         <file>dashboard.jpg</file>
         <file>1360x768-baby-blue-solid-color-background.jpg</file>
+        <file>bill.txt</file>
+        <file>admin.png</file>
+        <file>1360x768-gray-x11-gui-gray-solid-color-background.jpg</file>
+        <file>1360x768-anti-flash-white-solid-color-background.jpg</file>
+        <file>1360x768-light-gray-solid-color-background.jpg</file>
     </qresource>
 </RCC>

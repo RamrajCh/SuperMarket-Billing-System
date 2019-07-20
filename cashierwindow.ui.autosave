@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/1360x768-baby-blue-solid-color-background.jpg);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -24,9 +24,9 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>80</y>
+      <y>280</y>
       <width>631</width>
-      <height>661</height>
+      <height>461</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -1021,19 +1021,6 @@ border-radius:10px;</string>
       <string>Remove Account</string>
      </property>
     </widget>
-    <widget class="QLabel" name="cashierPic">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>171</width>
-       <height>161</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QPushButton" name="homeButton">
      <property name="geometry">
       <rect>
@@ -1115,7 +1102,7 @@ color: rgb(238, 238, 236);
     <property name="geometry">
      <rect>
       <x>990</x>
-      <y>130</y>
+      <y>250</y>
       <width>221</width>
       <height>25</height>
      </rect>
@@ -1128,7 +1115,7 @@ color: rgb(238, 238, 236);
     <property name="geometry">
      <rect>
       <x>1230</x>
-      <y>130</y>
+      <y>250</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -1148,7 +1135,7 @@ color: rgb(238, 238, 236);
     <property name="geometry">
      <rect>
       <x>970</x>
-      <y>170</y>
+      <y>290</y>
       <width>381</width>
       <height>61</height>
      </rect>
@@ -1258,7 +1245,7 @@ Mode</string>
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>230</y>
+      <y>350</y>
       <width>541</width>
       <height>531</height>
      </rect>
@@ -1352,24 +1339,6 @@ border:none;</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="currentDate">
-     <property name="geometry">
-      <rect>
-       <x>1190</x>
-       <y>20</y>
-       <width>191</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>13</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Date</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
@@ -1389,26 +1358,57 @@ border:none;</string>
     <widget class="QLabel" name="companyName">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>210</x>
        <y>10</y>
-       <width>891</width>
+       <width>841</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>Purisa</family>
-       <pointsize>30</pointsize>
-       <weight>9</weight>
+       <family>Ubuntu</family>
+       <pointsize>35</pointsize>
+       <weight>50</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 30pt &quot;Purisa&quot;;</string>
+      <string notr="true">font: 35pt &quot;Ubuntu&quot;;</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cashierPic">
+     <property name="geometry">
+      <rect>
+       <x>1320</x>
+       <y>10</y>
+       <width>41</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="currentDate">
+     <property name="geometry">
+      <rect>
+       <x>1090</x>
+       <y>10</y>
+       <width>191</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Date</string>
      </property>
     </widget>
    </widget>
@@ -1416,7 +1416,7 @@ border:none;</string>
     <property name="geometry">
      <rect>
       <x>1060</x>
-      <y>90</y>
+      <y>210</y>
       <width>161</width>
       <height>31</height>
      </rect>

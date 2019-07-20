@@ -71,11 +71,7 @@ private slots:
 
     void on_gotodateHistory_clicked();
 
-    void on_cashierHistory_clicked();
-
     void on_okButton_clicked();
-
-    void on_goButton_clicked();
 
 private:
     Ui::CashierWindow *ui;

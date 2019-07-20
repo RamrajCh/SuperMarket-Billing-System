@@ -9,10 +9,15 @@ AdminWindow::AdminWindow(QWidget *parent) :
   QDate date;
   QString currentDate=date.currentDate().toString();
   ui->currentDate->setText(currentDate);
-  ui->adminStack->setCurrentIndex(3);
-  ui->privacyStack->setCurrentIndex(0);
+  ui->privacyStack_2->setCurrentIndex(0);
+  ui->adminStack_2->setCurrentIndex(1);
+  on_salesButton_clicked();
   showAdmin_LoginDetails();
   showCompanyDetails();
+  ui->transactionTable->setColumnWidth(0,150);
+  ui->transactionTable->setColumnWidth(1,200);
+  ui->transactionTable->setColumnWidth(2,200);
+  ui->transactionTable->setColumnWidth(3,250);
 }
 
 AdminWindow::~AdminWindow()
@@ -32,11 +37,16 @@ void AdminWindow :: showError(AdminWindow* window,QString error)
   QMessageBox::warning(window,"Error!!",error);
 }
 
-
+void AdminWindow :: hidePrivacy()
+{
+    ui->privacyStack_2->setCurrentIndex(0);
+}
 
 void AdminWindow::on_companyButton_clicked()
 {
+    hidePrivacy();
     //show Company Stack
+    ui->adminStack_2->setCurrentIndex(2);
     ui->adminStack->setCurrentIndex(0);
     Dbase_admin db("SBS.db");
     if(db.isOpen())
@@ -62,6 +72,7 @@ void AdminWindow::on_companyButton_clicked()
 
 void AdminWindow::on_cashierButton_clicked()
 {
+    hidePrivacy();
     Dbase_admin db("SBS.db");
     QSqlQueryModel *model= new QSqlQueryModel();
 
@@ -71,6 +82,7 @@ void AdminWindow::on_cashierButton_clicked()
     qry->exec();
 
     model->setQuery(*qry);
+    ui->adminStack_2->setCurrentIndex(2);
     ui->adminStack->setCurrentIndex(1);
     ui->cashierStack->setCurrentIndex(2);
     ui->cashierTable->setModel(model);
@@ -78,18 +90,17 @@ void AdminWindow::on_cashierButton_clicked()
 
 void AdminWindow::on_productButton_clicked()
 {
-    //show Cashier Stack
+    hidePrivacy();
+    ui->adminStack_2->setCurrentIndex(2);
     ui->adminStack->setCurrentIndex(2);
-    ui->productStack->setCurrentIndex(0);
-    ui->addStack->setCurrentIndex(0);
+    ui->productStack->setCurrentIndex(1);
+    on_viewProductButton_clicked();
 }
 
 void AdminWindow::on_privacyButton_clicked()
 {
-    //show Privacy Stack
-    ui->adminStack->setCurrentIndex(3);
-    ui->privacyStack->setCurrentIndex(0);
-    showAdmin_LoginDetails();
+    hidePrivacy();
+    ui->privacyStack_2->setCurrentIndex(1);
 }
 
 
@@ -314,6 +325,16 @@ void AdminWindow::on_addCashierButton_clicked()
 //    }
 //}
 
+void AdminWindow::setCashierTable()
+{
+    ui->cashierTable->setColumnWidth(0,200);
+    ui->cashierTable->setColumnWidth(1,200);
+    ui->cashierTable->setColumnWidth(2,150);
+    ui->cashierTable->setColumnWidth(3,200);
+    ui->cashierTable->setColumnWidth(4,250);
+    ui->cashierTable->setColumnWidth(5,100);
+}
+
 void AdminWindow::on_viewCashierButton_clicked()
 {
     Dbase_admin db("SBS.db");
@@ -328,6 +349,7 @@ void AdminWindow::on_viewCashierButton_clicked()
     ui->adminStack->setCurrentIndex(1);
     ui->cashierStack->setCurrentIndex(2);
     ui->cashierTable->setModel(model);
+    setCashierTable();
 
 }
 
@@ -386,6 +408,7 @@ void AdminWindow::on_specificButton_clicked()
         ui->cashierTable->setModel(model);
 
     }
+    setCashierTable();
     ui->cashierUsername_2->setText("");
     ui->cashierName_2->setText("");
 }
@@ -491,7 +514,6 @@ void AdminWindow:: showAdmin_LoginDetails()
             fname=admin_details.takeAt(0);
 
            //Showing information
-            ui->userNameLabel->setText(username);
             ui->adminUsernameLabel->setText(username);
             ui->adminNameLabel->setText(fname+" "+lname);
             ui->adminPhoneLabel->setText(mobileno);
@@ -503,10 +525,10 @@ void AdminWindow:: showAdmin_LoginDetails()
 
 void AdminWindow::on_editButton_2_clicked()
 {
-    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Change Password","You could only Change Password,would you?",QMessageBox::Yes|QMessageBox::No);
-    if(stdButton==QMessageBox::Yes)
-    {
+        hidePrivacy();
         //go to edit admin stack
+        ui->adminStack_2->setCurrentIndex(2);
+        ui->adminStack->setCurrentIndex(3);
         ui->privacyStack->setCurrentIndex(1);
 
         //show placeholder text
@@ -514,8 +536,6 @@ void AdminWindow::on_editButton_2_clicked()
         ui->oldPassword->setPlaceholderText("Give your old Password");
         ui->newPassword->setPlaceholderText("Give New Password");
         ui->confirmNewPassword->setPlaceholderText("Confirm your Password");
-    }
-    else{}
 }
 
 void AdminWindow::on_changePasswordButton_clicked()
@@ -643,8 +663,18 @@ void AdminWindow::on_addProductButton_2_clicked()
     }
 }
 
+void AdminWindow::setProductTable()
+{
+    ui->productTable->setColumnWidth(0,100);
+    ui->productTable->setColumnWidth(1,250);
+    ui->productTable->setColumnWidth(2,200);
+    ui->productTable->setColumnWidth(3,150);
+}
+
+
 void AdminWindow::on_viewProductButton_clicked()
 {
+
     Dbase_admin db("SBS.db");
     QSqlQueryModel *model= new QSqlQueryModel();
 
@@ -657,19 +687,21 @@ void AdminWindow::on_viewProductButton_clicked()
     ui->adminStack->setCurrentIndex(2);
     ui->productStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+        setProductTable();
 }
 
 void AdminWindow::on_specificButton_2_clicked()
 {
+
     Dbase_admin db("SBS.db");
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
 
     QString id=ui->product_id->text();
-    QString category=ui->product_category->text();
+    QString category=ui->product_category->currentText();
 
-    if((id=="" && category!="")||(category=="" && id!=""))
+    if((id=="" && category!="Search By Category")||(category=="Search By Category" && id!=""))
     {
          qDebug()<<"only one specification";
          qry->prepare("SELECT * FROM Product WHERE ID=:id OR Category=:category");
@@ -682,6 +714,7 @@ void AdminWindow::on_specificButton_2_clicked()
          ui->adminStack->setCurrentIndex(2);
          ui->productStack->setCurrentIndex(1);
          ui->productTable->setModel(model);
+             setProductTable();
 
     }
 
@@ -698,6 +731,7 @@ void AdminWindow::on_specificButton_2_clicked()
         ui->adminStack->setCurrentIndex(2);
         ui->productStack->setCurrentIndex(1);
         ui->productTable->setModel(model);
+            setProductTable();
 
     }
 
@@ -712,9 +746,9 @@ void AdminWindow::on_specificButton_2_clicked()
         ui->adminStack->setCurrentIndex(2);
         ui->productStack->setCurrentIndex(1);
         ui->productTable->setModel(model);
+            setProductTable();
     }
     ui->product_id->setText("");
-    ui->product_category->setText("");
 }
 
 void AdminWindow::on_deleteProductButton_clicked()
@@ -779,12 +813,26 @@ void AdminWindow::on_delete_product_clicked()
 
 void AdminWindow::on_addAdminButton_clicked()
 {
+   hidePrivacy();
     ui->adminStack_2->setCurrentIndex(0);
+
 }
 
 void AdminWindow::on_salesButton_clicked()
 {
+    hidePrivacy();
     ui->adminStack_2->setCurrentIndex(1);
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM History");
+
+    qry->exec();
+
+    model->setQuery(*qry);
+    ui->historyStack->setCurrentIndex(0);
+    ui->transactionTable->setModel(model);
 }
 
 
@@ -903,4 +951,79 @@ void AdminWindow::on_removeAccount_clicked()
             }
         }
     }
+}
+
+void AdminWindow::on_todayHistory_clicked()
+{
+    ui->historyStack->setCurrentIndex(0);
+    QDate Date;
+    QString currentDate=Date.currentDate().toString("dd/MM/yyyy");
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT *FROM History WHERE Date=:date");
+    qry->bindValue(":date",currentDate);
+    qry->exec();
+
+    model->setQuery(*qry);
+   ui->transactionTable->setModel(model);
+}
+
+void AdminWindow::on_gotodateHistory_clicked()
+{
+    ui->historyStack->setCurrentIndex(1);
+}
+
+void AdminWindow::on_cashierHistory_clicked()
+{
+     ui->historyStack->setCurrentIndex(2);
+}
+
+void AdminWindow::on_okButton_3_clicked()
+{
+    QString day=ui->dCombo->currentText();
+    QString month=ui->mCombo->currentText();
+    QString year=ui->yCombo->currentText();
+    if(day=="Day"||month=="Month"||year=="Year")
+    {
+        QMessageBox::information(this,"GoTo Date","Please Specify Correct Date");
+    }
+    else
+    {
+        QString date=day+'/'+month+'/'+year;
+        Dbase_admin db("SBS.db");
+        QSqlQueryModel *model= new QSqlQueryModel();
+
+        QSqlQuery *qry=new QSqlQuery();
+        qry->prepare("SELECT *FROM History WHERE Date=:date");
+        qry->bindValue(":date",date);
+        qry->exec();
+
+        model->setQuery(*qry);
+       ui->transactionTable->setModel(model);
+    }
+}
+
+
+void AdminWindow::on_goButton_2_clicked()
+{
+    QString uname=ui->userName_History->text();
+    Dbase_admin db("SBS.db");
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("SELECT * FROM History WHERE Cashier=:cashier");
+    qry->bindValue(":cashier",uname);
+    qry->exec();
+
+    model->setQuery(*qry);
+   ui->transactionTable->setModel(model);
+}
+
+void AdminWindow::on_pushButton_clicked()
+{
+    ui->adminStack->setCurrentIndex(3);
+    ui->privacyStack->setCurrentIndex(0);
+    showAdmin_LoginDetails();
 }

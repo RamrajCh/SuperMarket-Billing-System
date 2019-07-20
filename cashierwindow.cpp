@@ -328,7 +328,6 @@ void CashierWindow::on_checkProduct_clicked()
     if(!db.validProduct(id)){QMessageBox::information(this,"Check Product","Invalid Product"); ui->productID->setText("");}
     else
     {
-        QMessageBox::information(this,"Check Product","Product Found");
         if(!db.product_IdExists(id)){ui->billStack->setCurrentIndex(0);}
         else{ui->billStack->setCurrentIndex(1);}
     }
@@ -536,7 +535,7 @@ void CashierWindow::on_printBillButton_clicked()
     QDate Date;
     QString currentDate=Date.currentDate().toString("dd/MM/yyyy");
     QString subtotal=ui->subTotal->text();
-    QFile file("/home/ramraj/Desktop/bill.txt");
+    QFile file("bill.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
          qDebug()<<"file not open";
 
@@ -613,13 +612,6 @@ void CashierWindow::on_gotodateHistory_clicked()
     ui->historyStack->setCurrentIndex(1);
 }
 
-
-void CashierWindow::on_cashierHistory_clicked()
-{
-    ui->historyStack->setCurrentIndex(2);
-}
-
-
 void CashierWindow::on_okButton_clicked()
 {
     QString day=ui->dCombo->currentText();
@@ -643,19 +635,4 @@ void CashierWindow::on_okButton_clicked()
         model->setQuery(*qry);
        ui->transactionTable->setModel(model);
     }
-}
-
-void CashierWindow::on_goButton_clicked()
-{
-    QString uname=ui->userName_History->text();
-    Dbase_Cashier db("SBS.db");
-    QSqlQueryModel *model= new QSqlQueryModel();
-
-    QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT * FROM History WHERE Cashier=:cashier");
-    qry->bindValue(":cashier",uname);
-    qry->exec();
-
-    model->setQuery(*qry);
-   ui->transactionTable->setModel(model);
 }

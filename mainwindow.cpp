@@ -126,7 +126,6 @@ void MainWindow::on_loginButton_2_clicked()
    if(db.userAuth(uname,passwd))
    {
        //Login
-       QMessageBox::information(this,"Login","Login Sucessful");
        //create Admin_login table
        db.createAdmin_LoginTable();
        db.addAdmin_Login(uname);
@@ -141,7 +140,6 @@ void MainWindow::on_loginButton_2_clicked()
    else if(db.cashierAuth(uname,passwd))
    {
        //Login
-       QMessageBox::information(this,"Login","Login Sucessful");
        //create Cashier_Login table
        db.createCashier_LoginTable();
        db.addCashier_Login(uname);
@@ -158,9 +156,4 @@ void MainWindow::on_loginButton_2_clicked()
      QMessageBox::information(this,"Login","Incorrect UserName or Password");
      ui->login_password->setText("");
    }
-}
-
-void MainWindow::on_exitButton_clicked()
-{
-    QApplication::exit();
 }

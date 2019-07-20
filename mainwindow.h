@@ -26,8 +26,6 @@ private slots:
 
    void on_loginButton_2_clicked();
 
-   void on_exitButton_clicked();
-
 private:
     Ui::MainWindow *ui;
     AdminWindow *adminwindow;
