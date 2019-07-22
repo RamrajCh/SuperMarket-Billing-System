@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include<QMessageBox>
-#include <QPixmap>
 #include <QFile>
 #include<QDate>
 #include <QDebug>
@@ -24,13 +23,15 @@ public:
      void showCompanyDetails();
      void showbillTable(const QString &id,const QString &particulars,const double &rate,const int &quantity,const double &amount);
      void showAmount();
+     void setProductTable();
+     void setTransactionTable();
 
 public slots:
      void on_logoutButton_clicked();
 
-private slots:
-    void on_productButton_clicked();
+     void on_productButton_clicked();
 
+private slots:
     void on_saleButton_clicked();
 
     void on_allButton_clicked();
@@ -72,6 +73,10 @@ private slots:
     void on_gotodateHistory_clicked();
 
     void on_okButton_clicked();
+
+    void on_invoiceButton_clicked();
+
+    void on_profileButton_clicked();
 
 private:
     Ui::CashierWindow *ui;

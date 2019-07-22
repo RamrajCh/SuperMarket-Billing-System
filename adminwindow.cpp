@@ -86,6 +86,7 @@ void AdminWindow::on_cashierButton_clicked()
     ui->adminStack->setCurrentIndex(1);
     ui->cashierStack->setCurrentIndex(2);
     ui->cashierTable->setModel(model);
+    setCashierTable();
 }
 
 void AdminWindow::on_productButton_clicked()

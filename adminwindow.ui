@@ -51,7 +51,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_12">
       <widget class="QPushButton" name="registerButton_2">
@@ -699,20 +699,20 @@ background-color: rgb(0, 0, 0);</string>
         <string notr="true"/>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="Company">
         <widget class="QStackedWidget" name="companyStack">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>190</x>
            <y>10</y>
            <width>571</width>
            <height>521</height>
           </rect>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QPushButton" name="companyUpdateButton">
@@ -2110,7 +2110,7 @@ border:none;</string>
     <widget class="QLabel" name="company">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>480</x>
        <y>10</y>
        <width>781</width>
        <height>61</height>
@@ -2159,7 +2159,7 @@ color: rgb(238, 238, 236);
       <x>0</x>
       <y>80</y>
       <width>1361</width>
-      <height>51</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2172,38 +2172,21 @@ border:none;</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="companyButton">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>10</y>
-       <width>171</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 2px solid #563727;
-font: 13pt &quot;Ubuntu&quot;;
-color: rgb(238, 238, 236);
-</string>
-     </property>
-     <property name="text">
-      <string>COMPANY </string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="cashierButton">
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>10</y>
+       <y>20</y>
        <width>171</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid #563727;
+      <string notr="true">background:transparent;
+border: 2px solid #563727;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
+background-color: rgb(52, 101, 164)
 </string>
      </property>
      <property name="text">
@@ -2214,15 +2197,17 @@ color: rgb(238, 238, 236);
      <property name="geometry">
       <rect>
        <x>640</x>
-       <y>10</y>
+       <y>20</y>
        <width>171</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid #563727;
+      <string notr="true">background:transparent;
+border: 2px solid #563727;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
+background-color: rgb(52, 101, 164)
 </string>
      </property>
      <property name="text">
@@ -2233,16 +2218,18 @@ color: rgb(238, 238, 236);
      <property name="geometry">
       <rect>
        <x>840</x>
-       <y>10</y>
+       <y>20</y>
        <width>171</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">  border: 2px solid #563727;
+      <string notr="true">background:transparent;
+border: 2px solid #563727;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(52, 101, 164)
+</string>
      </property>
      <property name="text">
       <string>Transactions</string>
@@ -2266,6 +2253,27 @@ background-color: rgb(0, 0, 0);</string>
       <string>Date</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="companyButton">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>20</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent;
+border: 2px solid #563727;
+font: 13pt &quot;Ubuntu&quot;;
+color: rgb(238, 238, 236);
+background-color: rgb(52, 101, 164)
+</string>
+     </property>
+     <property name="text">
+      <string>COMPANY </string>
+     </property>
+    </widget>
    </widget>
    <widget class="QStackedWidget" name="privacyStack_2">
     <property name="geometry">
@@ -2273,14 +2281,14 @@ background-color: rgb(0, 0, 0);</string>
       <x>1200</x>
       <y>60</y>
       <width>161</width>
-      <height>371</height>
+      <height>331</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background:transparent;</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_16"/>
     <widget class="QWidget" name="page_17">
@@ -2308,7 +2316,7 @@ background-color: rgb(0, 0, 0);</string>
        <property name="styleSheet">
         <string notr="true">border: 0px;
 font: 13pt &quot;Ubuntu&quot;;
-color: rgb(59, 232, 17)
+color: rgb(0,0,0)
 </string>
        </property>
        <property name="text">
@@ -2400,7 +2408,7 @@ color: red;
        <property name="styleSheet">
         <string notr="true">border: 0px;
 font: 13pt &quot;Ubuntu&quot;;
-color: rgb(59, 232, 17)
+color: rgb(0,0,0)
 </string>
        </property>
        <property name="text">

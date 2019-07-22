@@ -9,8 +9,8 @@ CashierWindow::CashierWindow(QWidget *parent) :
     QDate date;
     QString currentDate=date.currentDate().toString();
     ui->currentDate->setText(currentDate);
-    ui->cashierStack->setCurrentIndex(0);
-    ui->homeStack->setCurrentIndex(0);
+    ui->privacyStack->setCurrentIndex(0);
+    ui->cashierStack->setCurrentIndex(3);
     ui->billStack->setCurrentIndex(2);
     ui->billTableStack->setCurrentIndex(0);
     showCashier_LoginDetails();
@@ -52,15 +52,11 @@ void CashierWindow::showCashier_LoginDetails()
 
            //Showing information
             ui->cashierUsernameLabel_2->setText(username);
-            ui->cashierUsernameLabel->setText(username);
             ui->cashierNameLabel->setText(name);
             ui->cashierMobileLabel->setText(mobileno);
             ui->cashierEmailLabel->setText(email);
-            //QPicture *male=new QPicture(":/male.jpeg");
-            QPixmap male(":/male.jpeg");
-            QPixmap female(":/female.png");
-            if(gender=="Male") ui->cashierPic->setPixmap(male);
-            if(gender=="Female") ui->cashierPic->setPixmap(female);
+           if(gender=="Male") ui->profileButton->setStyleSheet("background-image: url(:/male.jpeg);");
+            if(gender=="Female") ui->productButton->setStyleSheet("background-image: url(:/female.pngS);");
         }
 
     }
@@ -108,6 +104,7 @@ void CashierWindow:: showCompanyDetails()
 
 void CashierWindow::on_homeButton_clicked()
 {
+    ui->privacyStack->setCurrentIndex(0);
     ui->cashierStack->setCurrentIndex(0);
     ui->homeStack->setCurrentIndex(0);
     showCashier_LoginDetails();
@@ -117,6 +114,7 @@ void CashierWindow::on_homeButton_clicked()
 
 void CashierWindow::on_productButton_clicked()
 {
+    ui->privacyStack->setCurrentIndex(0);
     ui->cashierStack->setCurrentIndex(1);
     Dbase_Cashier db("SBS.db");
     QSqlQueryModel *model= new QSqlQueryModel();
@@ -128,9 +126,23 @@ void CashierWindow::on_productButton_clicked()
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
-     ui->productTable->setModel(model);
+    ui->productTable->setModel(model);
+    setProductTable();
 }
 
+void CashierWindow::on_invoiceButton_clicked()
+{
+    ui->privacyStack->setCurrentIndex(0);
+    ui->cashierStack->setCurrentIndex(3);
+}
+
+void CashierWindow::setTransactionTable()
+{
+    ui->transactionTable->setColumnWidth(0,150);
+    ui->transactionTable->setColumnWidth(1,200);
+    ui->transactionTable->setColumnWidth(2,200);
+    ui->transactionTable->setColumnWidth(3,250);
+}
 
 void CashierWindow::on_saleButton_clicked()
 {
@@ -143,9 +155,17 @@ void CashierWindow::on_saleButton_clicked()
     qry->exec();
 
     model->setQuery(*qry);
+    ui->privacyStack->setCurrentIndex(0);
     ui->cashierStack->setCurrentIndex(2);
     ui->historyStack->setCurrentIndex(0);
     ui->transactionTable->setModel(model);
+    setTransactionTable();
+}
+
+
+void CashierWindow::on_profileButton_clicked()
+{
+    ui->privacyStack->setCurrentIndex(1);
 }
 
 
@@ -162,20 +182,17 @@ void CashierWindow::on_logoutButton_clicked()
 //    mainwindow->show();
 }
 
+void CashierWindow::setProductTable()
+{
+    ui->productTable->setColumnWidth(0,150);
+    ui->productTable->setColumnWidth(1,300);
+    ui->productTable->setColumnWidth(2,200);
+    ui->productTable->setColumnWidth(3,150);
+}
 
 void CashierWindow::on_allButton_clicked()
 {
-    Dbase_Cashier db("SBS.db");
-    QSqlQueryModel *model= new QSqlQueryModel();
-
-    QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT * FROM Product");
-
-    qry->exec();
-
-    model->setQuery(*qry);
-    ui->cashierStack->setCurrentIndex(1);
-    ui->productTable->setModel(model);
+    on_productButton_clicked();
 }
 
 
@@ -185,13 +202,14 @@ void CashierWindow::on_groceryButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Grocery'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Grocery'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_fashionButton_clicked()
@@ -200,13 +218,14 @@ void CashierWindow::on_fashionButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Fashion'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Fashion'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_homeappButton_clicked()
@@ -215,13 +234,14 @@ void CashierWindow::on_homeappButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Home Appliances'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Home Appliances'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_kidButton_clicked()
@@ -230,13 +250,14 @@ void CashierWindow::on_kidButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Kids'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Kids'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_liquorButton_clicked()
@@ -245,13 +266,14 @@ void CashierWindow::on_liquorButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Liquor'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Liquor'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_giftsButton_clicked()
@@ -260,13 +282,14 @@ void CashierWindow::on_giftsButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Games'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Games'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_otherButton_clicked()
@@ -275,22 +298,20 @@ void CashierWindow::on_otherButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT ID,Name,Price FROM Product WHERE Category='Other'");
+    qry->prepare("SELECT * FROM Product WHERE Category='Other'");
 
     qry->exec();
 
     model->setQuery(*qry);
     ui->cashierStack->setCurrentIndex(1);
     ui->productTable->setModel(model);
+    setProductTable();
 }
 
 void CashierWindow::on_editCashierButton_clicked()
 {
-    QMessageBox::StandardButton stdbutton=QMessageBox::question(this,"Change Password","Do you want to change password?",QMessageBox::Yes|QMessageBox::No);
-    if(stdbutton==QMessageBox::Yes)
-    {
-        ui->homeStack->setCurrentIndex(1);
-    }
+  ui->privacyStack->setCurrentIndex(0);
+  ui->cashierStack->setCurrentIndex(4);
 }
 
 void CashierWindow::on_saveChangeButton_clicked()
@@ -382,8 +403,10 @@ void CashierWindow::showbillTable(const QString &id,const QString &particulars, 
     QStringList titles;
     titles <<"ID"<<"Particulars" <<"Rate" <<"Quantity" <<"Amount";
     ui->billTable->setHorizontalHeaderLabels(titles);
-    ui->billTable->setColumnWidth(0,50);
-    ui->billTable->setColumnWidth(1,200);
+    ui->billTable->setColumnWidth(0,100);
+    ui->billTable->setColumnWidth(1,300);
+    ui->billTable->setColumnWidth(2,150);
+    ui->billTable->setColumnWidth(3,250);
     ui->billTable->insertRow(ui->billTable->rowCount());
     int row=ui->billTable->rowCount() -1;
     ui->billTable->setItem(row,ID,new QTableWidgetItem(id));
@@ -531,6 +554,7 @@ void CashierWindow::showAmount()
 
 void CashierWindow::on_printBillButton_clicked()
 {
+    qDebug()<<"dhgash";
     billno+=1;
     QDate Date;
     QString currentDate=Date.currentDate().toString("dd/MM/yyyy");
@@ -545,7 +569,7 @@ void CashierWindow::on_printBillButton_clicked()
        QString companyPhone=ui->phoneLabel_2->text();
        QString companyEmail=ui->emailLabel_2->text();
        QString companyVAT=ui->vatLabel_2->text();
-       QString cashier=ui->cashierUsernameLabel->text();
+       QString cashier=ui->cashierUsernameLabel_2->text();
        out <<"                   "<<companyName<<endl;
        out <<"                   "<<companyAddress<<endl;
        out <<"                   "<<companyPhone<<","<<companyEmail<<endl;
@@ -573,7 +597,7 @@ void CashierWindow::on_printBillButton_clicked()
        out<<"                            -----------------------------------"<<endl;
        out<<"                                "<<"Total: "<<subtotal<<endl;
        out<<"                            -----------------------------------"<<endl<<endl<<endl;
-       out<<"Bill Printed By:"<<ui->cashierUsernameLabel->text()<<endl;
+       out<<"Bill Printed By:"<<ui->cashierUsernameLabel_2->text()<<endl;
         ui->productID->setText("");
         Dbase_Cashier db("SBS.db");
         db.deleteBillTable();
@@ -598,12 +622,13 @@ void CashierWindow::on_todayHistory_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT Bill,Amount,Cashier FROM History WHERE Date=:date");
+    qry->prepare("SELECT * FROM History WHERE Date=:date");
     qry->bindValue(":date",currentDate);
     qry->exec();
 
     model->setQuery(*qry);
    ui->transactionTable->setModel(model);
+   setTransactionTable();
 }
 
 
@@ -628,11 +653,14 @@ void CashierWindow::on_okButton_clicked()
         QSqlQueryModel *model= new QSqlQueryModel();
 
         QSqlQuery *qry=new QSqlQuery();
-        qry->prepare("SELECT Bill,Amount,Cashier FROM History WHERE Date=:date");
+        qry->prepare("SELECT * FROM History WHERE Date=:date");
         qry->bindValue(":date",date);
         qry->exec();
 
         model->setQuery(*qry);
        ui->transactionTable->setModel(model);
+       setTransactionTable();
     }
 }
+
+
