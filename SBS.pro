@@ -29,7 +29,6 @@ SOURCES += \
     adminwindow.cpp \
     dbase.cpp \
     dbase_admin.cpp \
-    authenicationwindow.cpp \
     cashierwindow.cpp \
     dbase_cashier.cpp
 
@@ -38,14 +37,12 @@ HEADERS += \
     adminwindow.h \
     dbase.h \
     dbase_admin.h \
-    authenicationwindow.h \
     cashierwindow.h \
     dbase_cashier.h
 
 FORMS += \
         mainwindow.ui \
     adminwindow.ui \
-    authenicationwindow.ui \
     cashierwindow.ui
 
 RESOURCES += \

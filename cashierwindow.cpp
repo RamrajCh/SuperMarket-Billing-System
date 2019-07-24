@@ -22,7 +22,6 @@ CashierWindow::~CashierWindow()
     delete ui;
 }
 
-
 void CashierWindow::showCashier_LoginDetails()
 {
     Dbase_Cashier db("SBS.db");
@@ -55,8 +54,8 @@ void CashierWindow::showCashier_LoginDetails()
             ui->cashierNameLabel->setText(name);
             ui->cashierMobileLabel->setText(mobileno);
             ui->cashierEmailLabel->setText(email);
-           if(gender=="Male") ui->profileButton->setStyleSheet("background-image: url(:/male.jpeg);");
-            if(gender=="Female") ui->productButton->setStyleSheet("background-image: url(:/female.pngS);");
+           if(gender=="Male") ui->profileButton->setStyleSheet("border-image: url(:/male.jpeg);");
+            if(gender=="Female") ui->profileButton->setStyleSheet("border-image: url(:/female.png);");
         }
 
     }
@@ -100,8 +99,6 @@ void CashierWindow:: showCompanyDetails()
     }
 }
 
-
-
 void CashierWindow::on_homeButton_clicked()
 {
     ui->privacyStack->setCurrentIndex(0);
@@ -110,7 +107,6 @@ void CashierWindow::on_homeButton_clicked()
     showCashier_LoginDetails();
     showCompanyDetails();
 }
-
 
 void CashierWindow::on_productButton_clicked()
 {
@@ -150,8 +146,8 @@ void CashierWindow::on_saleButton_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT * FROM History");
-
+    qry->prepare("SELECT Bill,Date,Amount FROM History WHERE Cashier=:cashier");
+    qry->bindValue(":cashier",ui->cashierUsernameLabel_2->text());
     qry->exec();
 
     model->setQuery(*qry);
@@ -162,12 +158,18 @@ void CashierWindow::on_saleButton_clicked()
     setTransactionTable();
 }
 
-
 void CashierWindow::on_profileButton_clicked()
 {
-    ui->privacyStack->setCurrentIndex(1);
+    int curind=ui->privacyStack->currentIndex();
+    if(curind==0)
+    {
+     ui->privacyStack->setCurrentIndex(1);
+    }
+    else
+    {
+      ui->privacyStack->setCurrentIndex(0);
+    }
 }
-
 
 void CashierWindow::on_logoutButton_clicked()
 {
@@ -194,7 +196,6 @@ void CashierWindow::on_allButton_clicked()
 {
     on_productButton_clicked();
 }
-
 
 void CashierWindow::on_groceryButton_clicked()
 {
@@ -340,21 +341,31 @@ void CashierWindow::on_saveChangeButton_clicked()
     }
 }
 
-
 void CashierWindow::on_checkProduct_clicked()
 {
     QString id=ui->productID->text();
+    QString particulars;
     Dbase_Cashier db("SBS.db");
     //check product validation
     if(!db.validProduct(id)){QMessageBox::information(this,"Check Product","Invalid Product"); ui->productID->setText("");}
     else
     {
+        QList<QString>pro = db.getProductDetails(id);
+        QString name=pro[2];
+        if(name.count()>=12){
+         particulars=name.left(12);
+        }
+        if(name.count()<12){
+            for(int i=name.count();i<12;i++)
+            {
+                name+=" ";
+            }
+            particulars=name;
+        }
+        ui->checkedProduct->setText(particulars);
         if(!db.product_IdExists(id)){ui->billStack->setCurrentIndex(0);}
         else{ui->billStack->setCurrentIndex(1);}
     }
-    //if true check product in bill
-    //if not contained goto index 0
-    //if contained goto index 1
 }
 
 void CashierWindow::on_addProduct_clicked()
@@ -389,6 +400,7 @@ void CashierWindow::on_addProduct_clicked()
         ui->billStack->setCurrentIndex(2);
        showbillTable(id,particulars,temp,quantity,amount);
        showAmount();
+       ui->checkedProduct->setText("");
     }
 }
 
@@ -441,10 +453,9 @@ void CashierWindow::on_removeProduct_clicked()
             }
         }
         ui->billTable->removeRow(i);
-
+        ui->checkedProduct->setText("");
     }
 }
-
 
 void CashierWindow::on_additionMode_clicked()
 {
@@ -486,7 +497,6 @@ void CashierWindow::on_additionMode_clicked()
    }
 }
 }
-
 
 void CashierWindow::on_deductionMode_clicked()
 {
@@ -613,6 +623,7 @@ void CashierWindow::on_printBillButton_clicked()
                ui->billTableStack->setCurrentIndex(0);
         }
 }
+
 void CashierWindow::on_todayHistory_clicked()
 {
     ui->historyStack->setCurrentIndex(0);
@@ -622,15 +633,15 @@ void CashierWindow::on_todayHistory_clicked()
     QSqlQueryModel *model= new QSqlQueryModel();
 
     QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("SELECT * FROM History WHERE Date=:date");
+    qry->prepare("SELECT Bill,Date,Amount FROM History WHERE Date=:date AND Cashier=:cashier");
     qry->bindValue(":date",currentDate);
+    qry->bindValue(":cashier",ui->cashierUsernameLabel_2->text());
     qry->exec();
 
     model->setQuery(*qry);
    ui->transactionTable->setModel(model);
    setTransactionTable();
 }
-
 
 void CashierWindow::on_gotodateHistory_clicked()
 {
@@ -653,8 +664,9 @@ void CashierWindow::on_okButton_clicked()
         QSqlQueryModel *model= new QSqlQueryModel();
 
         QSqlQuery *qry=new QSqlQuery();
-        qry->prepare("SELECT * FROM History WHERE Date=:date");
+        qry->prepare("SELECT Bill,Date,Amount FROM History WHERE Date=:date AND Cashier=:cashier");
         qry->bindValue(":date",date);
+        qry->bindValue(":cashier",ui->cashierUsernameLabel_2->text());
         qry->exec();
 
         model->setQuery(*qry);
@@ -662,5 +674,3 @@ void CashierWindow::on_okButton_clicked()
        setTransactionTable();
     }
 }
-
-

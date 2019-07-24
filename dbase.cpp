@@ -65,36 +65,6 @@ bool Dbase::addAdmin(const QString &fname, const QString &lname, const QString &
     return success;
 }
 
-
-
-bool Dbase::removeUser(const QString& name){
-    bool success = false;
-
-    if (emailExists(name)){
-        QSqlQuery queryDelete;
-        queryDelete.prepare("DELETE FROM Admin WHERE UserName = (:uname)");
-        queryDelete.bindValue(":uname", name);
-        success = queryDelete.exec();
-        if(!success){
-            qDebug() << "remove  failed: " << queryDelete.lastError();
-        }
-    }else{
-        qDebug() << "remove user failed: user doesnt exist";
-    }
-    return success;
-}
-
-void Dbase::printAllUsers() const{
-    qDebug() << "users in db:";
-    QSqlQuery query("SELECT * FROM Admin");
-    int idName = query.record().indexOf("UserName");
-    while (query.next())
-    {
-        QString uname = query.value(idName).toString();
-        qDebug() << "===" << uname;
-    }
-}
-
 bool Dbase::unameExists(const QString &uname){
     QSqlQuery checkQuery;
     checkQuery.prepare("SELECT UserName FROM Admin WHERE UserName = (:uname)");
@@ -121,46 +91,6 @@ bool Dbase::emailExists(const QString &email){
         qDebug()<<"does email exist query failed "<<checkQuery.lastError();
     }
     return false;
-}
-
-bool Dbase::passwordValid(const QString &passwd)
-{
-    QSqlQuery checkQuery;
-    checkQuery.prepare("SELECT * FROM Admin WHERE Password=:passwd");
-    checkQuery.bindValue(":passwd",passwd);
-    if(checkQuery.exec())
-    {
-        if(checkQuery.next())
-        {
-            qDebug()<<"password valid";
-            return true;
-        }
-
-    }
-    else
-    {
-        qDebug()<<"password invalid";
-        return false;
-    }
-}
-
-bool Dbase::removeAllUsers()
-{
-    bool success = false;
-
-    QSqlQuery removeQuery;
-    removeQuery.prepare("DELETE FROM Admin");
-
-    if (removeQuery.exec())
-    {
-        success = true;
-    }
-    else
-    {
-        qDebug() << "remove all users failed: " << removeQuery.lastError();
-    }
-
-    return success;
 }
 
 bool Dbase::userAuth(const QString &uname, const QString &pass)const{
@@ -255,38 +185,6 @@ bool Dbase::getAdminInfo()
     }
 }
 
-//QList<QString> dbase::getAllUsers(){
-//    QList<QString> data;
-
-//    qDebug() << "users in db:";
-//    QSqlQuery query("SELECT * FROM user");
-//    int idName = query.record().indexOf("email");
-//    while (query.next()){
-//        QString email = query.value(idName).toString();
-//        data.push_front(email);
-//    }
-//    return data;
-//}
-
-
-void Dbase::changeAdminPassword(const QString& uname,const QString& npasswd)
-{
-    QSqlQuery qry;
-    qry.prepare("UPDATE Admin SET Password=:npasswd WHERE UserName=:uname");
-    qry.bindValue(":npasswd",npasswd);
-    qry.bindValue(":uname",uname);
-    if(qry.next())
-    {
-        qDebug()<<"Password changed";
-    }
-    else
-    {
-        qDebug()<<"password couldn't be changed"<<qry.lastError();
-    }
-}
-
-////functions for handling admin login
-
 void Dbase::createAdmin_LoginTable()
 {
     QSqlQuery query;
@@ -343,21 +241,6 @@ void Dbase::addAdmin_Login(QString &uname)
     }
 }
 }
-
-void Dbase::deleteAdmin_Login()
-{
-    QSqlQuery qry;
-    qry.prepare("DROP TABLE Admin_Login");
-    if(qry.exec())
-    {
-        qDebug()<<"Table deleted";
-    }
-    else
-    {
-        qDebug()<<"Couldn't delete table";
-    }
-}
-////function for handling cashier login
 
 bool Dbase::cashierAuth(const QString &uname, const QString &pass)const{
     bool exists = false;
@@ -468,18 +351,3 @@ void Dbase::addCashier_Login(QString &uname)
         qDebug()<<"add cashier sucess";
     }
 }
-
-void Dbase::deleteCashier_Login()
-{
-    QSqlQuery qry;
-    qry.prepare("DROP TABLE Cashier_Login");
-    if(qry.exec())
-    {
-        qDebug()<<"Table deleted";
-    }
-    else
-    {
-        qDebug()<<"Couldn't delete table";
-    }
-}
-

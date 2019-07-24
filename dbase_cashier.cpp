@@ -4,8 +4,6 @@
 #include <QSqlRecord>
 #include <QDebug>
 
-
-
 Dbase_Cashier::Dbase_Cashier(const QString &path)
 {
     db=QSqlDatabase::addDatabase("QSQLITE");
@@ -102,7 +100,6 @@ QList<QString> Dbase_Cashier::getCashier_loginDetails()
       return cashierdetails;
 }
 
-
 QList<QString> Dbase_Cashier::getComDetails()
 {
     QList<QString> companydetails;
@@ -140,7 +137,6 @@ QList<QString> Dbase_Cashier::getComDetails()
       return companydetails;
 }
 
-
  bool Dbase_Cashier::validProduct(QString &id)
  {
      QSqlQuery qry;
@@ -156,7 +152,6 @@ QList<QString> Dbase_Cashier::getComDetails()
          return false;
      }
  }
-
 
 bool Dbase_Cashier::validCashier(QString &username,QString &opassword)
 {
@@ -182,9 +177,6 @@ void Dbase_Cashier::updateCashier(QString &username,QString &opassword)
     qry.bindValue(":uname",username);
     qry.exec();
 }
-
-
-////functions for invoice
 
 void Dbase_Cashier::createBillTable()
 {
@@ -309,7 +301,6 @@ QList<QString> Dbase_Cashier::getAmount()
       qDebug()<<amountdetails.count();
       return amountdetails;
 }
-
 
 void Dbase_Cashier::createHistoryTable()
 {

@@ -31,7 +31,6 @@ bool isVacant(QString obj)
   else return false;
 }
 
-
 void AdminWindow :: showError(AdminWindow* window,QString error)
 {
   QMessageBox::warning(window,"Error!!",error);
@@ -100,18 +99,22 @@ void AdminWindow::on_productButton_clicked()
 
 void AdminWindow::on_privacyButton_clicked()
 {
-    hidePrivacy();
-    ui->privacyStack_2->setCurrentIndex(1);
+    int curind=ui->privacyStack_2->currentIndex();
+    if(curind==0)
+    {
+     ui->privacyStack_2->setCurrentIndex(1);
+    }
+    else
+    {
+      hidePrivacy();
+    }
 }
-
 
 void AdminWindow::on_companyUpdateButton_clicked()
 {
     //show update form
     ui->companyStack->setCurrentIndex(1);
 }
-
-////defining company functions
 
 void AdminWindow:: showCompanyDetails()
 {
@@ -150,7 +153,6 @@ void AdminWindow:: showCompanyDetails()
         }
     }
 }
-
 
 void AdminWindow::on_okButton_1_clicked()
 {
@@ -220,8 +222,6 @@ void AdminWindow::on_editButton_1_clicked()
 {
     ui->companyStack->setCurrentIndex(1);
 }
-
-////Defining cashier functions
 
 void AdminWindow::on_okButton_2_clicked()
 {
@@ -308,23 +308,6 @@ void AdminWindow::on_addCashierButton_clicked()
     //go to add cashier stack
     ui->cashierStack->setCurrentIndex(1);
 }
-
-//void AdminWindow::on_viewCashierButton_clicked()
-//{
-//    Dbase_admin db("SBS.db");
-//    if(db.isOpen())
-//    {
-//        QSqlQueryModel *modal= new QSqlQueryModel();
-
-//        QSqlQuery *qry=new QSqlQuery(db);
-//        qry->prepare("SELECT * FROM Cashier");
-
-//        modal->setQuery(*qry);
-//        qry->exec();
-
-//        ui->cashierTable->setModel(modal);
-//    }
-//}
 
 void AdminWindow::setCashierTable()
 {
@@ -450,12 +433,10 @@ void AdminWindow::on_removeButton_clicked()
     }
 }
 
-
 void AdminWindow::on_cancelButton_clicked()
 {
     ui->cashierStack->setCurrentIndex(2);
 }
-
 
 void AdminWindow::on_removeCashierButton_clicked()
 {
@@ -464,14 +445,16 @@ void AdminWindow::on_removeCashierButton_clicked()
 
 void AdminWindow::on_removeAllCashierButton_clicked()
 {
-   adminauth=new Authenicationwindow(this);
-   adminauth->show();
-  //adminauth->auth_to_remove_all_cashier();
-
+    QMessageBox::StandardButton stdButton=QMessageBox::question(this,"Remove all Cashier","Do you really want to delete all cashier?",QMessageBox::Yes|QMessageBox::No);
+    if(stdButton==QMessageBox::Yes)
+    {
+        Dbase_admin db("SBS.db");
+        if(db.removeCashierTable())
+           {
+               QMessageBox::information(this,"Delete Cashier","Deletion Sucessful");
+           }
+        }
 }
-
-
-////Defining Privacy Functions
 
 void AdminWindow::on_logoutButton_clicked()
 {
@@ -588,9 +571,6 @@ void AdminWindow::on_changePasswordButton_clicked()
     }
 }
 
-
-
-
 void AdminWindow::on_addButton_clicked()
 {
     ui->adminStack->setCurrentIndex(2);
@@ -654,8 +634,9 @@ void AdminWindow::on_addProductButton_2_clicked()
                      else
                      {
                         //got to privacy stack
-                        ui->adminStack->setCurrentIndex(3);
-                        ui->privacyStack->setCurrentIndex(0);
+                        ui->adminStack->setCurrentIndex(2);
+                        ui->productStack->setCurrentIndex(1);
+                        on_viewProductButton_clicked();
                      }
                   }
                }
@@ -671,7 +652,6 @@ void AdminWindow::setProductTable()
     ui->productTable->setColumnWidth(2,200);
     ui->productTable->setColumnWidth(3,150);
 }
-
 
 void AdminWindow::on_viewProductButton_clicked()
 {
@@ -758,32 +738,6 @@ void AdminWindow::on_deleteProductButton_clicked()
     ui->productStack->setCurrentIndex(2);
 }
 
-
-//void AdminWindow::on_delete_by_id_clicked()
-//{
-//    QString id=ui->product_id->text();
-//    QString category="";
-
-//    Dbase_admin db("SBS.db");
-//    if(db.isOpen())
-//    {
-//        if(db.validProduct(id,category))
-//        {
-//            QMessageBox::StandardButton stdbut=QMessageBox::warning(this,"Delete","You want to delete product.",QMessageBox::Yes|QMessageBox::No);
-//            if(stdbut=QMessageBox::Yes)
-//            {
-//               db.deleteProducts(id,category);
-//               QMessageBox::information(this,"Remove Cashier","Sucessful");
-//               ui->product_id->setText("");
-//             }
-//        }
-//        else
-//        {
-//           QMessageBox::warning(this,"Remove Cashier","Do not match any cashier..");
-//        }
-//    }
-//}
-
 void AdminWindow::on_delete_product_clicked()
 {
     QString id=ui->product_id_2->text();
@@ -795,7 +749,7 @@ void AdminWindow::on_delete_product_clicked()
        if(db.validProduct(id,category))
        {
           QMessageBox::StandardButton stdbut=QMessageBox::warning(this,"Delete","You want to delete product.",QMessageBox::Yes|QMessageBox::No);
-          if(stdbut=QMessageBox::Yes)
+          if(stdbut==QMessageBox::Yes)
           {
              db.deleteProducts(id,category);
              QMessageBox::information(this,"Remove Cashier","Sucessful");
@@ -809,8 +763,6 @@ void AdminWindow::on_delete_product_clicked()
         }
     }
 }
-
-
 
 void AdminWindow::on_addAdminButton_clicked()
 {
@@ -835,7 +787,6 @@ void AdminWindow::on_salesButton_clicked()
     ui->historyStack->setCurrentIndex(0);
     ui->transactionTable->setModel(model);
 }
-
 
 void AdminWindow::on_registerButton_2_clicked()
 {
@@ -1005,7 +956,6 @@ void AdminWindow::on_okButton_3_clicked()
        ui->transactionTable->setModel(model);
     }
 }
-
 
 void AdminWindow::on_goButton_2_clicked()
 {

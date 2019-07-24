@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include<QMessageBox>
 #include <QDate>
-#include <authenicationwindow.h>
+#include<QDebug>
 #include<dbase_admin.h>
 #include <dbase.h>
 
@@ -102,7 +102,7 @@ private slots:
 
 private:
   Ui::AdminWindow *ui;
-  Authenicationwindow *adminauth;
+
 };
 
 #endif // ADMINWINDOW_H

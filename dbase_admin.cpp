@@ -50,8 +50,6 @@ bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
     return exists;
 }
 
-
-////to handle company details
   void Dbase_admin::createCompanyTable()
   {
 
@@ -149,7 +147,6 @@ bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
         return companydetails;
   }
 
-
   bool Dbase_admin::removeCompanyDetails()
   {
       bool  sucess=false;
@@ -166,10 +163,6 @@ bool Dbase_admin::userAuth(const QString &uname, const QString &pass) const
       }
       return sucess;
   }
-
-
-
-  ////to handle Cashier details
 
   void Dbase_admin::createCashierTable()
   {
@@ -321,8 +314,6 @@ bool Dbase_admin::cashier_emailExists(const QString &email)
      model->setQuery(*qry);
 }
 
-  ////functiom to handle privacy
-
   void Dbase_admin::deleteAdmin_Login()
   {
       QSqlQuery qry;
@@ -447,9 +438,6 @@ void Dbase_admin::changeAdmin_LoginPassword(const QString& uname,const QString& 
         qDebug()<<"password couldn't be changed(Admin_Login)"<<qry.lastError();
     }
 }
-
-
-////function to handle product
 
 void Dbase_admin::createProductTable()
 {

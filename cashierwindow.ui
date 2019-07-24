@@ -87,6 +87,19 @@ border:none;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>10</y>
+       <width>241</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;WELCOME TO &lt;br/&gt;CASHIER PANEL!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="frame_5">
     <property name="geometry">
@@ -192,10 +205,10 @@ background-color: rgb(52, 101, 164)
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>150</y>
-      <width>1081</width>
-      <height>561</height>
+      <x>0</x>
+      <y>130</y>
+      <width>1371</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -210,7 +223,7 @@ background-color: rgb(52, 101, 164)
     <widget class="QStackedWidget" name="cashierStack">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>130</x>
        <y>10</y>
        <width>1061</width>
        <height>541</height>
@@ -549,15 +562,16 @@ background-color: rgb(52, 101, 164)
          <x>470</x>
          <y>50</y>
          <width>133</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>All</string>
@@ -569,15 +583,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>10</x>
          <y>10</y>
          <width>121</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Grocery</string>
@@ -589,15 +604,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>770</x>
          <y>10</y>
          <width>111</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Fashion</string>
@@ -609,15 +625,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>900</x>
          <y>10</y>
          <width>121</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Others</string>
@@ -629,15 +646,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>150</x>
          <y>10</y>
          <width>133</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Kids</string>
@@ -649,15 +667,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>300</x>
          <y>10</y>
          <width>141</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Liquor</string>
@@ -669,15 +688,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>460</x>
          <y>10</y>
          <width>161</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Home Appliances</string>
@@ -689,15 +709,16 @@ background-color: rgb(0, 0, 0);</string>
          <x>640</x>
          <y>10</y>
          <width>111</width>
-         <height>25</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Games</string>
@@ -708,9 +729,9 @@ background-color: rgb(0, 0, 0);</string>
       <widget class="QTableView" name="transactionTable">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>160</y>
-         <width>931</width>
+         <x>210</x>
+         <y>140</y>
+         <width>661</width>
          <height>371</height>
         </rect>
        </property>
@@ -730,9 +751,10 @@ background-color: rgb(0, 0, 0);</string>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Today</string>
@@ -750,9 +772,10 @@ background-color: rgb(0, 0, 0);</string>
        <property name="styleSheet">
         <string notr="true">background:transparent;
   border: 2px solid #563727;
+border-radius:10px;
 font: 13pt &quot;Ubuntu&quot;;
 color: rgb(238, 238, 236);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(143, 89, 2);</string>
        </property>
        <property name="text">
         <string>Goto Date</string>
@@ -1236,22 +1259,22 @@ background-color: rgb(0, 0, 0);</string>
       <widget class="QStackedWidget" name="billStack">
        <property name="geometry">
         <rect>
-         <x>360</x>
+         <x>390</x>
          <y>100</y>
          <width>381</width>
          <height>61</height>
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page_4">
         <widget class="QSpinBox" name="quantityBox">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>150</x>
            <y>10</y>
-           <width>161</width>
+           <width>71</width>
            <height>26</height>
           </rect>
          </property>
@@ -1274,6 +1297,19 @@ background-color: rgb(0, 0, 0);</string>
          </property>
          <property name="text">
           <string>Add</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>121</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Provide Quantity:</string>
          </property>
         </widget>
        </widget>
@@ -1343,12 +1379,25 @@ Mode</string>
        </widget>
        <widget class="QWidget" name="page_6"/>
       </widget>
+      <widget class="QLabel" name="checkedProduct">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>110</y>
+         <width>131</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="page_14">
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>370</x>
+         <x>410</x>
          <y>40</y>
          <width>321</width>
          <height>41</height>
@@ -1361,7 +1410,7 @@ Mode</string>
       <widget class="QPushButton" name="saveChangeButton">
        <property name="geometry">
         <rect>
-         <x>460</x>
+         <x>490</x>
          <y>410</y>
          <width>131</width>
          <height>25</height>
@@ -1381,7 +1430,7 @@ Mode</string>
       <widget class="QLineEdit" name="userName">
        <property name="geometry">
         <rect>
-         <x>390</x>
+         <x>420</x>
          <y>120</y>
          <width>271</width>
          <height>41</height>
@@ -1397,7 +1446,7 @@ Mode</string>
       <widget class="QLineEdit" name="oldPassword">
        <property name="geometry">
         <rect>
-         <x>390</x>
+         <x>420</x>
          <y>190</y>
          <width>271</width>
          <height>41</height>
@@ -1406,6 +1455,9 @@ Mode</string>
        <property name="styleSheet">
         <string notr="true">border:1px solid black;</string>
        </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
        <property name="placeholderText">
         <string>Give your old Password</string>
        </property>
@@ -1413,7 +1465,7 @@ Mode</string>
       <widget class="QLineEdit" name="confirmPassword">
        <property name="geometry">
         <rect>
-         <x>390</x>
+         <x>420</x>
          <y>330</y>
          <width>271</width>
          <height>41</height>
@@ -1422,6 +1474,9 @@ Mode</string>
        <property name="styleSheet">
         <string notr="true">border:1px solid black;</string>
        </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
        <property name="placeholderText">
         <string>Confirm your password</string>
        </property>
@@ -1429,7 +1484,7 @@ Mode</string>
       <widget class="QLineEdit" name="newPassword">
        <property name="geometry">
         <rect>
-         <x>390</x>
+         <x>420</x>
          <y>260</y>
          <width>271</width>
          <height>41</height>
@@ -1437,6 +1492,9 @@ Mode</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border:1px solid black;</string>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
        <property name="placeholderText">
         <string>Give New Password</string>
