@@ -564,12 +564,23 @@ void CashierWindow::showAmount()
 
 void CashierWindow::on_printBillButton_clicked()
 {
-    qDebug()<<"dhgash";
-    billno+=1;
+    QFile nFile("path.txt");
+
+      if(!nFile.open(QFile::ReadOnly | QFile::Text))
+      {
+        qDebug() << "could not open file for reading";
+        return;
+      }
+      QTextStream in(&nFile);
+      QString path = in.readAll();
+    nFile.close();
+    Dbase_Cashier db("SBS.db");
+    int billno=db.getBillNo();
+    qDebug()<<billno;
     QDate Date;
     QString currentDate=Date.currentDate().toString("dd/MM/yyyy");
     QString subtotal=ui->subTotal->text();
-    QFile file("bill.txt");
+    QFile file(path);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
          qDebug()<<"file not open";
 
@@ -601,26 +612,30 @@ void CashierWindow::on_printBillButton_clicked()
                     textData += "\t";
            }
            textData += "\n";
-
        }
+       int quantity=0;
+       for (int i = 0; i < rows; i++) {
+                    quantity += ui->billTable->item(i,3)->text().toInt();
+           }
        out<<textData<<endl;
        out<<"                            -----------------------------------"<<endl;
        out<<"                                "<<"Total: "<<subtotal<<endl;
-       out<<"                            -----------------------------------"<<endl<<endl<<endl;
+       out<<"                            -----------------------------------"<<endl;
+       out<<"                                "<<"Total Quantity: "<<quantity<<endl;
+       out<<"                            -----------------------------------"<<endl;
+       out<<"Thank you for purchasing from "<<companyName<<endl<<"Please visit again!"<<endl;
+       out <<"-------------------------------------------------------------"<<endl;
        out<<"Bill Printed By:"<<ui->cashierUsernameLabel_2->text()<<endl;
+       out <<"-------------------------------------------------------------"<<endl;
         ui->productID->setText("");
-        Dbase_Cashier db("SBS.db");
         db.deleteBillTable();
         db.createHistoryTable();
-        if(db.addHistory(billno,currentDate,ui->subTotal->text().toDouble(),cashier))
+        qDebug()<<rows;
+        if(db.addHistory(currentDate,ui->subTotal->text().toDouble(),cashier))
         {
-            for(int j=0;j<rows;j++)
-            {
-                ui->billTable->removeRow(j);
-            }
-
-               ui->billStack->setCurrentIndex(2);
-               ui->billTableStack->setCurrentIndex(0);
+            ui->billTable->setRowCount(0);
+             ui->billStack->setCurrentIndex(2);
+             ui->billTableStack->setCurrentIndex(0);
         }
 }
 

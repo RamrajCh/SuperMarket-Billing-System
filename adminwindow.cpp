@@ -741,7 +741,7 @@ void AdminWindow::on_deleteProductButton_clicked()
 void AdminWindow::on_delete_product_clicked()
 {
     QString id=ui->product_id_2->text();
-    QString category=ui->product_category_2->text();
+    QString category=ui->product_category_2->currentText();
 
     Dbase_admin db("SBS.db");
     if(db.isOpen())
@@ -752,14 +752,13 @@ void AdminWindow::on_delete_product_clicked()
           if(stdbut==QMessageBox::Yes)
           {
              db.deleteProducts(id,category);
-             QMessageBox::information(this,"Remove Cashier","Sucessful");
+             QMessageBox::information(this,"Remove Product","Sucessful");
              ui->product_id->setText("");
-             ui->product_category_2->setText("");
           }
         }
         else
         {
-           QMessageBox::information(this,"Remove Cashier","Do not match any cashier..");
+           QMessageBox::information(this,"Remove Product","Do not match any cashier..");
         }
     }
 }
@@ -978,3 +977,29 @@ void AdminWindow::on_pushButton_clicked()
     ui->privacyStack->setCurrentIndex(0);
     showAdmin_LoginDetails();
 }
+
+void AdminWindow::on_settingButton_clicked()
+{
+    hidePrivacy();
+    ui->adminStack_2->setCurrentIndex(3);
+}
+
+void AdminWindow::on_browseButton_clicked()
+{
+    QString dir=QFileDialog::getExistingDirectory(this,tr("Open Directory"),"/home",QFileDialog::ShowDirsOnly|QFileDialog::DontResolveSymlinks);
+    ui->path->setText(dir);
+}
+
+void AdminWindow::on_okButton_clicked()
+{
+    QFile file("path.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+         qDebug()<<"file not open";
+
+       QTextStream out(&file);
+       QString dir=ui->path->text();
+       out<<dir+"/bill.txt"<<endl;
+       ui->path->setText("");
+       ui->adminStack_2->setCurrentIndex(2);
+}
+

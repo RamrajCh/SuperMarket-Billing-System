@@ -51,7 +51,9 @@ public:
     ////functions for history
     void createHistoryTable();
 
-     bool addHistory(const int &billno,const QString &date,const double &billamount,const QString &cashier);
+     bool addHistory(const QString &date,const double &billamount,const QString &cashier);
+
+     int getBillNo();
 };
 
 #endif // DBASE_CASHIER_H

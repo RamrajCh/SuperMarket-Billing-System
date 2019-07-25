@@ -125,8 +125,7 @@ void MainWindow::on_loginButton_2_clicked()
 
    if(db.userAuth(uname,passwd))
    {
-       //Login
-       //create Admin_login table
+       db.deleteAdmin_Login();
        db.createAdmin_LoginTable();
        db.addAdmin_Login(uname);
        //clear login page password
@@ -139,8 +138,7 @@ void MainWindow::on_loginButton_2_clicked()
    }
    else if(db.cashierAuth(uname,passwd))
    {
-       //Login
-       //create Cashier_Login table
+       db.deleteCashier_Login();
        db.createCashier_LoginTable();
        db.addCashier_Login(uname);
        //clear login page password

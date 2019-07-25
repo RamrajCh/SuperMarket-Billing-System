@@ -305,7 +305,7 @@ QList<QString> Dbase_Cashier::getAmount()
 void Dbase_Cashier::createHistoryTable()
 {
     QSqlQuery qry;
-    qry.prepare("CREATE TABLE `History` ( `Bill` INTEGER NOT NULL UNIQUE, `Date` TEXT, `Amount` REAL, `Cashier` TEXT, PRIMARY KEY(`Bill`) )");
+    qry.prepare("CREATE TABLE `History` ( `Bill` INTEGER NOT NULL , `Date` TEXT, `Amount` REAL, `Cashier` TEXT, PRIMARY KEY(`Bill`) )");
     if (!qry.exec())
     {
         qDebug() <<"Couldn't create Table,one might already exist";
@@ -317,12 +317,11 @@ void Dbase_Cashier::createHistoryTable()
     }
 }
 
-bool Dbase_Cashier::addHistory(const int &billno, const QString &date, const double &billamount, const QString &cashier)
+bool Dbase_Cashier::addHistory( const QString &date, const double &billamount, const QString &cashier)
 {
     bool sucess=false;
     QSqlQuery qry;
-    qry.prepare("INSERT INTO History(Bill,Date,Amount,Cashier) VALUES (:billno,:date,:billamount,:cashier)");
-    qry.bindValue(":billno",billno);
+    qry.prepare("INSERT INTO History(Date,Amount,Cashier) VALUES (:date,:billamount,:cashier)");
     qry.bindValue(":date",date);
     qry.bindValue(":billamount",billamount);
     qry.bindValue(":cashier",cashier);
@@ -338,4 +337,23 @@ bool Dbase_Cashier::addHistory(const int &billno, const QString &date, const dou
     }
     return sucess;
 
+}
+
+int Dbase_Cashier::getBillNo()
+{
+    int billno;
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM History");
+    if(qry.exec())
+    {
+        if(qry.last())
+        {
+            billno=qry.value(0).toInt();
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return billno+1;
 }

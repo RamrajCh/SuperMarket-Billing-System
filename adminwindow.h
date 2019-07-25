@@ -5,6 +5,8 @@
 #include<QMessageBox>
 #include <QDate>
 #include<QDebug>
+#include <QFile>
+#include <QFileDialog>
 #include<dbase_admin.h>
 #include <dbase.h>
 
@@ -17,21 +19,20 @@ class AdminWindow : public QMainWindow
   Q_OBJECT
 
 public:
+  explicit AdminWindow(QWidget *parent = 0);
+  ~AdminWindow();
   void showError(AdminWindow* window,QString error);
   void showCompanyDetails();
   void showAdmin_LoginDetails();
   void hidePrivacy();
   void setProductTable();
-    void setCashierTable();
-
-  explicit AdminWindow(QWidget *parent = 0);
-  ~AdminWindow();
+  void setCashierTable();
 
 public slots:
   void on_logoutButton_clicked();
-    void on_viewCashierButton_clicked();
-    void on_viewProductButton_clicked();
-      void on_salesButton_clicked();
+  void on_viewCashierButton_clicked();
+  void on_viewProductButton_clicked();
+  void on_salesButton_clicked();
 
 
 
@@ -99,6 +100,12 @@ private slots:
     void on_goButton_2_clicked();
 
     void on_pushButton_clicked();
+
+    void on_settingButton_clicked();
+
+    void on_browseButton_clicked();
+
+    void on_okButton_clicked();
 
 private:
   Ui::AdminWindow *ui;

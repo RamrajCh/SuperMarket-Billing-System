@@ -83,7 +83,6 @@ private:
     enum Column{
         ID,Particulars,Rate,Quantity,Amount
     };
-    int billno=0;
 };
 
 #endif // CASHIERWINDOW_H

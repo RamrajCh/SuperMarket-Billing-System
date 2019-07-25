@@ -242,6 +242,22 @@ void Dbase::addAdmin_Login(QString &uname)
 }
 }
 
+
+void Dbase::deleteAdmin_Login()
+{
+    QSqlQuery qry;
+    qry.prepare("DROP TABLE Admin_Login");
+    if(qry.exec())
+    {
+        qDebug()<<"Admin_Login Table deleted";
+    }
+    else
+    {
+        qDebug()<<"Couldn't delete table";
+    }
+ }
+
+
 bool Dbase::cashierAuth(const QString &uname, const QString &pass)const{
     bool exists = false;
 
@@ -349,5 +365,19 @@ void Dbase::addCashier_Login(QString &uname)
     {
         //QMessageBox::information(this,"Cashier_Login Table","Created");
         qDebug()<<"add cashier sucess";
+    }
+}
+
+void Dbase::deleteCashier_Login()
+{
+    QSqlQuery qry;
+    qry.prepare("DROP TABLE Cashier_Login");
+    if(qry.exec())
+    {
+        qDebug()<<"cashier_Login Table deleted";
+    }
+    else
+    {
+        qDebug()<<"Couldn't delete table";
     }
 }

@@ -34,6 +34,8 @@ public:
 
       void addAdmin_Login(QString &uname);//store data of admin that has log in
 
+      void deleteAdmin_Login();
+
       ////functions for handling cashier login
       bool cashierAuth(const QString& uname, const QString& pass) const;
 
@@ -42,6 +44,8 @@ public:
       QList<QString> getCashierInfo(const QString &uname);
 
       void addCashier_Login(QString &uname);
+
+      void deleteCashier_Login();
 
   private:
       QSqlDatabase db;
