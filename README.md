@@ -1,10 +1,9 @@
 # SuperMarket Billing System
 
-Supermarket Billing System is encompassed to fulfill our main objectives of designing
-a interactive environment for a small sized supermarkets to easily generate the bill. This
+<b>Supermarket Billing System</b> is encompassed to fulfill <u>our main objectives of designing
+a interactive environment for a small sized supermarkets to easily generate the bill</u>. This
 system could easily produce bill if a cashier provide product ID (provided by
-administrative) and quantity of product required by customers. The system is strong to
-handle daily operations where the database is cleared over certain time.
+administrative) and quantity of product required by customers.
 
 #Main Features
 
