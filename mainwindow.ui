@@ -27,10 +27,10 @@
   </property>
   <property name="windowIcon">
    <iconset resource="sbs.qrc">
-    <normaloff>:/coverlogo.png</normaloff>:/coverlogo.png</iconset>
+    <normaloff>:/logo2.png</normaloff>:/logo2.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/1360x768-anti-flash-white-solid-color-background.jpg);</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QStackedWidget" name="mainStack">
@@ -318,16 +318,16 @@ color:white;
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>20</y>
-         <width>131</width>
-         <height>80</height>
+         <x>140</x>
+         <y>10</y>
+         <width>191</width>
+         <height>101</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border:none;
 border-radius:0px;
-background-image: url(:/coverlogo.png);</string>
+border-image: url(:/logo.png);</string>
        </property>
        <property name="text">
         <string/>

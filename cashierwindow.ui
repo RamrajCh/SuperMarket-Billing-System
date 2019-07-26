@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="sbs.qrc">
-    <normaloff>:/coverlogo.png</normaloff>:/coverlogo.png</iconset>
+    <normaloff>:/logo2.png</normaloff>:/logo2.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -42,11 +42,11 @@
       <x>0</x>
       <y>0</y>
       <width>1371</width>
-      <height>80</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/aaa.png);
+     <string notr="true">background-color: rgb(255, 255, 255);
 border:none;</string>
     </property>
     <property name="frameShape">
@@ -60,12 +60,12 @@ border:none;</string>
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>131</width>
-       <height>80</height>
+       <width>191</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/coverlogo.png);</string>
+      <string notr="true">border-image: url(:/logo.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -90,7 +90,7 @@ border:none;</string>
     <widget class="QLabel" name="companyName">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>440</x>
        <y>10</y>
        <width>791</width>
        <height>61</height>
@@ -106,9 +106,9 @@ border:none;</string>
     <widget class="QLabel" name="label_19">
      <property name="geometry">
       <rect>
-       <x>210</x>
+       <x>230</x>
        <y>10</y>
-       <width>241</width>
+       <width>211</width>
        <height>61</height>
       </rect>
      </property>
@@ -121,13 +121,13 @@ border:none;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>80</y>
+      <y>90</y>
       <width>1371</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/1360x768-baby-blue-solid-color-background.jpg);
+     <string notr="true">background-color: rgb(114, 159, 207);
 border:none;</string>
     </property>
     <property name="frameShape">
@@ -222,13 +222,13 @@ background-color: rgb(52, 101, 164)
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>130</y>
+      <y>140</y>
       <width>1371</width>
-      <height>581</height>
+      <height>571</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/1360x768-light-gray-solid-color-background.jpg);</string>
+     <string notr="true">background-color: rgb(211, 215, 207);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>

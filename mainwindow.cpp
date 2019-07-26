@@ -83,7 +83,6 @@ void MainWindow::on_registerButton_2_clicked()
                 db.createTable();
                 if (db.unameExists(username))
                 {
-                    //username already exists
                     showError(this,"Username already taken");
 
                 }

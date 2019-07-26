@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="sbs.qrc">
-    <normaloff>:/coverlogo.png</normaloff>:/coverlogo.png</iconset>
+    <normaloff>:/logo2.png</normaloff>:/logo2.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -43,13 +43,13 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>150</y>
+      <y>140</y>
       <width>1371</width>
-      <height>561</height>
+      <height>571</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/1360x768-light-gray-solid-color-background.jpg);</string>
+     <string notr="true">background-color: rgb(211, 215, 207);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -70,7 +70,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_12">
       <widget class="QPushButton" name="registerButton_2">
@@ -255,7 +255,7 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page_19"/>
        <widget class="QWidget" name="page_20">
@@ -721,7 +721,7 @@ background:transparent;
         <string notr="true"/>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Company">
         <widget class="QStackedWidget" name="companyStack">
@@ -734,7 +734,7 @@ background:transparent;
           </rect>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QPushButton" name="companyUpdateButton">
@@ -1099,7 +1099,7 @@ background:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page_4"/>
          <widget class="QWidget" name="page_5">
@@ -1934,7 +1934,7 @@ background:transparent;
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="Details">
           <widget class="QLabel" name="label">
@@ -2228,11 +2228,11 @@ background:transparent;
       <x>0</x>
       <y>0</y>
       <width>1371</width>
-      <height>80</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/aaa.png);
+     <string notr="true">background-color: rgb(255, 255, 255);
 border:none;</string>
     </property>
     <property name="frameShape">
@@ -2246,12 +2246,12 @@ border:none;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>131</width>
-       <height>80</height>
+       <width>181</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/coverlogo.png);</string>
+      <string notr="true">border-image: url(:/logo.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -2305,9 +2305,9 @@ color: rgb(238, 238, 236);
     <widget class="QLabel" name="label_17">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>10</y>
-       <width>241</width>
+       <x>210</x>
+       <y>20</y>
+       <width>171</width>
        <height>61</height>
       </rect>
      </property>
@@ -2320,13 +2320,13 @@ color: rgb(238, 238, 236);
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>80</y>
+      <y>90</y>
       <width>1361</width>
-      <height>71</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/1360x768-baby-blue-solid-color-background.jpg);
+     <string notr="true">background-color: rgb(114, 159, 207);
 border:none;</string>
     </property>
     <property name="frameShape">
@@ -2339,9 +2339,9 @@ border:none;</string>
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>20</y>
+       <y>10</y>
        <width>171</width>
-       <height>31</height>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2360,9 +2360,9 @@ background-color: rgb(52, 101, 164)
      <property name="geometry">
       <rect>
        <x>640</x>
-       <y>20</y>
+       <y>10</y>
        <width>171</width>
-       <height>31</height>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2381,9 +2381,9 @@ background-color: rgb(52, 101, 164)
      <property name="geometry">
       <rect>
        <x>840</x>
-       <y>20</y>
+       <y>10</y>
        <width>171</width>
-       <height>31</height>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2420,9 +2420,9 @@ background-color: rgb(52, 101, 164)
      <property name="geometry">
       <rect>
        <x>220</x>
-       <y>20</y>
+       <y>10</y>
        <width>171</width>
-       <height>31</height>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">

@@ -3,12 +3,10 @@
         <file>SBS.db</file>
         <file>male.jpeg</file>
         <file>female.png</file>
-        <file>coverlogo.png</file>
         <file>aaa.png</file>
-        <file>1360x768-baby-blue-solid-color-background.jpg</file>
         <file>admin.png</file>
-        <file>1360x768-anti-flash-white-solid-color-background.jpg</file>
-        <file>1360x768-light-gray-solid-color-background.jpg</file>
         <file>path.txt</file>
+        <file>logo.png</file>
+        <file>logo2.png</file>
     </qresource>
 </RCC>

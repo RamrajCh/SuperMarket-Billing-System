@@ -420,7 +420,7 @@ void AdminWindow::on_removeButton_clicked()
         else
         {
             QMessageBox::StandardButton stdbut=QMessageBox::warning(this,"Remove Cashier","You want to delete cashier",QMessageBox::Yes|QMessageBox::No);
-            if(stdbut=QMessageBox::Yes){
+            if(stdbut==QMessageBox::Yes){
             db.removeCashier(uname,email);
             QMessageBox::information(this,"Remove Cashier","Sucessful");
             ui->cashierStack->setCurrentIndex(2);
@@ -529,13 +529,8 @@ void AdminWindow::on_changePasswordButton_clicked()
     QString oPassword=ui->oldPassword->text();
     QString nPassword=ui->newPassword->text();
     QString cnPasswod=ui->confirmNewPassword->text();
-
-    qDebug()<<username;
-    qDebug()<<oPassword;
-    qDebug()<<nPassword;
-
-    //check password validation
     Dbase_admin db("SBS.db");
+
     if(!db.uNameExists(username))
     {
         QMessageBox::critical(this,"Username Validation","Your Username doesnot match");
